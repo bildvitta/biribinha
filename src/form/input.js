@@ -5,6 +5,9 @@ function newTextInput(field) {
   input.setAttribute("type", "text");
   input.setAttribute("name", field.name);
   input.setAttribute("id", field.name);
+  if (field.mask) {
+    input.setAttribute("data-mask", field.mask);
+  }
   if (field.required) {
     input.setAttribute("required", true);
   }
@@ -69,10 +72,13 @@ function newBooleanInput(field) {
 
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
+  checkbox.setAttribute("id", field.name);
+  checkbox.setAttribute("name", field.name);
   checkbox.setAttribute("value", field.value);
-  checkbox.setAttribute("name", field.status);
 
-  field.default === "true" && checkbox.setAttribute("checked", true);
+  field.default === "true"
+    ? checkbox.setAttribute("checked", true)
+    : checkbox.setAttribute("checked", false);
 
   div.appendChild(checkbox);
   div.appendChild(label);

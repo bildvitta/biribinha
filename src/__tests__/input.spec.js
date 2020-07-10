@@ -7,6 +7,7 @@ import {
   newSelectInput,
   newCheckboxInput,
   newHiddenInput,
+  newBooleanInput,
 } from "../form/input";
 import { check } from "prettier";
 
@@ -68,16 +69,13 @@ describe("rendering the basic Inputs", () => {
         { label: "Option 3", value: 3 },
       ],
     };
-    newCheckboxInput(field);
+    const checkbox = newCheckboxInput(field);
+    const checkboxes = checkbox.getElementsByTagName("input");
 
-    waitFor(() => {
-      const op1 = screen.getByText("Option 1");
-      const op2 = screen.getByText("Option 2");
-      const op3 = screen.getByText("Option 3");
-      expect(op1).toBeChecked();
-      expect(op2).toBeChecked();
-      expect(op3).not.toBeChecked();
-    });
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (i === 0 || i === 1) expect(checkboxes[i]).toBeChecked();
+      else expect(checkboxes[i]).not.toBeChecked();
+    }
   });
 
   test("Creating a Hidden Input", () => {
@@ -91,5 +89,11 @@ describe("rendering the basic Inputs", () => {
     expect(input).not.toBeVisible();
   });
 
-  //TODO newBooleanInput
+  test("Creating a Boolean Input", () => {
+    const field = {
+      label: "boolean",
+      name: "boolean",
+    };
+    const input = newBooleanInput(field);
+  });
 });

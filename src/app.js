@@ -10,6 +10,7 @@ import {
   newSelectInput,
   newTextArea,
 } from "./form/input";
+import checkMasks from "./form/mask";
 
 async function getStatus() {
   try {
@@ -29,6 +30,7 @@ async function getStatus() {
     }
 
     fieldCreate(fields);
+    checkMasks();
     fieldResults(results);
     // fieldErrors(erros);
   } catch (error) {
@@ -86,21 +88,19 @@ function fieldCreate(fields) {
 
 function fieldResults(results) {
   Object.keys(results).forEach((key) => {
-    console.log(`${key} - ${results[key]}`);
     const input = document.getElementById(`${key}`);
 
     if (input) {
+      // case is select
       if (input.tagName === "SELECT") {
-        console.log(input.options);
-
         for (var i = 0; input.options; i++) {
-          console.log("option", input.options[i].value);
           if (input.options[i].value === results[key]) {
             input.selectedIndex = i;
           }
         }
       }
 
+      // case is normal
       input.setAttribute("value", results[key]);
     }
   });

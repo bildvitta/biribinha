@@ -54,10 +54,11 @@
   "colaborador": {
     "result": {
       "locked_access": false,
-      "name": "Ana Silva de Imbondo",
+      "name": "Pedro Silva de Imbondo",
       "email": "ana.silvadeimbondo@bild.com.br",
       "id": "ana-silvadeimbondo",
-      "group": "geral"
+      "group": "geral",
+      "money": "12,33"
     },
     "fields": {
       "locked_access": {
@@ -72,6 +73,27 @@
         "default": "",
         "type": "text",
         "read_only": true
+      },
+      "money": {
+        "name": "money",
+        "label": "Dinheiro",
+        "default": "",
+        "type": "text",
+        "mask": "money"
+      },
+      "phone": {
+        "name": "phone",
+        "label": "Telefone",
+        "default": "",
+        "type": "text",
+        "mask": "phone"
+      },
+      "cep": {
+        "name": "cep",
+        "label": "CEP",
+        "default": "",
+        "type": "text",
+        "mask": "postal-code"
       },
       "group": {
         "name": "group",
