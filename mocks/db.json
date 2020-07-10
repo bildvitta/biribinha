@@ -1,0 +1,150 @@
+{
+  "assembleia": {
+    "result": {
+      "name": "Assembléia Condomínio",
+      "id": "assembleia-condominio",
+      "status": true,
+      "journey": null
+    },
+    "fields": {
+      "status": {
+        "name": "status",
+        "label": "Ativar categoria",
+        "default": "true",
+        "type": "boolean"
+      },
+      "name": {
+        "name": "name",
+        "label": "Categoria",
+        "default": "",
+        "type": "text"
+      },
+      "id": {
+        "name": "id",
+        "label": "Id",
+        "default": "",
+        "type": "hidden"
+      },
+      "journey": {
+        "name": "journey",
+        "label": "Jornada do Cliente",
+        "default": null,
+        "type": "select",
+        "options": [
+          {
+            "label": "Nenhuma",
+            "value": null
+          },
+          {
+            "label": "Personalização",
+            "value": "personalizacao"
+          },
+          {
+            "label": "Assistência Técnica",
+            "value": "assistencia-tecnica"
+          }
+        ]
+      }
+    },
+    "status": {
+      "code": 200
+    },
+    "metadata": {}
+  },
+  "colaborador": {
+    "result": {
+      "locked_access": false,
+      "name": "Ana Silva de Imbondo",
+      "email": "ana.silvadeimbondo@bild.com.br",
+      "id": "ana-silvadeimbondo",
+      "group": "geral"
+    },
+    "fields": {
+      "locked_access": {
+        "name": "locked_access",
+        "label": "Bloquear acesso",
+        "default": false,
+        "type": "boolean"
+      },
+      "name": {
+        "name": "name",
+        "label": "Nome",
+        "default": "",
+        "type": "text",
+        "read_only": true
+      },
+      "group": {
+        "name": "group",
+        "label": "Perfil",
+        "default": "",
+        "type": "select",
+        "options": [
+          { "label": "Administrador", "value": "administrador" },
+          { "label": "Geral", "value": "geral" },
+          { "label": "Somente Leitura", "value": "somente-leitura" }
+        ]
+      },
+      "email": {
+        "name": "email",
+        "label": "E-mail",
+        "default": "",
+        "type": "text",
+        "read_only": true
+      },
+      "receivers": {
+        "name": "receivers",
+        "label": "Selecione o tipo de relatório: ",
+        "default": "",
+        "type": "checkbox",
+        "options": [
+          {
+            "label": "Banner",
+            "value": "banners"
+          },
+          {
+            "label": "Segunda Via de Boleto",
+            "value": "bank_slips"
+          },
+          {
+            "label": "Períodos de Garantia",
+            "value": "assurance_periods"
+          },
+          {
+            "label": "Períodos de Agendamento",
+            "value": "scheduling_periods"
+          },
+          {
+            "label": "Clientes",
+            "value": "users"
+          },
+          {
+            "label": "Campanhas",
+            "value": "campaigns"
+          },
+          {
+            "label": "Ocorrências",
+            "value": "tickets"
+          },
+          {
+            "label": "Períodos Bloqueados",
+            "value": "block_periods"
+          },
+          {
+            "label": "Solicitações Assist. Técnica",
+            "value": "technical_assistances"
+          },
+          {
+            "label": "Notificações",
+            "value": "notifications"
+          }
+        ]
+      },
+      "id": { "name": "id", "label": "Id", "default": "", "type": "hidden" }
+    },
+    "status": { "code": 200 },
+    "metadata": {
+      "created_at": "2020-06-08T01:32:57.697-03:00",
+      "last_sign_in_at": null
+    }
+  }
+}
