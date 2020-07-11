@@ -1,4 +1,5 @@
 import { createCheckboxLabel } from './label';
+import checkMasks from './mask';
 
 function newTextInput(field) {
   const input = document.createElement('input');
@@ -7,6 +8,7 @@ function newTextInput(field) {
   input.setAttribute('id', field.name);
   if (field.mask) {
     input.setAttribute('data-mask', field.mask);
+    checkMasks(input, field.mask);
   }
   if (field.required) {
     input.setAttribute('required', true);

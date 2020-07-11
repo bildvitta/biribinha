@@ -1,41 +1,31 @@
 import IMask from 'imask';
 
-function checkMasks() {
-  const elementsWithMask = document.querySelectorAll('[data-mask]');
-  elementsWithMask.forEach((element) => {
-    console.log(element);
-    const maskType = element.getAttribute('data-mask');
+export default function checkMasks(element, maskType) {
+  switch (maskType) {
+    case 'money':
+      IMask(element, maskMoney);
+      break;
 
-    switch (maskType) {
-      case 'money':
-        IMask(element, maskMoney);
-        break;
+    case 'phone':
+      IMask(element, maskPhone);
+      break;
 
-      case 'phone':
-        console.log(element.lenght);
-        IMask(element, maskPhone);
-        break;
+    case 'postal-code':
+      IMask(element, maskPostalCode);
+      break;
 
-      case 'postal-code':
-        IMask(element, maskPostalCode);
-        break;
+    case 'personal-document':
+      IMask(element, maskPersonalDocument);
+      break;
 
-      case 'personal-document':
-        IMask(element, maskPersonalDocument);
-        break;
+    case 'company-document':
+      IMask(element, maskCompanyDocument);
+      break;
 
-      case 'company-document':
-        IMask(element, maskCompanyDocument);
-        break;
-
-      case 'document':
-        IMask(element, maskDocument);
-        break;
-
-      default:
-        break;
-    }
-  });
+    case 'document':
+      IMask(element, maskDocument);
+      break;
+  }
 }
 
 const maskMoney = {
@@ -97,5 +87,3 @@ const maskDocument = {
     },
   ],
 };
-
-export default checkMasks;
