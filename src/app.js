@@ -1,6 +1,6 @@
-import api from "./services/api";
+import api from './services/api';
 
-import { createInputLabel } from "./form/label";
+import { createInputLabel } from './form/label';
 import {
   newTextInput,
   newBooleanInput,
@@ -9,8 +9,8 @@ import {
   newHiddenInput,
   newSelectInput,
   newTextArea,
-} from "./form/input";
-import checkMasks from "./form/mask";
+} from './form/input';
+import checkMasks from './form/mask';
 
 async function getStatus() {
   try {
@@ -21,11 +21,11 @@ async function getStatus() {
     const results = response.data.result;
 
     if (fields) {
-      const app = document.getElementById("app");
-      const createform = document.createElement("form");
-      createform.setAttribute("id", "formCreator");
-      createform.setAttribute("action", "");
-      createform.setAttribute("method", "post");
+      const app = document.getElementById('app');
+      const createform = document.createElement('form');
+      createform.setAttribute('id', 'formCreator');
+      createform.setAttribute('action', '');
+      createform.setAttribute('method', 'post');
       app.appendChild(createform);
     }
 
@@ -41,41 +41,41 @@ async function getStatus() {
 getStatus();
 
 function fieldCreate(fields) {
-  const form = document.getElementById("formCreator");
+  const form = document.getElementById('formCreator');
 
   fields.map((field) => {
-    if (field.label && field.type !== "hidden") {
+    if (field.label && field.type !== 'hidden') {
       const label = createInputLabel(field.label, field.name);
       form.appendChild(label);
     }
 
     if (field.type) {
       switch (field.type) {
-        case "text":
+        case 'text':
           form.appendChild(newTextInput(field));
           break;
 
-        case "email":
+        case 'email':
           form.appendChild(newEmailInput(field));
           break;
 
-        case "textarea":
+        case 'textarea':
           form.appendChild(newTextArea(field));
           break;
 
-        case "select":
+        case 'select':
           form.appendChild(newSelectInput(field));
           break;
 
-        case "checkbox":
+        case 'checkbox':
           form.appendChild(newCheckboxInput(field));
           break;
 
-        case "boolean":
+        case 'boolean':
           form.appendChild(newBooleanInput(field));
           break;
 
-        case "hidden":
+        case 'hidden':
           form.appendChild(newHiddenInput(field));
           break;
 
@@ -92,7 +92,7 @@ function fieldResults(results) {
 
     if (input) {
       // case is select
-      if (input.tagName === "SELECT") {
+      if (input.tagName === 'SELECT') {
         for (var i = 0; input.options; i++) {
           if (input.options[i].value === results[key]) {
             input.selectedIndex = i;
@@ -101,7 +101,7 @@ function fieldResults(results) {
       }
 
       // case is normal
-      input.setAttribute("value", results[key]);
+      input.setAttribute('value', results[key]);
     }
   });
 }

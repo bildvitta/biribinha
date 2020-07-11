@@ -95,6 +95,27 @@
         "type": "text",
         "mask": "postal-code"
       },
+      "personal-document": {
+        "name": "personal-document",
+        "label": "CPF",
+        "default": "",
+        "type": "text",
+        "mask": "personal-document"
+      },
+      "company-document": {
+        "name": "company-document",
+        "label": "CNPJ",
+        "default": "",
+        "type": "text",
+        "mask": "company-document"
+      },
+      "document": {
+        "name": "document",
+        "label": "CPF/CNPJ",
+        "default": "",
+        "type": "text",
+        "mask": "document"
+      },
       "group": {
         "name": "group",
         "label": "Perfil",
