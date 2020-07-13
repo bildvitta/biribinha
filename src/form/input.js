@@ -86,7 +86,7 @@ function newEmailInput(field) {
     input.setAttribute('required', true);
   }
 
-  inputDiv.appendChild(textarea);
+  inputDiv.appendChild(input);
   div.appendChild(inputDiv);
 
   return div;

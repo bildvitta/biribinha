@@ -1,4 +1,6 @@
 import '@testing-library/jest-dom';
+import { getByLabelText } from '@testing-library/dom';
+
 import {
   newTextInput,
   newTextArea,
@@ -11,60 +13,79 @@ import {
 
 describe('rendering the basic Inputs', () => {
   test('Creating a Required Input', () => {
-    const input = newTextInput({ name: 'TextInput', required: true });
-    expect(input.getAttribute('type')).toBe('text');
-    expect(input.getAttribute('name')).toBe('TextInput');
-    expect(input.getAttribute('id')).toBe('TextInput');
-    expect(input).toHaveValue('');
-    expect(input).toBeRequired();
-    expect(input).not.toBeDisabled();
+    const div = newTextInput({
+      name: 'textinput',
+      required: true,
+      label: 'Texto',
+    });
+
+    const inputNode = getByLabelText(div, 'Texto:', { selector: 'input' });
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('textinput');
+    expect(inputNode.getAttribute('id')).toBe('textinput');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).toBeRequired();
+    expect(inputNode).not.toBeDisabled();
   });
 
   test('Creating a Input', () => {
-    const input = newTextInput({ name: 'TextInput' });
-    expect(input.getAttribute('type')).toBe('text');
-    expect(input.getAttribute('name')).toBe('TextInput');
-    expect(input.getAttribute('id')).toBe('TextInput');
-    expect(input).toHaveValue('');
-    expect(input).not.toBeRequired();
-    expect(input).not.toBeDisabled();
+    const div = newTextInput({ name: 'TextInput', label: 'Texto' });
+
+    const inputNode = getByLabelText(div, 'Texto:');
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('TextInput');
+    expect(inputNode.getAttribute('id')).toBe('TextInput');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
   });
 
   test('Creating a TextArea Input', () => {
-    const textarea = newTextArea({ name: 'TextArea' });
-    expect(textarea.getAttribute('name')).toBe('TextArea');
-    expect(textarea.getAttribute('id')).toBe('TextArea');
-    expect(textarea).toHaveValue('');
-    expect(textarea).not.toBeRequired();
-    expect(textarea).not.toBeDisabled();
+    const div = newTextArea({ name: 'TextArea', label: 'Texto' });
+
+    const inputNode = getByLabelText(div, 'Texto:');
+
+    expect(inputNode.getAttribute('name')).toBe('TextArea');
+    expect(inputNode.getAttribute('id')).toBe('TextArea');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
   });
 
   test('Creating a Email Input', () => {
-    const input = newEmailInput({ name: 'EmailInput' });
-    expect(input.getAttribute('type')).toBe('email');
-    expect(input.getAttribute('name')).toBe('EmailInput');
-    expect(input.getAttribute('id')).toBe('EmailInput');
-    expect(input).toHaveValue('');
-    expect(input).not.toBeRequired();
-    expect(input).not.toBeDisabled();
+    const div = newEmailInput({ name: 'EmailInput', label: 'Email' });
+
+    const inputNode = getByLabelText(div, 'Email:');
+
+    expect(inputNode.getAttribute('type')).toBe('email');
+    expect(inputNode.getAttribute('name')).toBe('EmailInput');
+    expect(inputNode.getAttribute('id')).toBe('EmailInput');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
   });
 
   test('Creating a Select Input', () => {
     const field = {
-      name: 'Select',
+      name: 'select',
+      label: 'Select',
       options: [
         { label: 'Select a option...', value: '' },
         { label: 'Option 1', value: 1 },
         { label: 'Option 2', value: 2 },
       ],
     };
-    const select = newSelectInput(field);
-    expect(select.getAttribute('name')).toBe('Select');
-    expect(select.getAttribute('id')).toBe('Select');
-    expect(select).toHaveValue('');
-    expect(select).toHaveDisplayValue('Select a option...');
-    expect(select).not.toBeRequired();
-    expect(select).not.toBeDisabled();
+    const div = newSelectInput(field);
+    const inputNode = getByLabelText(div, 'Select:', { selector: 'select' });
+
+    expect(inputNode.getAttribute('name')).toBe('select');
+    expect(inputNode.getAttribute('id')).toBe('select');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).toHaveDisplayValue('Select a option...');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
   });
 
   test('Creating a Checkboxes Input', () => {
