@@ -19,6 +19,7 @@
         "default": "",
         "type": "text"
       },
+
       "id": {
         "name": "id",
         "label": "Id",
@@ -66,6 +67,12 @@
         "label": "Bloquear acesso",
         "default": false,
         "type": "boolean"
+      },
+      "textarea": {
+        "name": "textarea",
+        "label": "Textarea",
+        "default": "",
+        "type": "textarea"
       },
       "name": {
         "name": "name",

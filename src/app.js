@@ -1,5 +1,6 @@
 import api from './services/api';
 
+import form from './form/form-creator';
 import { createInputLabel } from './form/label';
 import {
   newTextInput,
@@ -22,11 +23,7 @@ async function getStatus() {
 
     if (fields) {
       const app = document.getElementById('app');
-      const createform = document.createElement('form');
-      createform.setAttribute('id', 'formCreator');
-      createform.setAttribute('action', '');
-      createform.setAttribute('method', 'post');
-      app.appendChild(createform);
+      app.appendChild(form());
     }
 
     fieldCreate(fields);
@@ -44,11 +41,6 @@ function fieldCreate(fields) {
   const form = document.getElementById('formCreator');
 
   fields.map((field) => {
-    if (field.label && field.type !== 'hidden') {
-      const label = createInputLabel(field.label, field.name);
-      form.appendChild(label);
-    }
-
     if (field.type) {
       switch (field.type) {
         case 'text':
