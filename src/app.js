@@ -10,6 +10,7 @@ import {
   newHiddenInput,
   newSelectInput,
   newTextArea,
+  newDateInput,
 } from './form/input';
 import checkMasks from './form/mask';
 
@@ -53,6 +54,10 @@ function fieldCreate(fields) {
 
         case 'textarea':
           form.appendChild(newTextArea(field));
+          break;
+
+        case 'date':
+          form.appendChild(newDateInput(field));
           break;
 
         case 'select':

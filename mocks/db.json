@@ -86,7 +86,8 @@
         "label": "Dinheiro",
         "default": "",
         "type": "text",
-        "mask": "money"
+        "mask": "money",
+        "prefix": "money"
       },
       "phone": {
         "name": "phone",
@@ -122,6 +123,12 @@
         "default": "",
         "type": "text",
         "mask": "document"
+      },
+      "create_date": {
+        "name": "create_date",
+        "label": "Data de criação",
+        "default": "",
+        "type": "date"
       },
       "group": {
         "name": "group",

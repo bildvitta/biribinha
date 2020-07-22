@@ -44,7 +44,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@chenfengyuan/datepicker": "^1.0.9",
     "axios": "^0.19.2",
-    "imask": "^6.0.5"
+    "imask": "^6.0.5",
+    "moment": "^2.27.0"
   }
 }

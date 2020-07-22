@@ -3,9 +3,64 @@ import {
   createCheckboxLabel,
   createInputLegend,
 } from './label';
+import { createPrefix } from './prefix';
 import checkMasks from './mask';
 
 function newTextInput(field) {
+  const div = document.createElement('div');
+  div.classList.add('form-group', 'row');
+
+  if (field.label) {
+    const label = createInputLabel(field.label, field.name);
+    label.classList.add('col-sm-3', 'col-form-label');
+    div.appendChild(label);
+  }
+
+  const inputCol = document.createElement('div');
+  inputCol.setAttribute('class', 'col-sm-9');
+
+  const input = document.createElement('input');
+  input.setAttribute('type', 'text');
+  input.setAttribute('name', field.name);
+  input.setAttribute('id', field.name);
+  input.setAttribute('class', 'form-control');
+  if (field.mask) {
+    input.setAttribute('data-mask', field.mask);
+    checkMasks(input, field.mask);
+  }
+  if (field.required) {
+    input.setAttribute('required', true);
+  }
+  if (field.read_only) {
+    input.setAttribute('readonly', true);
+  }
+
+  // disabled uso de estado e cidades por exemplo
+
+  if (field.prefix) {
+    const inputGroup = document.createElement('div');
+    inputGroup.setAttribute('class', 'input-group');
+
+    const inputPrefix = document.createElement('div');
+    inputPrefix.setAttribute('class', 'input-group-prepend');
+    inputPrefix.appendChild(createPrefix(field.prefix));
+    input.classList.add('fix-rounded-right');
+    inputGroup.appendChild(inputPrefix);
+    inputGroup.appendChild(input);
+
+    inputCol.appendChild(inputGroup);
+  } else {
+    inputCol.appendChild(input);
+  }
+
+  div.appendChild(inputCol);
+
+  return div;
+}
+
+// input radio
+
+function newDateInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -23,13 +78,13 @@ function newTextInput(field) {
   input.setAttribute('name', field.name);
   input.setAttribute('id', field.name);
   input.setAttribute('class', 'form-control');
-  if (field.mask) {
-    input.setAttribute('data-mask', field.mask);
-    checkMasks(input, field.mask);
-  }
   if (field.required) {
     input.setAttribute('required', true);
   }
+
+  input.setAttribute('data-mask', 'date');
+
+  checkMasks(input, 'date');
 
   inputDiv.appendChild(input);
   div.appendChild(inputDiv);
@@ -169,6 +224,12 @@ function newCheckboxInput(field) {
   return div;
 }
 
+// switchers
+
+// upload
+
+// tooltip (hint)
+
 function newBooleanInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
@@ -212,6 +273,7 @@ function newHiddenInput(field) {
 
 export {
   newTextInput,
+  newDateInput,
   newBooleanInput,
   newCheckboxInput,
   newEmailInput,

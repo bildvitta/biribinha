@@ -4,6 +4,7 @@ import { getByLabelText } from '@testing-library/dom';
 import {
   newTextInput,
   newTextArea,
+  newDateInput,
   newEmailInput,
   newSelectInput,
   newCheckboxInput,
@@ -124,5 +125,24 @@ describe('rendering the basic Inputs', () => {
       name: 'boolean',
     };
     const input = newBooleanInput(field);
+  });
+
+  test('Date Input', () => {
+    const div = newDateInput({
+      name: 'create_date',
+      required: true,
+      label: 'Data de criação',
+    });
+
+    const inputNode = getByLabelText(div, 'Data de criação:', {
+      selector: 'input',
+    });
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('create_date');
+    expect(inputNode.getAttribute('id')).toBe('create_date');
+    expect(inputNode).toHaveValue('  /  /    ');
+    expect(inputNode).toBeRequired();
+    expect(inputNode).not.toBeDisabled();
   });
 });

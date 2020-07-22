@@ -1,4 +1,5 @@
 import IMask from 'imask';
+import moment from 'moment';
 
 export default function checkMasks(element, maskType) {
   switch (maskType) {
@@ -7,8 +8,19 @@ export default function checkMasks(element, maskType) {
       break;
 
     case 'phone':
+      // TODO 0800
       IMask(element, maskPhone);
       break;
+
+    case 'date':
+      var mask = IMask(element, maskDate);
+      element.addEventListener('input', function () {
+        mask.updateValue();
+      });
+
+      break;
+    // TODO DATE + TIME
+    // TODO TIME
 
     case 'postal-code':
       IMask(element, maskPostalCode);
@@ -86,4 +98,36 @@ const maskDocument = {
       placeholderChar: ' ', // defaults to '_'}
     },
   ],
+};
+
+const momentFormat = 'DD/MM/YYYY';
+const maskDate = {
+  mask: Date,
+  pattern: momentFormat,
+  lazy: false,
+
+  format: function (date) {
+    return moment(date).format(momentFormat);
+  },
+  parse: function (str) {
+    return moment(str, momentFormat);
+  },
+  placeholderChar: ' ',
+  blocks: {
+    DD: {
+      mask: IMask.MaskedRange,
+      from: 1,
+      to: 31,
+    },
+    MM: {
+      mask: IMask.MaskedRange,
+      from: 1,
+      to: 12,
+    },
+    YYYY: {
+      mask: IMask.MaskedRange,
+      from: 1900,
+      to: 2199,
+    },
+  },
 };

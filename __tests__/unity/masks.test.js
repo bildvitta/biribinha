@@ -1,7 +1,7 @@
 import { fireEvent, getByLabelText } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
-import { newTextInput } from '../../src/form/input';
+import { newTextInput, newDateInput } from '../../src/form/input';
 
 describe('rendering the basic Inputs', () => {
   test('Input with money mask', () => {
@@ -146,5 +146,25 @@ describe('rendering the basic Inputs', () => {
       target: { value: '49133123080' },
     });
     expect(inputNode.value).toBe('491.331.230-80');
+  });
+
+  test('Date Input', () => {
+    const div = newDateInput({
+      name: 'date_name',
+      label: 'Date Label',
+      type: 'date',
+      mask: 'date',
+    });
+
+    const inputNode = getByLabelText(div, 'Date Label:', { selector: 'input' });
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('date_name');
+    expect(inputNode.getAttribute('id')).toBe('date_name');
+    expect(inputNode.getAttribute('data-mask')).toBe('date');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+    fireEvent.input(inputNode, { target: { value: '20012020' } });
+    expect(inputNode.value).toBe('20/01/2020');
   });
 });
