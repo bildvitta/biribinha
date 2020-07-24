@@ -9,6 +9,8 @@
     padding: 4px 8px;
     font-size: 13px;
     border-radius: 4px;
+    visibility: hidden;
+
     &[data-popper-placement^='top'] > #arrow {
       bottom: -4px;
     }
@@ -27,6 +29,7 @@
   &:hover {
     .tooltip {
       opacity: 1;
+      visibility: visible;
       &::before {
         opacity: 1;
       }
