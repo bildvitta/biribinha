@@ -1,4 +1,4 @@
-function createPrefix(prefixType) {
+function PrefixSuffix(prefixType) {
   const prefix = document.createElement('div');
   prefix.setAttribute('class', 'input-group-text');
 
@@ -17,4 +17,4 @@ function createPrefix(prefixType) {
   return prefix;
 }
 
-export { createPrefix };
+export { PrefixSuffix };

@@ -3,7 +3,7 @@ import {
   createCheckboxLabel,
   createInputLegend,
 } from './label';
-import { createPrefix, createSuffix } from './prefix';
+import { PrefixSuffix } from './prefix_suffix';
 import checkMasks from './mask';
 
 function newTextInput(field) {
@@ -11,7 +11,7 @@ function newTextInput(field) {
   div.classList.add('form-group', 'row');
 
   if (field.label) {
-    const label = createInputLabel(field.label, field.name);
+    const label = createInputLabel(field);
     label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
@@ -44,7 +44,7 @@ function newTextInput(field) {
     if (field.prefix) {
       const inputPrefix = document.createElement('div');
       inputPrefix.setAttribute('class', 'input-group-prepend');
-      inputPrefix.appendChild(createPrefix(field.prefix));
+      inputPrefix.appendChild(PrefixSuffix(field.prefix));
       // input.classList.add('fix-rounded-right');
       inputGroup.appendChild(inputPrefix);
       inputGroup.appendChild(input);
@@ -53,7 +53,7 @@ function newTextInput(field) {
     if (field.suffix) {
       const inputSuffix = document.createElement('div');
       inputSuffix.setAttribute('class', 'input-group-append');
-      inputSuffix.appendChild(createPrefix(field.suffix));
+      inputSuffix.appendChild(PrefixSuffix(field.suffix));
       // input.classList.add('fix-rounded-right');
       inputGroup.appendChild(input);
       inputGroup.appendChild(inputSuffix);
@@ -74,7 +74,7 @@ function newNumberInput(field) {
   div.classList.add('form-group', 'row');
 
   if (field.label) {
-    const label = createInputLabel(field.label, field.name);
+    const label = createInputLabel(field);
     label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
@@ -103,7 +103,7 @@ function newNumberInput(field) {
     if (field.prefix) {
       const inputPrefix = document.createElement('div');
       inputPrefix.setAttribute('class', 'input-group-prepend');
-      inputPrefix.appendChild(createPrefix(field.prefix));
+      inputPrefix.appendChild(PrefixSuffix(field.prefix));
       // input.classList.add('fix-rounded-right');
       inputGroup.appendChild(inputPrefix);
       inputGroup.appendChild(input);
@@ -112,7 +112,7 @@ function newNumberInput(field) {
     if (field.suffix) {
       const inputSuffix = document.createElement('div');
       inputSuffix.setAttribute('class', 'input-group-append');
-      inputSuffix.appendChild(createPrefix(field.suffix));
+      inputSuffix.appendChild(PrefixSuffix(field.suffix));
       // input.classList.add('fix-rounded-right');
       inputGroup.appendChild(input);
       inputGroup.appendChild(inputSuffix);
@@ -133,7 +133,7 @@ function newDateInput(field) {
   div.classList.add('form-group', 'row');
 
   if (field.label) {
-    const label = createInputLabel(field.label, field.name);
+    const label = createInputLabel(field);
     label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
@@ -171,7 +171,7 @@ function newTextArea(field) {
   div.classList.add('form-group', 'row');
 
   if (field.label) {
-    const label = createInputLabel(field.label, field.name);
+    const label = createInputLabel(field);
     label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
@@ -201,7 +201,7 @@ function newEmailInput(field) {
   div.classList.add('form-group', 'row');
 
   if (field.label) {
-    const label = createInputLabel(field.label, field.name);
+    const label = createInputLabel(field);
     label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
@@ -232,7 +232,7 @@ function newSelectInput(field) {
   div.classList.add('form-group', 'row');
 
   if (field.label) {
-    const label = createInputLabel(field.label, field.name);
+    const label = createInputLabel(field);
     label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
@@ -349,8 +349,6 @@ function newRadioInput(field) {
   });
   return div;
 }
-
-// tooltip (hint)
 
 function newBooleanInput(field) {
   const div = document.createElement('div');

@@ -72,7 +72,8 @@
         "name": "textarea",
         "label": "Textarea",
         "default": "",
-        "type": "textarea"
+        "type": "textarea",
+        "hint": "this is a test"
       },
       "name": {
         "name": "name",
