@@ -1,0 +1,35 @@
+.with-tooltip {
+  margin-left: 3px;
+  font-size: 16px;
+
+  .tooltip {
+    background: #333;
+    color: white;
+    font-weight: bold;
+    padding: 4px 8px;
+    font-size: 13px;
+    border-radius: 4px;
+    &[data-popper-placement^='top'] > #arrow {
+      bottom: -4px;
+    }
+    &::before {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      z-index: -1;
+      content: '';
+      transform: rotate(45deg);
+      background: #333;
+      bottom: -4px;
+      left: calc(50% - 4px);
+    }
+  }
+  &:hover {
+    .tooltip {
+      opacity: 1;
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
