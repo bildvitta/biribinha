@@ -6,6 +6,9 @@ function createPrefix(prefixType) {
     case 'money':
       prefix.innerHTML = 'R$';
       break;
+    case 'percent':
+      prefix.innerHTML = '%';
+      break;
 
     default:
       break;

@@ -89,6 +89,13 @@
         "mask": "money",
         "prefix": "money"
       },
+      "percent": {
+        "name": "percent",
+        "label": "Porcentagem",
+        "default": "",
+        "type": "number",
+        "suffix": "percent"
+      },
       "phone": {
         "name": "phone",
         "label": "Telefone",
@@ -135,6 +142,17 @@
         "label": "Perfil",
         "default": "",
         "type": "select",
+        "options": [
+          { "label": "Administrador", "value": "administrador" },
+          { "label": "Geral", "value": "geral" },
+          { "label": "Somente Leitura", "value": "somente-leitura" }
+        ]
+      },
+      "groupradio": {
+        "name": "groupRadio",
+        "label": "Radio",
+        "default": "",
+        "type": "radio",
         "options": [
           { "label": "Administrador", "value": "administrador" },
           { "label": "Geral", "value": "geral" },

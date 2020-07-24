@@ -1,11 +1,12 @@
 import api from './services/api';
 
 import form from './form/form-creator';
-import { createInputLabel } from './form/label';
 import {
   newTextInput,
+  newNumberInput,
   newBooleanInput,
   newCheckboxInput,
+  newRadioInput,
   newEmailInput,
   newHiddenInput,
   newSelectInput,
@@ -48,6 +49,10 @@ function fieldCreate(fields) {
           form.appendChild(newTextInput(field));
           break;
 
+        case 'number':
+          form.appendChild(newNumberInput(field));
+          break;
+
         case 'email':
           form.appendChild(newEmailInput(field));
           break;
@@ -66,6 +71,10 @@ function fieldCreate(fields) {
 
         case 'checkbox':
           form.appendChild(newCheckboxInput(field));
+          break;
+
+        case 'radio':
+          form.appendChild(newRadioInput(field));
           break;
 
         case 'boolean':

@@ -3,7 +3,7 @@ import {
   createCheckboxLabel,
   createInputLegend,
 } from './label';
-import { createPrefix } from './prefix';
+import { createPrefix, createSuffix } from './prefix';
 import checkMasks from './mask';
 
 function newTextInput(field) {
@@ -37,16 +37,27 @@ function newTextInput(field) {
 
   // disabled uso de estado e cidades por exemplo
 
-  if (field.prefix) {
+  if (field.prefix || field.suffix) {
     const inputGroup = document.createElement('div');
     inputGroup.setAttribute('class', 'input-group');
 
-    const inputPrefix = document.createElement('div');
-    inputPrefix.setAttribute('class', 'input-group-prepend');
-    inputPrefix.appendChild(createPrefix(field.prefix));
-    input.classList.add('fix-rounded-right');
-    inputGroup.appendChild(inputPrefix);
-    inputGroup.appendChild(input);
+    if (field.prefix) {
+      const inputPrefix = document.createElement('div');
+      inputPrefix.setAttribute('class', 'input-group-prepend');
+      inputPrefix.appendChild(createPrefix(field.prefix));
+      // input.classList.add('fix-rounded-right');
+      inputGroup.appendChild(inputPrefix);
+      inputGroup.appendChild(input);
+    }
+
+    if (field.suffix) {
+      const inputSuffix = document.createElement('div');
+      inputSuffix.setAttribute('class', 'input-group-append');
+      inputSuffix.appendChild(createPrefix(field.suffix));
+      // input.classList.add('fix-rounded-right');
+      inputGroup.appendChild(input);
+      inputGroup.appendChild(inputSuffix);
+    }
 
     inputCol.appendChild(inputGroup);
   } else {
@@ -58,7 +69,64 @@ function newTextInput(field) {
   return div;
 }
 
-// input radio
+function newNumberInput(field) {
+  const div = document.createElement('div');
+  div.classList.add('form-group', 'row');
+
+  if (field.label) {
+    const label = createInputLabel(field.label, field.name);
+    label.classList.add('col-sm-3', 'col-form-label');
+    div.appendChild(label);
+  }
+
+  const inputCol = document.createElement('div');
+  inputCol.setAttribute('class', 'col-sm-9');
+
+  const input = document.createElement('input');
+  input.setAttribute('type', 'text');
+  input.setAttribute('name', field.name);
+  input.setAttribute('id', field.name);
+  input.setAttribute('class', 'form-control');
+  if (field.required) {
+    input.setAttribute('required', true);
+  }
+  if (field.read_only) {
+    input.setAttribute('readonly', true);
+  }
+
+  // disabled uso de estado e cidades por exemplo
+
+  if (field.prefix || field.suffix) {
+    const inputGroup = document.createElement('div');
+    inputGroup.setAttribute('class', 'input-group');
+
+    if (field.prefix) {
+      const inputPrefix = document.createElement('div');
+      inputPrefix.setAttribute('class', 'input-group-prepend');
+      inputPrefix.appendChild(createPrefix(field.prefix));
+      // input.classList.add('fix-rounded-right');
+      inputGroup.appendChild(inputPrefix);
+      inputGroup.appendChild(input);
+    }
+
+    if (field.suffix) {
+      const inputSuffix = document.createElement('div');
+      inputSuffix.setAttribute('class', 'input-group-append');
+      inputSuffix.appendChild(createPrefix(field.suffix));
+      // input.classList.add('fix-rounded-right');
+      inputGroup.appendChild(input);
+      inputGroup.appendChild(inputSuffix);
+    }
+
+    inputCol.appendChild(inputGroup);
+  } else {
+    inputCol.appendChild(input);
+  }
+
+  div.appendChild(inputCol);
+
+  return div;
+}
 
 function newDateInput(field) {
   const div = document.createElement('div');
@@ -83,8 +151,14 @@ function newDateInput(field) {
   }
 
   input.setAttribute('data-mask', 'date');
-
   checkMasks(input, 'date');
+
+  if (field.required) {
+    input.setAttribute('required', true);
+  }
+  if (field.read_only) {
+    input.setAttribute('readonly', true);
+  }
 
   inputDiv.appendChild(input);
   div.appendChild(inputDiv);
@@ -111,6 +185,9 @@ function newTextArea(field) {
   textarea.setAttribute('class', 'form-control');
   if (field.required) {
     input.setAttribute('required', true);
+  }
+  if (field.read_only) {
+    input.setAttribute('readonly', true);
   }
 
   inputDiv.appendChild(textarea);
@@ -139,6 +216,9 @@ function newEmailInput(field) {
   input.setAttribute('class', 'form-control');
   if (field.required) {
     input.setAttribute('required', true);
+  }
+  if (field.read_only) {
+    input.setAttribute('readonly', true);
   }
 
   inputDiv.appendChild(input);
@@ -174,7 +254,10 @@ function newSelectInput(field) {
   });
 
   if (field.required) {
-    select.setAttribute('required', true);
+    input.setAttribute('required', true);
+  }
+  if (field.read_only) {
+    input.setAttribute('readonly', true);
   }
 
   inputDiv.appendChild(select);
@@ -207,6 +290,7 @@ function newCheckboxInput(field) {
     const checkbox = document.createElement('input');
     checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('value', option.value);
+    checkbox.setAttribute('name', `${field.name}`);
     checkbox.setAttribute('id', id);
     checkbox.setAttribute('class', 'form-check-input');
 
@@ -224,9 +308,47 @@ function newCheckboxInput(field) {
   return div;
 }
 
-// switchers
+function newRadioInput(field) {
+  const div = document.createElement('div');
+  div.classList.add('form-group', 'row');
 
-// upload
+  if (field.label) {
+    const label = createInputLegend(field.label, field.name);
+    label.classList.add('col-sm-3', 'col-form-label');
+    div.appendChild(label);
+  }
+
+  const inputDiv = document.createElement('div');
+  inputDiv.setAttribute('class', 'col-sm-9');
+
+  field.options.map((option) => {
+    const formCheck = document.createElement('div');
+    formCheck.setAttribute('class', 'form-check');
+
+    const id = `${field.name}-${option.value}`;
+    const label = createCheckboxLabel(option.label, id);
+    label.setAttribute('class', 'form-check-label');
+
+    const radio = document.createElement('input');
+    radio.setAttribute('type', 'radio');
+    radio.setAttribute('value', option.value);
+    radio.setAttribute('name', `${field.name}`);
+    radio.setAttribute('id', id);
+    radio.setAttribute('class', 'form-check-input');
+
+    if (field.default !== '') {
+      field.default.forEach((checked) => {
+        option.value === checked && radio.setAttribute('checked', true);
+      });
+    }
+
+    formCheck.appendChild(radio);
+    formCheck.appendChild(label);
+    inputDiv.appendChild(formCheck);
+    div.appendChild(inputDiv);
+  });
+  return div;
+}
 
 // tooltip (hint)
 
@@ -235,20 +357,20 @@ function newBooleanInput(field) {
   div.classList.add('form-group', 'row');
 
   const label = createCheckboxLabel(field.label, field.name);
-  label.setAttribute('class', 'form-check-label');
+  label.setAttribute('class', 'custom-control-label');
 
   const inputDiv = document.createElement('div');
   inputDiv.setAttribute('class', 'col-sm-12');
 
   const formCheck = document.createElement('div');
-  formCheck.setAttribute('class', 'form-check');
+  formCheck.setAttribute('class', 'form-check custom-switch');
 
   const checkbox = document.createElement('input');
   checkbox.setAttribute('type', 'checkbox');
   checkbox.setAttribute('id', field.name);
   checkbox.setAttribute('name', field.name);
   checkbox.setAttribute('value', field.value);
-  checkbox.setAttribute('class', 'form-check-input');
+  checkbox.setAttribute('class', 'custom-control-input');
 
   field.default === 'true'
     ? checkbox.setAttribute('checked', true)
@@ -273,9 +395,11 @@ function newHiddenInput(field) {
 
 export {
   newTextInput,
+  newNumberInput,
   newDateInput,
   newBooleanInput,
   newCheckboxInput,
+  newRadioInput,
   newEmailInput,
   newHiddenInput,
   newSelectInput,
