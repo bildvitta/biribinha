@@ -13,20 +13,19 @@ export default function checkMasks(element, maskType) {
       break;
 
     case 'date':
-      var mask = IMask(element, maskDate);
+      const dateMask = IMask(element, maskDate);
       element.addEventListener('input', function () {
-        mask.updateValue();
+        dateMask.updateValue();
       });
+      break;
 
     case 'time':
-      var mask = IMask(element, maskTime);
+      const timeMask = IMask(element, maskTime);
       element.addEventListener('input', function () {
-        mask.updateValue();
+        timeMask.updateValue();
       });
-
       break;
     // TODO DATE + TIME
-    // TODO TIME
 
     case 'postal-code':
       IMask(element, maskPostalCode);

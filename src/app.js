@@ -22,17 +22,22 @@ async function getStatus() {
     const response = await api.get(`/colaborador`);
 
     const fields = Object.values(response.data.fields);
-    const results = response.data.result;
 
     if (fields) {
       const app = document.getElementById('app');
       app.appendChild(form());
+      fieldCreate(fields);
     }
 
-    fieldCreate(fields);
-    checkMasks();
-    fieldResults(results);
-    // fieldErrors(erros);
+    if (response.data.result) {
+      const results = response.data.result;
+      fieldResults(results);
+    }
+
+    if (response.data.errors) {
+      const errors = response.data.errors;
+      fieldErrors(errors);
+    }
   } catch (error) {
     console.error(`Alguma coisa aconteceu: `, error);
   }
@@ -98,14 +103,17 @@ function fieldCreate(fields) {
 }
 
 function fieldResults(results) {
+  console.log('field results');
   Object.keys(results).forEach((key) => {
     const input = document.getElementById(`${key}`);
 
+    // case is select
     if (input) {
-      // case is select
       if (input.tagName === 'SELECT') {
-        for (var i = 0; input.options; i++) {
-          if (input.options[i].value === results[key]) {
+        console.log(input.options.length);
+        for (var i = 0; i < input.options.length; i++) {
+          console.log(i);
+          if (input.options[i] && input.options[i].value === results[key]) {
             input.selectedIndex = i;
           }
         }
@@ -114,5 +122,14 @@ function fieldResults(results) {
       // case is normal
       input.setAttribute('value', results[key]);
     }
+  });
+}
+
+function fieldErrors(errors) {
+  console.log(errors);
+  Object.keys(errors).forEach((key) => {
+    const input = document.getElementById(`${key}`);
+
+    console.log(input);
   });
 }

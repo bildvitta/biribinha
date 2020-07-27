@@ -61,6 +61,13 @@
       "group": "geral",
       "money": "12,33"
     },
+    "errors": {
+      "time": ["Campo obrigatório"],
+      "name": [
+        "Campo obrigatório",
+        "Campo precisa de pelo precisa ter nome e sobrenome"
+      ]
+    },
     "fields": {
       "locked_access": {
         "name": "locked_access",
