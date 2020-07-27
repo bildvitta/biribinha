@@ -18,6 +18,12 @@ export default function checkMasks(element, maskType) {
         mask.updateValue();
       });
 
+    case 'time':
+      var mask = IMask(element, maskTime);
+      element.addEventListener('input', function () {
+        mask.updateValue();
+      });
+
       break;
     // TODO DATE + TIME
     // TODO TIME
@@ -100,17 +106,17 @@ const maskDocument = {
   ],
 };
 
-const momentFormat = 'DD/MM/YYYY';
+const momentDateFormat = 'DD/MM/YYYY';
 const maskDate = {
   mask: Date,
-  pattern: momentFormat,
+  pattern: momentDateFormat,
   lazy: false,
 
   format: function (date) {
-    return moment(date).format(momentFormat);
+    return moment(date).format(momentDateFormat);
   },
   parse: function (str) {
-    return moment(str, momentFormat);
+    return moment(str, momentDateFormat);
   },
   placeholderChar: ' ',
   blocks: {
@@ -128,6 +134,33 @@ const maskDate = {
       mask: IMask.MaskedRange,
       from: 1900,
       to: 2199,
+    },
+  },
+};
+
+const momentTimeFormat = 'HH:mm';
+const maskTime = {
+  mask: Date,
+  pattern: momentTimeFormat,
+  lazy: false,
+
+  format: function (date) {
+    return moment(date).format(momentTimeFormat);
+  },
+  parse: function (str) {
+    return moment(str, momentTimeFormat);
+  },
+  placeholderChar: ' ',
+  blocks: {
+    HH: {
+      mask: IMask.MaskedRange,
+      from: 0,
+      to: 23,
+    },
+    mm: {
+      mask: IMask.MaskedRange,
+      from: 0,
+      to: 59,
     },
   },
 };

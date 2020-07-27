@@ -6,7 +6,7 @@ import {
 import { PrefixSuffix } from './prefix_suffix';
 import checkMasks from './mask';
 
-function newTextInput(field) {
+function TextInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -69,7 +69,7 @@ function newTextInput(field) {
   return div;
 }
 
-function newNumberInput(field) {
+function NumberInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -128,7 +128,7 @@ function newNumberInput(field) {
   return div;
 }
 
-function newDateInput(field) {
+function DateInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -166,7 +166,45 @@ function newDateInput(field) {
   return div;
 }
 
-function newTextArea(field) {
+function TimeInput(field) {
+  const div = document.createElement('div');
+  div.classList.add('form-group', 'row');
+
+  if (field.label) {
+    const label = createInputLabel(field);
+    label.classList.add('col-sm-3', 'col-form-label');
+    div.appendChild(label);
+  }
+
+  const inputDiv = document.createElement('div');
+  inputDiv.setAttribute('class', 'col-sm-9');
+
+  const input = document.createElement('input');
+  input.setAttribute('type', 'text');
+  input.setAttribute('name', field.name);
+  input.setAttribute('id', field.name);
+  input.setAttribute('class', 'form-control');
+  if (field.required) {
+    input.setAttribute('required', true);
+  }
+
+  input.setAttribute('data-mask', 'time');
+  checkMasks(input, 'time');
+
+  if (field.required) {
+    input.setAttribute('required', true);
+  }
+  if (field.read_only) {
+    input.setAttribute('readonly', true);
+  }
+
+  inputDiv.appendChild(input);
+  div.appendChild(inputDiv);
+
+  return div;
+}
+
+function TextArea(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -196,7 +234,7 @@ function newTextArea(field) {
   return div;
 }
 
-function newEmailInput(field) {
+function EmailInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -227,7 +265,7 @@ function newEmailInput(field) {
   return div;
 }
 
-function newSelectInput(field) {
+function SelectInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -266,7 +304,7 @@ function newSelectInput(field) {
   return div;
 }
 
-function newCheckboxInput(field) {
+function CheckboxInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -308,7 +346,7 @@ function newCheckboxInput(field) {
   return div;
 }
 
-function newRadioInput(field) {
+function RadioInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -350,7 +388,7 @@ function newRadioInput(field) {
   return div;
 }
 
-function newBooleanInput(field) {
+function BooleanInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -382,7 +420,7 @@ function newBooleanInput(field) {
   return div;
 }
 
-function newHiddenInput(field) {
+function HiddenInput(field) {
   const input = document.createElement('input');
   input.setAttribute('type', 'text');
   input.setAttribute('name', field.name);
@@ -392,14 +430,15 @@ function newHiddenInput(field) {
 }
 
 export {
-  newTextInput,
-  newNumberInput,
-  newDateInput,
-  newBooleanInput,
-  newCheckboxInput,
-  newRadioInput,
-  newEmailInput,
-  newHiddenInput,
-  newSelectInput,
-  newTextArea,
+  TextInput,
+  NumberInput,
+  DateInput,
+  TimeInput,
+  BooleanInput,
+  CheckboxInput,
+  RadioInput,
+  EmailInput,
+  HiddenInput,
+  SelectInput,
+  TextArea,
 };

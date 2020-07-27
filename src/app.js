@@ -2,16 +2,17 @@ import api from './services/api';
 
 import form from './form/form-creator';
 import {
-  newTextInput,
-  newNumberInput,
-  newBooleanInput,
-  newCheckboxInput,
-  newRadioInput,
-  newEmailInput,
-  newHiddenInput,
-  newSelectInput,
-  newTextArea,
-  newDateInput,
+  TextInput,
+  NumberInput,
+  BooleanInput,
+  CheckboxInput,
+  RadioInput,
+  EmailInput,
+  HiddenInput,
+  SelectInput,
+  TextArea,
+  DateInput,
+  TimeInput,
 } from './form/input';
 import checkMasks from './form/mask';
 
@@ -46,43 +47,47 @@ function fieldCreate(fields) {
     if (field.type) {
       switch (field.type) {
         case 'text':
-          form.appendChild(newTextInput(field));
+          form.appendChild(TextInput(field));
           break;
 
         case 'number':
-          form.appendChild(newNumberInput(field));
+          form.appendChild(NumberInput(field));
           break;
 
         case 'email':
-          form.appendChild(newEmailInput(field));
+          form.appendChild(EmailInput(field));
           break;
 
         case 'textarea':
-          form.appendChild(newTextArea(field));
+          form.appendChild(TextArea(field));
           break;
 
         case 'date':
-          form.appendChild(newDateInput(field));
+          form.appendChild(DateInput(field));
+          break;
+
+        case 'time':
+          form.appendChild(TimeInput(field));
           break;
 
         case 'select':
-          form.appendChild(newSelectInput(field));
+          form.appendChild(SelectInput(field));
           break;
 
         case 'checkbox':
-          form.appendChild(newCheckboxInput(field));
+          form.appendChild(CheckboxInput(field));
           break;
 
         case 'radio':
-          form.appendChild(newRadioInput(field));
+          form.appendChild(RadioInput(field));
           break;
 
         case 'boolean':
-          form.appendChild(newBooleanInput(field));
+          form.appendChild(BooleanInput(field));
           break;
 
         case 'hidden':
-          form.appendChild(newHiddenInput(field));
+          form.appendChild(HiddenInput(field));
           break;
 
         default:

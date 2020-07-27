@@ -138,6 +138,12 @@
         "default": "",
         "type": "date"
       },
+      "time": {
+        "name": "time",
+        "label": "Hora de criação",
+        "default": "",
+        "type": "time"
+      },
       "group": {
         "name": "group",
         "label": "Perfil",
