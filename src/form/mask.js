@@ -1,51 +1,53 @@
 import IMask from 'imask';
 import moment from 'moment';
 
-export default function checkMasks(element, maskType) {
+export default function checkMasks(element, maskType, places) {
   switch (maskType) {
     case 'money':
-      IMask(element, maskMoney);
+      IMask(element, maskMoney());
       break;
 
     case 'phone':
-      // TODO 0800
-      IMask(element, maskPhone);
+      IMask(element, maskPhone());
       break;
 
     case 'date':
-      const dateMask = IMask(element, maskDate);
+      const dateMask = IMask(element, maskDate());
       element.addEventListener('input', function () {
         dateMask.updateValue();
       });
       break;
 
     case 'time':
-      const timeMask = IMask(element, maskTime);
+      const timeMask = IMask(element, maskTime());
       element.addEventListener('input', function () {
         timeMask.updateValue();
       });
       break;
-    // TODO DATE + TIME
 
     case 'postal-code':
-      IMask(element, maskPostalCode);
+      IMask(element, maskPostalCode());
       break;
 
     case 'personal-document':
-      IMask(element, maskPersonalDocument);
+      IMask(element, maskPersonalDocument());
       break;
 
     case 'company-document':
-      IMask(element, maskCompanyDocument);
+      IMask(element, maskCompanyDocument());
       break;
 
     case 'document':
-      IMask(element, maskDocument);
+      IMask(element, maskDocument());
+      break;
+
+    case 'places':
+      IMask(element, maskPlaces(places));
       break;
   }
 }
 
-const maskMoney = {
+const maskMoney = () => ({
   mask: Number, // enable number mask
   // other options are optional with defaults below
   scale: 2, // digits after point, 0 for integers
@@ -55,9 +57,9 @@ const maskMoney = {
   normalizeZeros: true, // appends or removes zeros at ends
   radix: ',', // fractional delimiter
   mapToRadix: ['.'], // symbols to process as radix
-};
+});
 
-const maskPhone = {
+const maskPhone = () => ({
   mask: [
     {
       mask: '(00) 0000-0000',
@@ -70,27 +72,27 @@ const maskPhone = {
       placeholderChar: ' ', // defaults to '_'}
     },
   ],
-};
+});
 
-const maskPostalCode = {
+const maskPostalCode = () => ({
   mask: '00000-000',
   lazy: false, // make placeholder always visible
   placeholderChar: ' ', // defaults to '_'
-};
+});
 
-const maskPersonalDocument = {
+const maskPersonalDocument = () => ({
   mask: '000.000.000-00',
   lazy: false,
   placeholderChar: ' ',
-};
+});
 
-const maskCompanyDocument = {
+const maskCompanyDocument = () => ({
   mask: '00.000.000/0000-00',
   lazy: false,
   placeholderChar: ' ',
-};
+});
 
-const maskDocument = {
+const maskDocument = () => ({
   mask: [
     {
       mask: '000.000.000-00',
@@ -103,63 +105,75 @@ const maskDocument = {
       placeholderChar: ' ', // defaults to '_'}
     },
   ],
+});
+
+const maskDate = () => {
+  const momentDateFormat = 'DD/MM/YYYY';
+  return {
+    mask: Date,
+    pattern: momentDateFormat,
+    lazy: false,
+
+    format: function (date) {
+      return moment(date).format(momentDateFormat);
+    },
+    parse: function (str) {
+      return moment(str, momentDateFormat);
+    },
+    placeholderChar: ' ',
+    blocks: {
+      DD: {
+        mask: IMask.MaskedRange,
+        from: 1,
+        to: 31,
+      },
+      MM: {
+        mask: IMask.MaskedRange,
+        from: 1,
+        to: 12,
+      },
+      YYYY: {
+        mask: IMask.MaskedRange,
+        from: 1900,
+        to: 2199,
+      },
+    },
+  };
 };
 
-const momentDateFormat = 'DD/MM/YYYY';
-const maskDate = {
-  mask: Date,
-  pattern: momentDateFormat,
-  lazy: false,
+const maskTime = () => {
+  const momentTimeFormat = 'HH:mm';
 
-  format: function (date) {
-    return moment(date).format(momentDateFormat);
-  },
-  parse: function (str) {
-    return moment(str, momentDateFormat);
-  },
-  placeholderChar: ' ',
-  blocks: {
-    DD: {
-      mask: IMask.MaskedRange,
-      from: 1,
-      to: 31,
+  return {
+    mask: Date,
+    pattern: momentTimeFormat,
+    lazy: false,
+
+    format: function (date) {
+      return moment(date).format(momentTimeFormat);
     },
-    MM: {
-      mask: IMask.MaskedRange,
-      from: 1,
-      to: 12,
+    parse: function (str) {
+      return moment(str, momentTimeFormat);
     },
-    YYYY: {
-      mask: IMask.MaskedRange,
-      from: 1900,
-      to: 2199,
+    placeholderChar: ' ',
+    blocks: {
+      HH: {
+        mask: IMask.MaskedRange,
+        from: 0,
+        to: 23,
+      },
+      mm: {
+        mask: IMask.MaskedRange,
+        from: 0,
+        to: 59,
+      },
     },
-  },
+  };
 };
 
-const momentTimeFormat = 'HH:mm';
-const maskTime = {
-  mask: Date,
-  pattern: momentTimeFormat,
-  lazy: false,
-
-  format: function (date) {
-    return moment(date).format(momentTimeFormat);
-  },
-  parse: function (str) {
-    return moment(str, momentTimeFormat);
-  },
-  placeholderChar: ' ',
-  blocks: {
-    HH: {
-      mask: IMask.MaskedRange,
-      from: 0,
-      to: 23,
-    },
-    mm: {
-      mask: IMask.MaskedRange,
-      from: 0,
-      to: 59,
-    },
-  },
-};
+function maskPlaces(places = 2) {
+  return {
+    mask: Number,
+    scale: places,
+  };
+}

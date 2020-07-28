@@ -44,8 +44,7 @@ function TextInput(field) {
     if (field.prefix) {
       const inputPrefix = document.createElement('div');
       inputPrefix.setAttribute('class', 'input-group-prepend');
-      inputPrefix.appendChild(PrefixSuffix(field.prefix));
-      // input.classList.add('fix-rounded-right');
+      inputPrefix.appendChild(PrefixSuffix(input, field.prefix));
       inputGroup.appendChild(inputPrefix);
       inputGroup.appendChild(input);
     }
@@ -53,8 +52,7 @@ function TextInput(field) {
     if (field.suffix) {
       const inputSuffix = document.createElement('div');
       inputSuffix.setAttribute('class', 'input-group-append');
-      inputSuffix.appendChild(PrefixSuffix(field.suffix));
-      // input.classList.add('fix-rounded-right');
+      inputSuffix.appendChild(PrefixSuffix(input, field.suffix));
       inputGroup.appendChild(input);
       inputGroup.appendChild(inputSuffix);
     }
@@ -87,6 +85,9 @@ function NumberInput(field) {
   input.setAttribute('name', field.name);
   input.setAttribute('id', field.name);
   input.setAttribute('class', 'form-control');
+  if (field.places) {
+    checkMasks(input, 'places', field.places);
+  }
   if (field.required) {
     input.setAttribute('required', true);
   }
@@ -103,7 +104,7 @@ function NumberInput(field) {
     if (field.prefix) {
       const inputPrefix = document.createElement('div');
       inputPrefix.setAttribute('class', 'input-group-prepend');
-      inputPrefix.appendChild(PrefixSuffix(field.prefix));
+      inputPrefix.appendChild(PrefixSuffix(input, field.prefix));
       // input.classList.add('fix-rounded-right');
       inputGroup.appendChild(inputPrefix);
       inputGroup.appendChild(input);
@@ -112,7 +113,7 @@ function NumberInput(field) {
     if (field.suffix) {
       const inputSuffix = document.createElement('div');
       inputSuffix.setAttribute('class', 'input-group-append');
-      inputSuffix.appendChild(PrefixSuffix(field.suffix));
+      inputSuffix.appendChild(PrefixSuffix(input, field.suffix));
       // input.classList.add('fix-rounded-right');
       inputGroup.appendChild(input);
       inputGroup.appendChild(inputSuffix);
@@ -332,6 +333,7 @@ function CheckboxInput(field) {
     checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('value', option.value);
     checkbox.setAttribute('name', `${field.name}`);
+    checkbox.setAttribute('id', `${field.name}-${option.value}`);
     checkbox.setAttribute('class', 'form-check-input');
 
     if (field.default !== '') {
@@ -376,6 +378,7 @@ function RadioInput(field) {
     radio.setAttribute('type', 'radio');
     radio.setAttribute('value', option.value);
     radio.setAttribute('name', `${field.name}`);
+    radio.setAttribute('id', `${field.name}-${option.value}`);
     radio.setAttribute('class', 'form-check-input');
 
     if (field.default !== '') {

@@ -14,7 +14,6 @@ import {
   DateInput,
   TimeInput,
 } from './form/input';
-import checkMasks from './form/mask';
 
 async function getStatus() {
   try {
@@ -103,7 +102,6 @@ function fieldCreate(fields) {
 }
 
 function fieldResults(results) {
-  console.log('field results');
   Object.keys(results).forEach((key) => {
     const input = document.getElementById(`${key}`);
 
@@ -126,7 +124,6 @@ function fieldResults(results) {
 function fieldErrors(errors) {
   Object.keys(errors).forEach((key) => {
     const input = document.getElementById(`${key}`);
-    console.log(key);
     const parent = input.parentNode;
     const feedback = document.createElement('div');
 

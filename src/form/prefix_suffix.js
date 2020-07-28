@@ -1,20 +1,22 @@
-function PrefixSuffix(prefixType) {
-  const prefix = document.createElement('div');
-  prefix.setAttribute('class', 'input-group-text');
+export function PrefixSuffix(element, prefix) {
+  const elementType = element.type;
+  const prefixElement = document.createElement('div');
+  prefixElement.setAttribute('class', 'input-group-text');
 
-  switch (prefixType) {
+  console.log(prefix);
+  switch (elementType) {
     case 'money':
-      prefix.innerHTML = 'R$';
+      prefixElement.innerHTML = 'R$';
       break;
     case 'percent':
-      prefix.innerHTML = '%';
+      prefixElement.innerHTML = '%';
       break;
 
     default:
+      console.log('aqui', prefix);
+      prefixElement.innerHTML = prefix;
       break;
   }
 
-  return prefix;
+  return prefixElement;
 }
-
-export { PrefixSuffix };
