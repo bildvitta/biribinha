@@ -314,8 +314,11 @@ function CheckboxInput(field) {
     div.appendChild(label);
   }
 
+  const colDiv = document.createElement('div');
+  colDiv.setAttribute('class', 'col-sm-9');
   const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('class', 'col-sm-9');
+  inputDiv.setAttribute('id', field.name);
+  colDiv.appendChild(inputDiv);
 
   field.options.map((option) => {
     const formCheck = document.createElement('div');
@@ -329,7 +332,6 @@ function CheckboxInput(field) {
     checkbox.setAttribute('type', 'checkbox');
     checkbox.setAttribute('value', option.value);
     checkbox.setAttribute('name', `${field.name}`);
-    checkbox.setAttribute('id', id);
     checkbox.setAttribute('class', 'form-check-input');
 
     if (field.default !== '') {
@@ -341,7 +343,7 @@ function CheckboxInput(field) {
     formCheck.appendChild(checkbox);
     formCheck.appendChild(label);
     inputDiv.appendChild(formCheck);
-    div.appendChild(inputDiv);
+    div.appendChild(colDiv);
   });
   return div;
 }
@@ -356,8 +358,11 @@ function RadioInput(field) {
     div.appendChild(label);
   }
 
+  const colDiv = document.createElement('div');
+  colDiv.setAttribute('class', 'col-sm-9');
   const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('class', 'col-sm-9');
+  inputDiv.setAttribute('id', field.name);
+  colDiv.appendChild(inputDiv);
 
   field.options.map((option) => {
     const formCheck = document.createElement('div');
@@ -371,7 +376,6 @@ function RadioInput(field) {
     radio.setAttribute('type', 'radio');
     radio.setAttribute('value', option.value);
     radio.setAttribute('name', `${field.name}`);
-    radio.setAttribute('id', id);
     radio.setAttribute('class', 'form-check-input');
 
     if (field.default !== '') {
@@ -383,7 +387,7 @@ function RadioInput(field) {
     formCheck.appendChild(radio);
     formCheck.appendChild(label);
     inputDiv.appendChild(formCheck);
-    div.appendChild(inputDiv);
+    div.appendChild(colDiv);
   });
   return div;
 }

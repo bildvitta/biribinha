@@ -110,9 +110,7 @@ function fieldResults(results) {
     // case is select
     if (input) {
       if (input.tagName === 'SELECT') {
-        console.log(input.options.length);
         for (var i = 0; i < input.options.length; i++) {
-          console.log(i);
           if (input.options[i] && input.options[i].value === results[key]) {
             input.selectedIndex = i;
           }
@@ -126,10 +124,22 @@ function fieldResults(results) {
 }
 
 function fieldErrors(errors) {
-  console.log(errors);
   Object.keys(errors).forEach((key) => {
     const input = document.getElementById(`${key}`);
+    console.log(key);
+    const parent = input.parentNode;
+    const feedback = document.createElement('div');
 
-    console.log(input);
+    input.classList.add('is-invalid');
+    feedback.setAttribute('class', 'invalid-feedback');
+    errors[key].forEach((error, index) => {
+      if (index === errors[key].length) {
+        feedback.innerHTML = `${feedback.innerHTML + error}`;
+      } else {
+        feedback.innerHTML = `${feedback.innerHTML + error}</br>`;
+      }
+    });
+
+    parent.appendChild(feedback);
   });
 }
