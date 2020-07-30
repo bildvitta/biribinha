@@ -10,6 +10,9 @@ import {
   newCheckboxInput,
   newHiddenInput,
   newBooleanInput,
+  newNumberInput,
+  newRadioInput,
+
 } from '../../src/form/input';
 
 describe('rendering the basic Inputs', () => {
@@ -20,7 +23,7 @@ describe('rendering the basic Inputs', () => {
       label: 'Texto',
     });
 
-    const inputNode = getByLabelText(div, 'Texto:', { selector: 'input' });
+    const inputNode = getByLabelText(div, 'Texto', { selector: 'input' });
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('textinput');
@@ -33,7 +36,7 @@ describe('rendering the basic Inputs', () => {
   test('Creating a Input', () => {
     const div = newTextInput({ name: 'TextInput', label: 'Texto' });
 
-    const inputNode = getByLabelText(div, 'Texto:');
+    const inputNode = getByLabelText(div, 'Texto');
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('TextInput');
@@ -46,7 +49,7 @@ describe('rendering the basic Inputs', () => {
   test('Creating a TextArea Input', () => {
     const div = newTextArea({ name: 'TextArea', label: 'Texto' });
 
-    const inputNode = getByLabelText(div, 'Texto:');
+    const inputNode = getByLabelText(div, 'Texto');
 
     expect(inputNode.getAttribute('name')).toBe('TextArea');
     expect(inputNode.getAttribute('id')).toBe('TextArea');
@@ -58,7 +61,7 @@ describe('rendering the basic Inputs', () => {
   test('Creating a Email Input', () => {
     const div = newEmailInput({ name: 'EmailInput', label: 'Email' });
 
-    const inputNode = getByLabelText(div, 'Email:');
+    const inputNode = getByLabelText(div, 'Email');
 
     expect(inputNode.getAttribute('type')).toBe('email');
     expect(inputNode.getAttribute('name')).toBe('EmailInput');
@@ -79,7 +82,7 @@ describe('rendering the basic Inputs', () => {
       ],
     };
     const div = newSelectInput(field);
-    const inputNode = getByLabelText(div, 'Select:', { selector: 'select' });
+    const inputNode = getByLabelText(div, 'Select', { selector: 'select' });
 
     expect(inputNode.getAttribute('name')).toBe('select');
     expect(inputNode.getAttribute('id')).toBe('select');
@@ -134,7 +137,7 @@ describe('rendering the basic Inputs', () => {
       label: 'Data de criação',
     });
 
-    const inputNode = getByLabelText(div, 'Data de criação:', {
+    const inputNode = getByLabelText(div, 'Data de criação', {
       selector: 'input',
     });
 
@@ -145,4 +148,42 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode).toBeRequired();
     expect(inputNode).not.toBeDisabled();
   });
+
+  test('Number Input', () => {
+    const div = newNumberInput({
+      name: 'phone',
+      required: true,
+      label: 'Telefone',
+    });
+
+    const inputNode = getByLabelText(div, 'Telefone', {
+      selector: 'input',
+    });
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('phone');
+    expect(inputNode.getAttribute('id')).toBe('phone');
+    expect(inputNode).toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+  });
+
+  test('Creating a Radio Input', () => {
+    const field = {
+      name: 'Radio',
+      default: [1, 2],
+      options: [
+        { label: 'Option 1', value: 1 },
+        { label: 'Option 2', value: 2 },
+        { label: 'Option 3', value: 3 },
+      ],
+    };
+    const radio = newRadioInput(field);
+    const radios = radio.getElementsByTagName('input');
+
+    for (let i = 0; i < radios.length; i++) {
+      if (i === 0 || i === 1) expect(radios[i]).toBeChecked();
+      else expect(radios[i]).not.toBeChecked();
+    }
+  });
+
 });

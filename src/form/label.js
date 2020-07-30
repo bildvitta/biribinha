@@ -4,7 +4,7 @@ import './style.scss';
 function createInputLabel({ label, name, hint }) {
   const labelDiv = document.createElement('label');
   labelDiv.setAttribute('for', name); // Create Label for Name Field
-  labelDiv.innerHTML = `${label}:`; // Set Field Labels
+  labelDiv.innerHTML = `${label}`; // Set Field Labels
   if (hint) {
     const hintDiv = document.createElement('span');
     hintDiv.classList.add('with-tooltip');

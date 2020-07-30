@@ -12,7 +12,7 @@ describe('rendering the basic Inputs', () => {
       mask: 'money',
     });
 
-    const inputNode = getByLabelText(div, 'Dinheiro:', { selector: 'input' });
+    const inputNode = getByLabelText(div, 'Dinheiro', { selector: 'input' });
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('money');
@@ -33,7 +33,7 @@ describe('rendering the basic Inputs', () => {
       mask: 'phone',
     });
 
-    const inputNode = getByLabelText(div, 'Telefone:', { selector: 'input' });
+    const inputNode = getByLabelText(div, 'Telefone', { selector: 'input' });
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('phone');
@@ -46,7 +46,8 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.value).toBe('(35) 3521-8521');
     fireEvent.input(inputNode, { target: { value: '16988273352' } });
     expect(inputNode.value).toBe('(16) 98827-3352');
-    fireEvent.input(inputNode, { target: { value: '' } });
+    fireEvent.input(inputNode, { target: { value: '169882%%&73352' } });
+    expect(inputNode.value).toBe('(16) 98827-3352');
   });
 
   test('Input with postal-code mask', () => {
@@ -57,7 +58,7 @@ describe('rendering the basic Inputs', () => {
       mask: 'postal-code',
     });
 
-    const inputNode = getByLabelText(div, 'CEP:', { selector: 'input' });
+    const inputNode = getByLabelText(div, 'CEP', { selector: 'input' });
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('postal-code');
@@ -78,7 +79,7 @@ describe('rendering the basic Inputs', () => {
       mask: 'personal-document',
     });
 
-    const inputNode = getByLabelText(div, 'CPF:', { selector: 'input' });
+    const inputNode = getByLabelText(div, 'CPF', { selector: 'input' });
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('personal-document');
@@ -104,7 +105,7 @@ describe('rendering the basic Inputs', () => {
       mask: 'company-document',
     });
 
-    const inputNode = getByLabelText(div, 'CPF:', { selector: 'input' });
+    const inputNode = getByLabelText(div, 'CPF', { selector: 'input' });
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('company-document');
@@ -130,7 +131,7 @@ describe('rendering the basic Inputs', () => {
       mask: 'document',
     });
 
-    const inputNode = getByLabelText(div, 'CPF:', { selector: 'input' });
+    const inputNode = getByLabelText(div, 'CPF', { selector: 'input' });
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('document');
@@ -156,7 +157,7 @@ describe('rendering the basic Inputs', () => {
       mask: 'date',
     });
 
-    const inputNode = getByLabelText(div, 'Date Label:', { selector: 'input' });
+    const inputNode = getByLabelText(div, 'Date Label', { selector: 'input' });
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('date_name');
