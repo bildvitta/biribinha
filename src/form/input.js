@@ -9,15 +9,14 @@ import checkMasks from './mask';
 function TextInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
+  const inputCol = document.createElement('div');
 
   if (field.label) {
-    const label = createInputLabel(field);
-    label.classList.add('col-sm-3', 'col-form-label');
-    div.appendChild(label);
+    div.appendChild(createInputLabel(field));
+    inputCol.setAttribute('class', 'col-sm-9');
+  } else {
+    inputCol.setAttribute('class', 'col-sm-12');
   }
-
-  const inputCol = document.createElement('div');
-  inputCol.setAttribute('class', 'col-sm-9');
 
   const input = document.createElement('input');
   input.setAttribute('type', 'text');
@@ -70,15 +69,14 @@ function TextInput(field) {
 function NumberInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
+  const inputCol = document.createElement('div');
 
   if (field.label) {
-    const label = createInputLabel(field);
-    label.classList.add('col-sm-3', 'col-form-label');
-    div.appendChild(label);
+    div.appendChild(createInputLabel(field));
+    inputCol.setAttribute('class', 'col-sm-9');
+  } else {
+    inputCol.setAttribute('class', 'col-sm-12');
   }
-
-  const inputCol = document.createElement('div');
-  inputCol.setAttribute('class', 'col-sm-9');
 
   const input = document.createElement('input');
   input.setAttribute('type', 'text');
@@ -132,10 +130,10 @@ function NumberInput(field) {
 function DateInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
+  const inputCol = document.createElement('div');
 
   if (field.label) {
     const label = createInputLabel(field);
-    label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
 
@@ -170,15 +168,14 @@ function DateInput(field) {
 function TimeInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
+  const inputCol = document.createElement('div');
 
   if (field.label) {
-    const label = createInputLabel(field);
-    label.classList.add('col-sm-3', 'col-form-label');
-    div.appendChild(label);
+    div.appendChild(createInputLabel(field));
+    inputCol.setAttribute('class', 'col-sm-9');
+  } else {
+    inputCol.setAttribute('class', 'col-sm-12');
   }
-
-  const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('class', 'col-sm-9');
 
   const input = document.createElement('input');
   input.setAttribute('type', 'text');
@@ -199,8 +196,8 @@ function TimeInput(field) {
     input.setAttribute('readonly', true);
   }
 
-  inputDiv.appendChild(input);
-  div.appendChild(inputDiv);
+  inputCol.appendChild(input);
+  div.appendChild(inputCol);
 
   return div;
 }
@@ -208,15 +205,14 @@ function TimeInput(field) {
 function TextArea(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
+  const inputCol = document.createElement('div');
 
   if (field.label) {
-    const label = createInputLabel(field);
-    label.classList.add('col-sm-3', 'col-form-label');
-    div.appendChild(label);
+    div.appendChild(createInputLabel(field));
+    inputCol.setAttribute('class', 'col-sm-9');
+  } else {
+    inputCol.setAttribute('class', 'col-sm-12');
   }
-
-  const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('class', 'col-sm-9');
 
   const textarea = document.createElement('textarea');
   textarea.setAttribute('name', field.name);
@@ -229,24 +225,20 @@ function TextArea(field) {
     input.setAttribute('readonly', true);
   }
 
-  inputDiv.appendChild(textarea);
-  div.appendChild(inputDiv);
+  inputCol.appendChild(textarea);
+  div.appendChild(inputCol);
 
   return div;
 }
 
 function EmailInput(field) {
   const div = document.createElement('div');
-  div.classList.add('form-group', 'row');
+  const inputCol = document.createElement('div');
 
   if (field.label) {
     const label = createInputLabel(field);
-    label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
-
-  const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('class', 'col-sm-9');
 
   const input = document.createElement('input');
   input.setAttribute('type', 'email');
@@ -269,15 +261,14 @@ function EmailInput(field) {
 function SelectInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
+  const inputCol = document.createElement('div');
 
   if (field.label) {
-    const label = createInputLabel(field);
-    label.classList.add('col-sm-3', 'col-form-label');
-    div.appendChild(label);
+    div.appendChild(createInputLabel(field));
+    inputCol.setAttribute('class', 'col-sm-9');
+  } else {
+    inputCol.setAttribute('class', 'col-sm-12');
   }
-
-  const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('class', 'col-sm-9');
 
   const select = document.createElement('select');
   select.setAttribute('name', field.name);
@@ -299,8 +290,8 @@ function SelectInput(field) {
     input.setAttribute('readonly', true);
   }
 
-  inputDiv.appendChild(select);
-  div.appendChild(inputDiv);
+  inputCol.appendChild(select);
+  div.appendChild(inputCol);
 
   return div;
 }
@@ -311,12 +302,12 @@ function CheckboxInput(field) {
 
   if (field.label) {
     const label = createInputLegend(field.label, field.name);
-    label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
 
   const colDiv = document.createElement('div');
   colDiv.setAttribute('class', 'col-sm-9');
+
   const inputDiv = document.createElement('div');
   inputDiv.setAttribute('id', field.name);
   colDiv.appendChild(inputDiv);
@@ -356,7 +347,6 @@ function RadioInput(field) {
 
   if (field.label) {
     const label = createInputLegend(field.label, field.name);
-    label.classList.add('col-sm-3', 'col-form-label');
     div.appendChild(label);
   }
 
