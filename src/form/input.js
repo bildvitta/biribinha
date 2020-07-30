@@ -3,55 +3,64 @@ import {
   createCheckboxLabel,
   createInputLegend,
 } from './label';
+import setAttrs from './setAttribute';
+
 import { PrefixSuffix } from './prefix_suffix';
 import checkMasks from './mask';
 
-function TextInput(field) {
+function TextInput({
+  name,
+  label,
+  type,
+  mask,
+  required,
+  read_only,
+  hint,
+  prefix,
+  suffix,
+}) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
   const inputCol = document.createElement('div');
 
-  if (field.label) {
-    div.appendChild(createInputLabel(field));
-    inputCol.setAttribute('class', 'col-sm-9');
-  } else {
-    inputCol.setAttribute('class', 'col-sm-12');
-  }
+  label && div.appendChild(createInputLabel(label, name, hint));
+  inputCol.setAttribute('class', `col-sm-${label ? '9' : '12'}`);
 
   const input = document.createElement('input');
-  input.setAttribute('type', 'text');
-  input.setAttribute('name', field.name);
-  input.setAttribute('id', field.name);
-  input.setAttribute('class', 'form-control');
-  if (field.mask) {
-    input.setAttribute('data-mask', field.mask);
-    checkMasks(input, field.mask);
-  }
-  if (field.required) {
-    input.setAttribute('required', true);
-  }
-  if (field.read_only) {
-    input.setAttribute('readonly', true);
-  }
+
+  const attributes = {
+    type: 'text',
+    name,
+    id: name,
+    class: 'form-control',
+  };
+
+  mask && (attributes['data-mask'] = mask);
+  mask && checkMasks(input, mask);
+
+  required && (attributes['required'] = true);
+  read_only && (attributes['readonly'] = true);
+
+  setAttrs(input, attributes);
 
   // disabled uso de estado e cidades por exemplo
 
-  if (field.prefix || field.suffix) {
+  if (prefix || suffix) {
     const inputGroup = document.createElement('div');
     inputGroup.setAttribute('class', 'input-group');
 
-    if (field.prefix) {
+    if (prefix) {
       const inputPrefix = document.createElement('div');
       inputPrefix.setAttribute('class', 'input-group-prepend');
-      inputPrefix.appendChild(PrefixSuffix(input, field.prefix));
+      inputPrefix.appendChild(PrefixSuffix(input, prefix));
       inputGroup.appendChild(inputPrefix);
       inputGroup.appendChild(input);
     }
 
-    if (field.suffix) {
+    if (suffix) {
       const inputSuffix = document.createElement('div');
       inputSuffix.setAttribute('class', 'input-group-append');
-      inputSuffix.appendChild(PrefixSuffix(input, field.suffix));
+      inputSuffix.appendChild(PrefixSuffix(input, suffix));
       inputGroup.appendChild(input);
       inputGroup.appendChild(inputSuffix);
     }
@@ -133,12 +142,11 @@ function DateInput(field) {
   const inputCol = document.createElement('div');
 
   if (field.label) {
-    const label = createInputLabel(field);
-    div.appendChild(label);
+    div.appendChild(createInputLabel(field));
+    inputCol.setAttribute('class', 'col-sm-9');
+  } else {
+    inputCol.setAttribute('class', 'col-sm-12');
   }
-
-  const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('class', 'col-sm-9');
 
   const input = document.createElement('input');
   input.setAttribute('type', 'text');
@@ -159,8 +167,8 @@ function DateInput(field) {
     input.setAttribute('readonly', true);
   }
 
-  inputDiv.appendChild(input);
-  div.appendChild(inputDiv);
+  inputCol.appendChild(input);
+  div.appendChild(inputCol);
 
   return div;
 }

@@ -15,72 +15,44 @@ import {
 export default function fieldCreate(fields) {
   const form = document.getElementById('formCreator');
 
-  // boolean
-  // checkbox
-  // color - not gonna use
-  // date
-  // datetime
-  // decimal
-  // editor - not gonna use
-  // money
-  // number
-  // percent
-  // radio
-  // select
-  // text
-  // textarea
-  // time
-  // upload
-
   fields.map((field) => {
     if (field.type) {
       switch (field.type) {
-        case 'text':
-          form.appendChild(TextInput(field));
-          break;
+        case 'text' || 'money':
+          return form.appendChild(TextInput(field));
 
-        case 'number':
-          form.appendChild(NumberInput(field));
-          break;
+        case 'number' || 'percent':
+          return form.appendChild(NumberInput(field));
 
         case 'email':
-          form.appendChild(EmailInput(field));
-          break;
+          return form.appendChild(EmailInput(field));
 
         case 'textarea':
-          form.appendChild(TextArea(field));
-          break;
+          return form.appendChild(TextArea(field));
 
         case 'date':
-          form.appendChild(DateInput(field));
-          break;
+          return form.appendChild(DateInput(field));
 
         case 'time':
-          form.appendChild(TimeInput(field));
-          break;
+          return form.appendChild(TimeInput(field));
 
         case 'select':
-          form.appendChild(SelectInput(field));
-          break;
+          return form.appendChild(SelectInput(field));
 
         case 'checkbox':
-          form.appendChild(CheckboxInput(field));
-          break;
+          return form.appendChild(CheckboxInput(field));
 
         case 'radio':
-          form.appendChild(RadioInput(field));
-          break;
+          return form.appendChild(RadioInput(field));
 
         case 'boolean':
-          form.appendChild(BooleanInput(field));
-          break;
+          return form.appendChild(BooleanInput(field));
 
         case 'hidden':
-          form.appendChild(HiddenInput(field));
-          break;
+          return form.appendChild(HiddenInput(field));
 
         default:
-          break;
+          return form.appendChild(TextInput(field));
       }
     }
   });
