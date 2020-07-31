@@ -3,12 +3,12 @@ import {
   createCheckboxLabel,
   createInputLegend,
 } from './label';
+
 import setAttrs from './setAttribute';
 
 import prefixSuffixTerm from './prefix_suffix';
-import checkMasks from './mask';
 
-function TextInput({
+function normalInput({
   name,
   type,
   label,
@@ -24,6 +24,7 @@ function TextInput({
   const div = document.createElement('div');
   const inputCol = document.createElement('div');
 
+  // Verify if field is hidden, if not, show label and create div for the input
   type !== 'hidden' && div.classList.add('form-group', 'row');
 
   if (label && type !== 'hidden') {
@@ -31,30 +32,33 @@ function TextInput({
     inputCol.setAttribute('class', `col-sm-${label ? '9' : '12'}`);
   }
 
+  // Create diferent input types
   const diferentElements = ['textarea', 'select'];
   const input = document.createElement(
     diferentElements.includes(type) ? type : 'input'
   );
 
+  // Start of the attributes on input (default name, id and class)
   const attributes = { name, id: name, class: 'form-control' };
-
-  (options || []).map((option) => {
-    const optionEle = document.createElement('option');
-    optionEle.text = option.label;
-    optionEle.value = option.value;
-    optionEle.selected = option.value === _default;
-
-    input.add(optionEle);
-  });
-
-  type && (attributes['type'] = type);
-  mask && (attributes['data-mask'] = mask);
-  mask && checkMasks(input, mask);
+  type && (attributes['type'] = type === 'hidden' ? 'hidden' : 'text');
   required && (attributes['required'] = true);
   read_only && (attributes['readonly'] = true);
 
   setAttrs(input, attributes);
 
+  // if is a select Field
+  if (options && type === 'select') {
+    options.map((option) => {
+      const optionEle = document.createElement('option');
+      optionEle.text = option.label;
+      optionEle.value = option.value;
+      optionEle.selected = option.value === _default;
+
+      input.add(optionEle);
+    });
+  }
+
+  // Check if field have a prefix, suffix
   if (prefix || suffix) {
     const inputGroup = document.createElement('div');
     inputGroup.setAttribute('class', 'input-group');
@@ -80,7 +84,7 @@ function TextInput({
   return div;
 }
 
-function CheckboxInput(field) {
+function checkboxInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -125,7 +129,7 @@ function CheckboxInput(field) {
   return div;
 }
 
-function RadioInput(field) {
+function radioInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -169,7 +173,7 @@ function RadioInput(field) {
   return div;
 }
 
-function BooleanInput(field) {
+function booleanInput(field) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
@@ -201,4 +205,4 @@ function BooleanInput(field) {
   return div;
 }
 
-export { TextInput, BooleanInput, CheckboxInput, RadioInput };
+export { normalInput, checkboxInput, radioInput, booleanInput };

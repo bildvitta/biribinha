@@ -1,7 +1,36 @@
 import IMask from 'imask';
 import moment from 'moment';
 
-export default function (element, maskType, places) {
+// boolean
+// checkbox
+// color
+// date
+// datetime
+// decimal
+// editor
+// money
+// number
+// percent
+// radio
+// select
+// text
+// textarea
+// time
+// upload
+
+export default function (fields) {
+  fields.map(({ name, type, mask }) => {
+    addMask(mask && document.getElementById(name), mask);
+
+    if (type === 'number') {
+      const element = document.getElementById(name);
+
+      console.log(element, name);
+    }
+  });
+}
+
+function addMask(element, maskType, places) {
   switch (maskType) {
     case 'money':
       IMask(element, maskMoney());

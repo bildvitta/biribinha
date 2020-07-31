@@ -1,34 +1,27 @@
 import {
-  TextInput,
-  NumberInput,
-  BooleanInput,
-  CheckboxInput,
-  RadioInput,
-  EmailInput,
-  HiddenInput,
-  SelectInput,
-  TextArea,
-  DateInput,
-  TimeInput,
+  normalInput,
+  checkboxInput,
+  radioInput,
+  booleanInput,
 } from '../form/input';
 
-export default function fieldCreate(fields) {
+export default function (fields) {
   const form = document.getElementById('formCreator');
 
   fields.map((field) => {
     if (field.type) {
       switch (field.type) {
         case 'checkbox':
-          return form.appendChild(CheckboxInput(field));
+          return form.appendChild(checkboxInput(field));
 
         case 'radio':
-          return form.appendChild(RadioInput(field));
+          return form.appendChild(radioInput(field));
 
         case 'boolean':
-          return form.appendChild(BooleanInput(field));
+          return form.appendChild(booleanInput(field));
 
         default:
-          return form.appendChild(TextInput(field));
+          return form.appendChild(normalInput(field));
       }
     }
   });

@@ -3,6 +3,7 @@ import api from './services/api';
 import form from './form/form-creator';
 
 import resultHandler from './utils/resultHandler';
+import maskHandler from './utils/maskHandler';
 import errorHandler from './utils/errorHandler';
 import fieldHandler from './utils/fieldHandler';
 
@@ -19,6 +20,7 @@ async function start() {
       const app = document.getElementById('app');
       app.appendChild(form());
       fieldHandler(fields);
+      maskHandler(fields);
     }
 
     if (response.data.result) {
