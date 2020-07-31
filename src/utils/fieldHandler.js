@@ -18,27 +18,6 @@ export default function fieldCreate(fields) {
   fields.map((field) => {
     if (field.type) {
       switch (field.type) {
-        case 'text' || 'money':
-          return form.appendChild(TextInput(field));
-
-        case 'number' || 'percent':
-          return form.appendChild(NumberInput(field));
-
-        case 'email':
-          return form.appendChild(EmailInput(field));
-
-        case 'textarea':
-          return form.appendChild(TextArea(field));
-
-        case 'date':
-          return form.appendChild(DateInput(field));
-
-        case 'time':
-          return form.appendChild(TimeInput(field));
-
-        case 'select':
-          return form.appendChild(SelectInput(field));
-
         case 'checkbox':
           return form.appendChild(CheckboxInput(field));
 
@@ -47,9 +26,6 @@ export default function fieldCreate(fields) {
 
         case 'boolean':
           return form.appendChild(BooleanInput(field));
-
-        case 'hidden':
-          return form.appendChild(HiddenInput(field));
 
         default:
           return form.appendChild(TextInput(field));

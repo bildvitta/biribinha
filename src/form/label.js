@@ -1,7 +1,7 @@
 import { createPopper } from '@popperjs/core';
 import './style.scss';
 
-function createInputLabel({ label, name, hint }) {
+function createInputLabel(label, name, hint) {
   const labelDiv = document.createElement('label');
   labelDiv.classList.add('col-sm-3', 'col-form-label');
   labelDiv.setAttribute('for', name);

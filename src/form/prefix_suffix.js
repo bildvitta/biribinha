@@ -1,9 +1,8 @@
-export function PrefixSuffix(element, prefix) {
-  const elementType = element.type;
+export default function (type, prefix) {
   const prefixElement = document.createElement('div');
   prefixElement.setAttribute('class', 'input-group-text');
 
-  switch (elementType) {
+  switch (type) {
     case 'money':
       prefixElement.innerHTML = 'R$';
       break;
