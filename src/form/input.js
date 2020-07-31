@@ -154,11 +154,17 @@ function booleanInput({ label, name, value, default: _default }) {
   formCheck.setAttribute('class', 'form-check custom-switch');
 
   const checkbox = document.createElement('input');
-  checkbox.setAttribute('type', 'checkbox');
-  checkbox.setAttribute('id', name);
-  checkbox.setAttribute('name', name);
-  checkbox.setAttribute('value', value);
-  checkbox.setAttribute('class', 'custom-control-input');
+
+  const attributes = {
+    type: 'checkbox',
+    class: 'custom-control-input',
+  };
+
+  attributes['id'] = name;
+  attributes['name'] = name;
+  attributes['value'] = value;
+
+  setAttrs(checkbox, attributes);
 
   _default === 'true'
     ? checkbox.setAttribute('checked', true)
