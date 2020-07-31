@@ -12,9 +12,10 @@ function normalInput({
   name,
   type,
   label,
-  mask,
   required,
   read_only,
+  min_length,
+  max_length,
   hint,
   prefix,
   suffix,
@@ -41,6 +42,8 @@ function normalInput({
   // Start of the attributes on input (default name, id and class)
   const attributes = { name, id: name, class: 'form-control' };
   type && (attributes['type'] = type === 'hidden' ? 'hidden' : 'text');
+  min_length && (attributes['min_length'] = min_length);
+  max_length && (attributes['max_length'] = min_length);
   required && (attributes['required'] = true);
   read_only && (attributes['readonly'] = true);
 

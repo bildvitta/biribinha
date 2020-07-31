@@ -1,57 +1,71 @@
 import IMask from 'imask';
 import moment from 'moment';
 
-// boolean
-// checkbox
 // color
 // date
 // datetime
 // decimal
-// editor
 // money
 // number
 // percent
-// radio
-// select
-// text
-// textarea
 // time
-// upload
 
 export default function (fields) {
-  fields.map(({ name, type, mask }) => {
-    addMask(mask && document.getElementById(name), mask);
+  fields.map((field) => {
+    const element = document.getElementById(field.name);
+    if (field.mask) {
+      addMask(element, field.mask);
+      return;
+    }
 
-    if (type === 'number') {
-      const element = document.getElementById(name);
+    const numberAttributes = {
+      mask: Number,
+      scale: 2,
+    };
 
-      console.log(element, name);
+    field.places && (numberAttributes['scale'] = field.places);
+    field.max && (numberAttributes['max'] = field.max);
+    field.min && (numberAttributes['max'] = field.min);
+
+    switch (field.type) {
+      case 'date':
+        const dateMask = IMask(element, maskDate());
+        element.addEventListener('input', function () {
+          dateMask.updateValue();
+        });
+        break;
+
+      case 'time':
+        const timeMask = IMask(element, maskTime());
+        element.addEventListener('input', function () {
+          timeMask.updateValue();
+        });
+        break;
+
+      case 'number':
+        IMask(element, numberAttributes);
+        break;
+
+      case 'money':
+        numberAttributes['signed'] = false;
+        numberAttributes['thousandsSeparator'] = '.';
+        numberAttributes['padFractionalZeros'] = false;
+        numberAttributes['normalizeZeros'] = true;
+        numberAttributes['radix'] = ',';
+        numberAttributes['mapToRadix'] = ['.'];
+        IMask(element, numberAttributes);
+        break;
+
+      default:
+        break;
     }
   });
 }
 
-function addMask(element, maskType, places) {
+function addMask(element, maskType) {
   switch (maskType) {
-    case 'money':
-      IMask(element, maskMoney());
-      break;
-
     case 'phone':
       IMask(element, maskPhone());
-      break;
-
-    case 'date':
-      const dateMask = IMask(element, maskDate());
-      element.addEventListener('input', function () {
-        dateMask.updateValue();
-      });
-      break;
-
-    case 'time':
-      const timeMask = IMask(element, maskTime());
-      element.addEventListener('input', function () {
-        timeMask.updateValue();
-      });
       break;
 
     case 'postal-code':
@@ -68,14 +82,6 @@ function addMask(element, maskType, places) {
 
     case 'document':
       IMask(element, maskDocument());
-      break;
-
-    case 'places':
-      IMask(element, maskPlaces(places));
-      break;
-
-    case 'number':
-      IMask(element, maskNumber());
       break;
   }
 }

@@ -95,8 +95,7 @@
         "name": "money",
         "label": "Dinheiro",
         "default": "",
-        "type": "text",
-        "mask": "money",
+        "type": "money",
         "prefix": "R$"
       },
       "percent": {
