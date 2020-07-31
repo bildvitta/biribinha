@@ -1,4 +1,4 @@
-export default function newForm(display) {
+export default function (display) {
   const form = document.createElement('form');
   form.setAttribute('id', 'formCreator');
   form.setAttribute('action', '');

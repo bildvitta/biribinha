@@ -87,39 +87,46 @@ function normalInput({
   return div;
 }
 
-function checkboxInput(field) {
+function checkboxInput({
+  label,
+  name,
+  type,
+  hint,
+  options,
+  default: _default,
+}) {
   const div = document.createElement('div');
+  const inputCol = document.createElement('div');
+
   div.classList.add('form-group', 'row');
 
-  if (field.label) {
-    const label = createInputLegend(field.label, field.name);
-    div.appendChild(label);
+  if (label && type !== 'hidden') {
+    div.appendChild(createInputLabel(label, name, hint));
+    inputCol.setAttribute('class', `col-sm-${label ? '9' : '12'}`);
   }
 
-  const colDiv = document.createElement('div');
-  colDiv.setAttribute('class', 'col-sm-9');
-
   const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('id', field.name);
-  colDiv.appendChild(inputDiv);
+  inputDiv.setAttribute('id', name);
+  inputCol.appendChild(inputDiv);
 
-  field.options.map((option) => {
+  options.map((option) => {
     const formCheck = document.createElement('div');
     formCheck.setAttribute('class', 'form-check');
 
-    const id = `${field.name}-${option.value}`;
-    const label = createCheckboxLabel(option.label, id);
+    const label = createCheckboxLabel(option.label, `${name}-${option.value}`);
     label.setAttribute('class', 'form-check-label');
 
     const checkbox = document.createElement('input');
-    checkbox.setAttribute('type', 'checkbox');
-    checkbox.setAttribute('value', option.value);
-    checkbox.setAttribute('name', `${field.name}`);
-    checkbox.setAttribute('id', `${field.name}-${option.value}`);
-    checkbox.setAttribute('class', 'form-check-input');
+    const attributes = {};
+    attributes['type'] = type;
+    attributes['value'] = option.value;
+    attributes['name'] = name;
+    attributes['id'] = `${name}-${option.value}`;
+    attributes['class'] = 'form-check-input';
+    setAttrs(checkbox, attributes);
 
-    if (field.default !== '') {
-      field.default.forEach((checked) => {
+    if (_default !== '') {
+      _default.forEach((checked) => {
         option.value === checked && checkbox.setAttribute('checked', true);
       });
     }
@@ -127,61 +134,18 @@ function checkboxInput(field) {
     formCheck.appendChild(checkbox);
     formCheck.appendChild(label);
     inputDiv.appendChild(formCheck);
-    div.appendChild(colDiv);
+    div.appendChild(inputCol);
   });
+
   return div;
 }
 
-function radioInput(field) {
+function booleanInput({ label, name, value, default: _default }) {
   const div = document.createElement('div');
   div.classList.add('form-group', 'row');
 
-  if (field.label) {
-    const label = createInputLegend(field.label, field.name);
-    div.appendChild(label);
-  }
-
-  const colDiv = document.createElement('div');
-  colDiv.setAttribute('class', 'col-sm-9');
-  const inputDiv = document.createElement('div');
-  inputDiv.setAttribute('id', field.name);
-  colDiv.appendChild(inputDiv);
-
-  field.options.map((option) => {
-    const formCheck = document.createElement('div');
-    formCheck.setAttribute('class', 'form-check');
-
-    const id = `${field.name}-${option.value}`;
-    const label = createCheckboxLabel(option.label, id);
-    label.setAttribute('class', 'form-check-label');
-
-    const radio = document.createElement('input');
-    radio.setAttribute('type', 'radio');
-    radio.setAttribute('value', option.value);
-    radio.setAttribute('name', `${field.name}`);
-    radio.setAttribute('id', `${field.name}-${option.value}`);
-    radio.setAttribute('class', 'form-check-input');
-
-    if (field.default !== '') {
-      field.default.forEach((checked) => {
-        option.value === checked && radio.setAttribute('checked', true);
-      });
-    }
-
-    formCheck.appendChild(radio);
-    formCheck.appendChild(label);
-    inputDiv.appendChild(formCheck);
-    div.appendChild(colDiv);
-  });
-  return div;
-}
-
-function booleanInput(field) {
-  const div = document.createElement('div');
-  div.classList.add('form-group', 'row');
-
-  const label = createCheckboxLabel(field.label, field.name);
-  label.setAttribute('class', 'custom-control-label');
+  const labelDiv = createCheckboxLabel(label, name);
+  labelDiv.setAttribute('class', 'custom-control-label');
 
   const inputDiv = document.createElement('div');
   inputDiv.setAttribute('class', 'col-sm-12');
@@ -191,21 +155,21 @@ function booleanInput(field) {
 
   const checkbox = document.createElement('input');
   checkbox.setAttribute('type', 'checkbox');
-  checkbox.setAttribute('id', field.name);
-  checkbox.setAttribute('name', field.name);
-  checkbox.setAttribute('value', field.value);
+  checkbox.setAttribute('id', name);
+  checkbox.setAttribute('name', name);
+  checkbox.setAttribute('value', value);
   checkbox.setAttribute('class', 'custom-control-input');
 
-  field.default === 'true'
+  _default === 'true'
     ? checkbox.setAttribute('checked', true)
     : checkbox.setAttribute('checked', false);
 
   formCheck.appendChild(checkbox);
-  formCheck.appendChild(label);
+  formCheck.appendChild(labelDiv);
   inputDiv.appendChild(formCheck);
   div.appendChild(inputDiv);
 
   return div;
 }
 
-export { normalInput, checkboxInput, radioInput, booleanInput };
+export { normalInput, checkboxInput, booleanInput };

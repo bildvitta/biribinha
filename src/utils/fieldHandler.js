@@ -12,10 +12,8 @@ export default function (fields) {
     if (field.type) {
       switch (field.type) {
         case 'checkbox':
-          return form.appendChild(checkboxInput(field));
-
         case 'radio':
-          return form.appendChild(radioInput(field));
+          return form.appendChild(checkboxInput(field));
 
         case 'boolean':
           return form.appendChild(booleanInput(field));

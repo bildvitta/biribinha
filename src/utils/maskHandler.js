@@ -28,6 +28,10 @@ export default function (fields) {
     field.min && (numberAttributes['max'] = field.min);
 
     switch (field.type) {
+      case 'color':
+        IMask(element, maskColor());
+        break;
+
       case 'date':
         const dateMask = IMask(element, maskDate());
         element.addEventListener('input', function () {
@@ -210,6 +214,23 @@ const maskTime = () => {
   };
 };
 
+const maskColor = () => ({
+  mask: [
+    {
+      mask: 'RGB,RGB,RGB',
+      blocks: {
+        RGB: {
+          mask: IMask.MaskedRange,
+          from: 0,
+          to: 255,
+        },
+      },
+    },
+    {
+      mask: /^#[0-9a-f]{0,6}$/i,
+    },
+  ],
+});
 const maskNumber = () => ({
   mask: Number,
 });
