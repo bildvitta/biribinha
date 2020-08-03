@@ -109,19 +109,6 @@ function checkboxInput({
   inputDiv.setAttribute('id', name);
   inputCol.appendChild(inputDiv);
 
-  // <form>
-  //   <fieldset id="group1">
-  //     <input type="radio" value="value1" name="group1">
-  //     <input type="radio" value="value2" name="group1">
-  //   </fieldset>
-
-  //   <fieldset id="group2">
-  //     <input type="radio" value="value1" name="group2">
-  //     <input type="radio" value="value2" name="group2">
-  //     <input type="radio" value="value3" name="group2">
-  //   </fieldset>
-  // </form>
-
   options.map((option) => {
     const formCheck = document.createElement('div');
     formCheck.setAttribute('class', 'form-check');
@@ -174,15 +161,15 @@ function booleanInput({ label, name, value, default: _default }) {
     class: 'custom-control-input',
   };
 
+  _default === 'true'
+    ? checkbox.setAttribute('checked', 'checked')
+    : checkbox.removeAttribute('checked');
+
   attributes['id'] = name;
   attributes['name'] = name;
   attributes['value'] = value;
 
   setAttrs(checkbox, attributes);
-
-  _default === 'true'
-    ? checkbox.setAttribute('checked', true)
-    : checkbox.setAttribute('checked', false);
 
   formCheck.appendChild(checkbox);
   formCheck.appendChild(labelDiv);
