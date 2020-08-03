@@ -18,4 +18,10 @@ export default function (fields) {
       }
     }
   });
+
+  const button = document.createElement('input');
+  button.setAttribute('class', 'btn');
+  button.setAttribute('type', 'submit');
+  button.innerHTML = 'ROLEEE';
+  form.appendChild(button);
 }

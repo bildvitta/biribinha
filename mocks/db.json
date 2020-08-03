@@ -60,7 +60,8 @@
       "id": "ana-silvadeimbondo",
       "group": "geral",
       "money": "12,33",
-      "recivers": ["banners", "notifications"]
+      "receivers": ["banners", "notifications"],
+      "groupRadio": "somente-leitura"
     },
     "errors": {
       "time": ["Campo obrigatório"],
@@ -165,7 +166,7 @@
           { "label": "Somente Leitura", "value": "somente-leitura" }
         ]
       },
-      "groupradio": {
+      "groupRadio": {
         "name": "groupRadio",
         "label": "Radio",
         "default": "",

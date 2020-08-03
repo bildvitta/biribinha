@@ -109,9 +109,23 @@ function checkboxInput({
   inputDiv.setAttribute('id', name);
   inputCol.appendChild(inputDiv);
 
+  // <form>
+  //   <fieldset id="group1">
+  //     <input type="radio" value="value1" name="group1">
+  //     <input type="radio" value="value2" name="group1">
+  //   </fieldset>
+
+  //   <fieldset id="group2">
+  //     <input type="radio" value="value1" name="group2">
+  //     <input type="radio" value="value2" name="group2">
+  //     <input type="radio" value="value3" name="group2">
+  //   </fieldset>
+  // </form>
+
   options.map((option) => {
     const formCheck = document.createElement('div');
     formCheck.setAttribute('class', 'form-check');
+    formCheck.setAttribute('id', 'form-check');
 
     const label = createCheckboxLabel(option.label, `${name}-${option.value}`);
     label.setAttribute('class', 'form-check-label');
