@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/form/prefix_suffix.js</title>
+    <title>Code coverage report for src/utils/resultHandler.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/form</a> prefix_suffix.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> resultHandler.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -76,46 +76,43 @@
 <a name='L17'></a><a href='#L17'>17</a>
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L20'></a><a href='#L20'>20</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default <span class="fstat-no" title="function not covered" >fu</span>nction (type, prefix) {
-  const prefixElement = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >  prefixElement.setAttribute('class', 'input-group-text');</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function <span class="fstat-no" title="function not covered" >resultHandler(</span>results) {
+<span class="cstat-no" title="statement not covered" >  Object.keys(results).forEach(<span class="fstat-no" title="function not covered" >(k</span>ey) =&gt; {</span>
+    const input = <span class="cstat-no" title="statement not covered" >document.getElementById(`${key}`);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  switch (type) {</span>
-    case 'money':
-<span class="cstat-no" title="statement not covered" >      prefixElement.innerHTML = 'R$';</span>
-<span class="cstat-no" title="statement not covered" >      break;</span>
+    // case is select
+<span class="cstat-no" title="statement not covered" >    if (input) {</span>
+<span class="cstat-no" title="statement not covered" >      if (input.tagName === 'SELECT') {</span>
+<span class="cstat-no" title="statement not covered" >        for (var i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; input.options.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >          if (input.options[i] &amp;&amp; input.options[i].value === results[key]) {</span>
+<span class="cstat-no" title="statement not covered" >            input.selectedIndex = i;</span>
+          }
+        }
+      }
 &nbsp;
-    case 'percent':
-<span class="cstat-no" title="statement not covered" >      prefixElement.innerHTML = '%';</span>
-<span class="cstat-no" title="statement not covered" >      break;</span>
-&nbsp;
-    default:
-<span class="cstat-no" title="statement not covered" >      prefixElement.innerHTML = prefix;</span>
-<span class="cstat-no" title="statement not covered" >      break;</span>
-  }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return prefixElement;</span>
+      // case is normal
+<span class="cstat-no" title="statement not covered" >      input.setAttribute('value', results[key]);</span>
+    }
+  });
 }
 &nbsp;</pre></td></tr></table></pre>
 

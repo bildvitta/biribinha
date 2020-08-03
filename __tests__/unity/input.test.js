@@ -2,25 +2,19 @@ import '@testing-library/jest-dom';
 import { getByLabelText } from '@testing-library/dom';
 
 import {
-  newTextInput,
-  newTextArea,
-  newDateInput,
-  newEmailInput,
-  newSelectInput,
-  newCheckboxInput,
-  newHiddenInput,
-  newBooleanInput,
-  newNumberInput,
-  newRadioInput,
+  normalInput,
+  checkboxInput,
+  booleanInput
 
 } from '../../src/form/input';
 
 describe('rendering the basic Inputs', () => {
   test('Creating a Required Input', () => {
-    const div = newTextInput({
+    const div = normalInput({
       name: 'textinput',
       required: true,
       label: 'Texto',
+      type: 'input'
     });
 
     const inputNode = getByLabelText(div, 'Texto', { selector: 'input' });
@@ -34,7 +28,7 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Creating a Input', () => {
-    const div = newTextInput({ name: 'TextInput', label: 'Texto' });
+    const div = normalInput({ name: 'TextInput', label: 'Texto', type: 'input'});
 
     const inputNode = getByLabelText(div, 'Texto');
 
