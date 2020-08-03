@@ -4,6 +4,7 @@ export default function resultHandler(results) {
 
     // case is select
     if (input) {
+      console.log(input);
       if (input.tagName === 'SELECT') {
         for (var i = 0; i < input.options.length; i++) {
           if (input.options[i] && input.options[i].value === results[key]) {

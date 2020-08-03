@@ -1,9 +1,4 @@
-import {
-  normalInput,
-  checkboxInput,
-  radioInput,
-  booleanInput,
-} from '../form/input';
+import { normalInput, checkboxInput, booleanInput } from '../form/input';
 
 export default function (fields) {
   const form = document.getElementById('formCreator');

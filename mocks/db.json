@@ -59,7 +59,8 @@
       "email": "ana.silvadeimbondo@bild.com.br",
       "id": "ana-silvadeimbondo",
       "group": "geral",
-      "money": "12,33"
+      "money": "12,33",
+      "recivers": ["banners", "notifications"]
     },
     "errors": {
       "time": ["Campo obrigatório"],
