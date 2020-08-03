@@ -61,6 +61,15 @@
       "group": "geral",
       "money": "12,33"
     },
+    "errors": {
+      "time": ["Campo obrigatório"],
+      "name": [
+        "Campo obrigatório",
+        "Campo precisa de pelo precisa ter nome e sobrenome"
+      ],
+      "receivers": ["Você deve selecionar um desses campos"],
+      "groupRadio": ["Selecione um desses"]
+    },
     "fields": {
       "locked_access": {
         "name": "locked_access",
@@ -86,16 +95,16 @@
         "name": "money",
         "label": "Dinheiro",
         "default": "",
-        "type": "text",
-        "mask": "money",
-        "prefix": "money"
+        "type": "money",
+        "prefix": "R$"
       },
       "percent": {
         "name": "percent",
         "label": "Porcentagem",
         "default": "",
         "type": "number",
-        "suffix": "percent"
+        "suffix": "%",
+        "places": "3"
       },
       "phone": {
         "name": "phone",
@@ -137,6 +146,12 @@
         "label": "Data de criação",
         "default": "",
         "type": "date"
+      },
+      "time": {
+        "name": "time",
+        "label": "Hora de criação",
+        "default": "",
+        "type": "time"
       },
       "group": {
         "name": "group",
