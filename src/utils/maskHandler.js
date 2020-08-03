@@ -231,6 +231,7 @@ const maskColor = () => ({
     },
   ],
 });
+
 const maskNumber = () => ({
   mask: Number,
 });
