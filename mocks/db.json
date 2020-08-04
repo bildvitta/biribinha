@@ -54,13 +54,14 @@
   },
   "colaborador": {
     "result": {
-      "locked_access": false,
+      "locked_access": true,
       "name": "Pedro Silva de Imbondo",
       "email": "ana.silvadeimbondo@bild.com.br",
       "id": "ana-silvadeimbondo",
       "group": "geral",
       "money": "12,33",
-      "recivers": ["banners", "notifications"]
+      "receivers": ["banners", "notifications"],
+      "groupRadio": "somente-leitura"
     },
     "errors": {
       "time": ["Campo obrigatório"],
@@ -104,6 +105,7 @@
         "label": "Porcentagem",
         "default": "",
         "type": "number",
+        "required": true,
         "suffix": "%",
         "places": "3"
       },
@@ -165,7 +167,7 @@
           { "label": "Somente Leitura", "value": "somente-leitura" }
         ]
       },
-      "groupradio": {
+      "groupRadio": {
         "name": "groupRadio",
         "label": "Radio",
         "default": "",
@@ -188,6 +190,7 @@
         "label": "Selecione o tipo de relatório: ",
         "default": "",
         "type": "checkbox",
+        "hint": "This is a test",
         "options": [
           {
             "label": "Banner",

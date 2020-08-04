@@ -1,20 +1,44 @@
-export default function resultHandler(results) {
+export default function (results) {
   Object.keys(results).forEach((key) => {
-    const input = document.getElementById(`${key}`);
+    const input = Array.from(document.getElementsByName(key));
 
-    // case is select
-    if (input) {
-      console.log(input);
-      if (input.tagName === 'SELECT') {
-        for (var i = 0; i < input.options.length; i++) {
-          if (input.options[i] && input.options[i].value === results[key]) {
-            input.selectedIndex = i;
-          }
+    if (!input) {
+      return;
+    }
+
+    input.forEach((inputElement) => {
+      // Select
+      if (inputElement.tagName === 'SELECT') {
+        console.log(inputElement);
+        for (var i = 0; i < inputElement.options.length; i++) {
+          inputElement.options[i] &&
+            inputElement.options[i].value === results[key] &&
+            (inputElement.selectedIndex = i);
         }
       }
 
-      // case is normal
-      input.setAttribute('value', results[key]);
-    }
+      // Checkbox
+      if (Array.isArray(results[key])) {
+        return (
+          results[key].includes(inputElement.value) &&
+          inputElement.setAttribute('checked', 'checked')
+        );
+      }
+
+      // Radio
+      if (inputElement.value === results[key]) {
+        return inputElement.setAttribute('checked', 'checked');
+      }
+
+      // Boolean
+      if (inputElement.type === 'checkbox') {
+        return results[key] === true
+          ? inputElement.setAttribute('checked', 'checked')
+          : inputElement.removeAttribute('checked');
+      }
+
+      // Normal
+      inputElement.setAttribute('value', results[key]);
+    });
   });
 }

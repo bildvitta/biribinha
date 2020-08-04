@@ -18,4 +18,10 @@ export default function (fields) {
       }
     }
   });
+
+  const button = document.createElement('input');
+  button.classList.add('btn', 'btn-success');
+  button.setAttribute('type', 'submit');
+  button.setAttribute('value', 'Salvar');
+  form.appendChild(button);
 }

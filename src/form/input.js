@@ -101,7 +101,7 @@ function checkboxInput({
   div.classList.add('form-group', 'row');
 
   if (label && type !== 'hidden') {
-    div.appendChild(createInputLabel(label, name, hint));
+    div.appendChild(createInputLabel(label, name, hint, 'legend'));
     inputCol.setAttribute('class', `col-sm-${label ? '9' : '12'}`);
   }
 
@@ -112,6 +112,7 @@ function checkboxInput({
   options.map((option) => {
     const formCheck = document.createElement('div');
     formCheck.setAttribute('class', 'form-check');
+    formCheck.setAttribute('id', 'form-check');
 
     const label = createCheckboxLabel(option.label, `${name}-${option.value}`);
     label.setAttribute('class', 'form-check-label');
@@ -160,15 +161,15 @@ function booleanInput({ label, name, value, default: _default }) {
     class: 'custom-control-input',
   };
 
+  _default === 'true'
+    ? checkbox.setAttribute('checked', 'checked')
+    : checkbox.removeAttribute('checked');
+
   attributes['id'] = name;
   attributes['name'] = name;
   attributes['value'] = value;
 
   setAttrs(checkbox, attributes);
-
-  _default === 'true'
-    ? checkbox.setAttribute('checked', true)
-    : checkbox.setAttribute('checked', false);
 
   formCheck.appendChild(checkbox);
   formCheck.appendChild(labelDiv);
