@@ -7,6 +7,16 @@ export default function (results) {
     }
 
     input.forEach((inputElement) => {
+      // Select
+      if (inputElement.tagName === 'SELECT') {
+        console.log(inputElement);
+        for (var i = 0; i < inputElement.options.length; i++) {
+          inputElement.options[i] &&
+            inputElement.options[i].value === results[key] &&
+            (inputElement.selectedIndex = i);
+        }
+      }
+
       // Checkbox
       if (Array.isArray(results[key])) {
         return (
