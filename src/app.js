@@ -7,6 +7,7 @@ import maskHandler from './utils/maskHandler';
 import errorHandler from './utils/errorHandler';
 import fieldHandler from './utils/fieldHandler';
 
+import './global.scss';
 // https://github.com/bildvitta/api
 
 async function start() {

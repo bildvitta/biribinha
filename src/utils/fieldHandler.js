@@ -20,8 +20,8 @@ export default function (fields) {
   });
 
   const button = document.createElement('input');
-  button.setAttribute('class', 'btn');
+  button.classList.add('btn', 'btn-success');
   button.setAttribute('type', 'submit');
-  button.innerHTML = 'ROLEEE';
+  button.setAttribute('value', 'Salvar');
   form.appendChild(button);
 }

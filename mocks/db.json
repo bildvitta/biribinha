@@ -189,6 +189,7 @@
         "label": "Selecione o tipo de relatório: ",
         "default": "",
         "type": "checkbox",
+        "hint": "This is a test",
         "options": [
           {
             "label": "Banner",
