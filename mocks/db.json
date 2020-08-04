@@ -54,7 +54,7 @@
   },
   "colaborador": {
     "result": {
-      "locked_access": false,
+      "locked_access": true,
       "name": "Pedro Silva de Imbondo",
       "email": "ana.silvadeimbondo@bild.com.br",
       "id": "ana-silvadeimbondo",
