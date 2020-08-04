@@ -7,39 +7,24 @@ export default function (results) {
     }
 
     input.forEach((inputElement) => {
-      // Select
-      if (inputElement.tagName === 'SELECT') {
-        console.log(inputElement);
-        for (var i = 0; i < inputElement.options.length; i++) {
-          if (
-            inputElement.options[i] &&
-            inputElement.options[i].value === results[key]
-          ) {
-            inputElement.selectedIndex = i;
-          }
-        }
-      }
-
       // Checkbox
       if (Array.isArray(results[key])) {
-        if (results[key].includes(inputElement.value)) {
-          inputElement.setAttribute('checked', 'checked');
-        }
-        return;
+        return (
+          results[key].includes(inputElement.value) &&
+          inputElement.setAttribute('checked', 'checked')
+        );
       }
 
       // Radio
       if (inputElement.value === results[key]) {
-        inputElement.setAttribute('checked', 'checed');
-        return;
+        return inputElement.setAttribute('checked', 'checed');
       }
 
       // Boolean
       if (inputElement.type === 'checkbox') {
-        results[key] === true
+        return results[key] === true
           ? inputElement.setAttribute('checked', 'checked')
           : inputElement.removeAttribute('checked');
-        return;
       }
 
       // Normal
