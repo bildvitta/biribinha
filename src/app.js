@@ -1,5 +1,3 @@
-import api from './services/api';
-
 import formHandler from './utils/formHandler';
 import resultHandler from './utils/resultHandler';
 import maskHandler from './utils/maskHandler';
@@ -9,7 +7,8 @@ import fieldHandler from './utils/fieldHandler';
 import './global.scss';
 // https://github.com/bildvitta/api
 // mudar para export default class
-class App {
+
+export default class Biribinha {
   async start({ mode, url, elementId = 'app' }) {
     try {
       const response = await fetch(url);
@@ -42,9 +41,3 @@ class App {
       (fieldHandler(fieldElements) || maskHandler(fieldElements));
   }
 }
-
-const app = new App();
-app.start({
-  url: 'http://localhost:3000/colaborador',
-  mode: 'replace',
-});
