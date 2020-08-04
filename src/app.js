@@ -1,7 +1,6 @@
 import api from './services/api';
 
-import form from './form/form-creator';
-
+import formHandler from './utils/formHandler';
 import resultHandler from './utils/resultHandler';
 import maskHandler from './utils/maskHandler';
 import errorHandler from './utils/errorHandler';
@@ -15,11 +14,15 @@ async function start() {
     // const response = await api.get(`/assembleia`);
     const response = await api.get(`/colaborador`);
 
-    const fields = Object.values(response.data.fields);
+    const app = document.getElementById('app');
 
+    if (response.data.metadata) {
+      const form = formHandler(response.data.metadata);
+      app.appendChild(form);
+    }
+
+    const fields = Object.values(response.data.fields);
     if (fields) {
-      const app = document.getElementById('app');
-      app.appendChild(form());
       fieldHandler(fields);
       maskHandler(fields);
     }
