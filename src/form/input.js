@@ -101,7 +101,7 @@ function checkboxInput({
   div.classList.add('form-group', 'row');
 
   if (label && type !== 'hidden') {
-    div.appendChild(createInputLabel(label, name, hint));
+    div.appendChild(createInputLabel(label, name, hint, 'legend'));
     inputCol.setAttribute('class', `col-sm-${label ? '9' : '12'}`);
   }
 
