@@ -8,37 +8,43 @@ import fieldHandler from './utils/fieldHandler';
 
 import './global.scss';
 // https://github.com/bildvitta/api
+// mudar para export default class
+class App {
+  async start({ mode, url, elementId = 'app' }) {
+    try {
+      const response = await fetch(url);
 
-async function start() {
-  try {
-    // const response = await api.get(`/assembleia`);
-    const response = await api.get(`/colaborador`);
+      if (!response.ok) {
+        throw new Error();
+      }
 
-    const app = document.getElementById('app');
+      const { errors, fields, metadata, result } = await response.json();
 
-    if (response.data.metadata) {
-      const form = formHandler(response.data.metadata);
-      app.appendChild(form);
+      this.initView({ mode, url, elementId });
+      this.insertFields(fields);
+      result && resultHandler(result);
+      errors && errorHandler(errors);
+    } catch (error) {
+      throw new Error('Something whrong is not right', error);
     }
+  }
 
-    const fields = Object.values(response.data.fields);
-    if (fields) {
-      fieldHandler(fields);
-      maskHandler(fields);
-    }
+  initView(config) {
+    const app = document.getElementById(config.elementId);
+    const form = formHandler(config);
+    app.appendChild(form);
+  }
 
-    if (response.data.result) {
-      const results = response.data.result;
-      resultHandler(results);
-    }
+  insertFields(fields) {
+    const fieldElements = Object.values(fields);
 
-    if (response.data.errors) {
-      const errors = response.data.errors;
-      errorHandler(errors);
-    }
-  } catch (error) {
-    console.error(`Alguma coisa aconteceu: `, error);
+    fieldElements &&
+      (fieldHandler(fieldElements) || maskHandler(fieldElements));
   }
 }
 
-start();
+const app = new App();
+app.start({
+  url: 'http://localhost:3000/colaborador',
+  mode: 'replace',
+});

@@ -30,6 +30,7 @@
     "faker": "^4.1.0",
     "file-loader": "1.1.11",
     "identity-obj-proxy": "3.0.0",
+    "jest": "^26.1.0",
     "jest-environment-jsdom": "^26.1.0",
     "jest-transform-stub": "^2.0.0",
     "json-server": "^0.16.1",
@@ -52,7 +53,6 @@
     "@popperjs/core": "^2.4.4",
     "axios": "^0.19.2",
     "imask": "^6.0.5",
-    "jest": "^26.1.0",
     "moment": "^2.27.0"
   }
 }

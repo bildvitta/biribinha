@@ -1,12 +1,7 @@
-import {
-  createInputLabel,
-  createCheckboxLabel,
-  createInputLegend,
-} from './label';
-
 import setAttrs from './setAttribute';
+import prefixSuffixTerm from './prefixSuffix';
 
-import prefixSuffixTerm from './prefix_suffix';
+import { createInputLabel, createCheckboxLabel } from './label';
 
 function normalInput({
   name,
