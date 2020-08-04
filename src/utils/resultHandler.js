@@ -17,7 +17,7 @@ export default function (results) {
 
       // Radio
       if (inputElement.value === results[key]) {
-        return inputElement.setAttribute('checked', 'checed');
+        return inputElement.setAttribute('checked', 'checked');
       }
 
       // Boolean
