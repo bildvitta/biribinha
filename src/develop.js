@@ -1,6 +1,6 @@
-import App from './app';
+import Biribinha from './app';
 
-const app = new App();
+const app = new Biribinha();
 app.start({
   url: 'http://localhost:3000/colaborador',
   mode: 'replace',

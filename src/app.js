@@ -8,28 +8,29 @@ import './global.scss';
 // https://github.com/bildvitta/api
 // mudar para export default class
 
-export default class Biribinha {
+class Biribinha {
   async start({ mode, url, elementId = 'app' }) {
-    try {
-      const response = await fetch(url);
+    const response = await fetch(url);
 
-      if (!response.ok) {
-        throw new Error();
-      }
-
-      const { errors, fields, metadata, result } = await response.json();
-
-      this.initView({ mode, url, elementId });
-      this.insertFields(fields);
-      result && resultHandler(result);
-      errors && errorHandler(errors);
-    } catch (error) {
-      throw new Error('Something whrong is not right', error);
+    if (!response.ok) {
+      throw new Error();
     }
+
+    const { errors, fields, metadata, result } = await response.json();
+
+    this.initView({ mode, url, elementId });
+    this.insertFields(fields);
+    result && resultHandler(result);
+    errors && errorHandler(errors);
   }
 
   initView(config) {
     const app = document.getElementById(config.elementId);
+
+    if (!app) {
+      throw new Error('Please set a valid element id');
+    }
+
     const form = formHandler(config);
     app.appendChild(form);
   }
@@ -41,3 +42,12 @@ export default class Biribinha {
       (fieldHandler(fieldElements) || maskHandler(fieldElements));
   }
 }
+
+window.Biribinha = Biribinha;
+export default Biribinha;
+
+// const app = new Biribinha();
+// app.start({
+//   url: 'http://localhost:3000/colaborador',
+//   mode: 'replace',
+// });
