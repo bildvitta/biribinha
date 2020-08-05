@@ -1,5 +1,3 @@
-import api from './services/api';
-
 import formHandler from './utils/formHandler';
 import resultHandler from './utils/resultHandler';
 import maskHandler from './utils/maskHandler';
@@ -9,36 +7,40 @@ import fieldHandler from './utils/fieldHandler';
 import './global.scss';
 // https://github.com/bildvitta/api
 
-async function start() {
-  try {
-    // const response = await api.get(`/assembleia`);
-    const response = await api.get(`/colaborador`);
+class Biribinha {
+  async start({ mode, url, elementId = 'app' }) {
+    const response = await fetch(url);
 
-    const app = document.getElementById('app');
-
-    if (response.data.metadata) {
-      const form = formHandler(response.data.metadata);
-      app.appendChild(form);
+    if (!response.ok) {
+      throw new Error();
     }
 
-    const fields = Object.values(response.data.fields);
-    if (fields) {
-      fieldHandler(fields);
-      maskHandler(fields);
+    const { errors, fields, metadata, result } = await response.json();
+
+    this.initView({ mode, url, elementId });
+    this.insertFields(fields);
+    result && resultHandler(result);
+    errors && errorHandler(errors);
+  }
+
+  initView(config) {
+    const app = document.getElementById(config.elementId);
+
+    if (!app) {
+      throw new Error('Please set a valid element id');
     }
 
-    if (response.data.result) {
-      const results = response.data.result;
-      resultHandler(results);
-    }
+    const form = formHandler(config);
+    app.appendChild(form);
+  }
 
-    if (response.data.errors) {
-      const errors = response.data.errors;
-      errorHandler(errors);
-    }
-  } catch (error) {
-    console.error(`Alguma coisa aconteceu: `, error);
+  insertFields(fields) {
+    const fieldElements = Object.values(fields);
+
+    fieldElements &&
+      (fieldHandler(fieldElements) || maskHandler(fieldElements));
   }
 }
 
-start();
+window.Biribinha = Biribinha;
+export default Biribinha;

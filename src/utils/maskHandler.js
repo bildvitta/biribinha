@@ -1,15 +1,6 @@
 import IMask from 'imask';
 import moment from 'moment';
 
-// color
-// date
-// datetime
-// decimal
-// money
-// number
-// percent
-// time
-
 export default function (fields) {
   fields.map((field) => {
     const element = document.getElementById(field.name);
