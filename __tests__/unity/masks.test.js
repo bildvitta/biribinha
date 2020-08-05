@@ -1,11 +1,11 @@
 import { fireEvent, getByLabelText } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
-import { newTextInput, newDateInput } from '../../src/form/input';
+import { normalInput, newDateInput } from '../../src/form/input';
 
 describe('rendering the basic Inputs', () => {
   test('Input with money mask', () => {
-    const div = newTextInput({
+    const div = normalInput({
       name: 'money',
       label: 'Dinheiro',
       type: 'text',
@@ -17,8 +17,6 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('money');
     expect(inputNode.getAttribute('id')).toBe('money');
-    expect(inputNode.getAttribute('data-mask')).toBe('money');
-    inputNode.setAttribute('data-testid', 'money');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
     fireEvent.input(inputNode, { target: { value: 'TESTE1234,56' } });
@@ -26,7 +24,7 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with phone mask', () => {
-    const div = newTextInput({
+    const div = normalInput({
       name: 'phone',
       label: 'Telefone',
       type: 'text',
@@ -38,8 +36,6 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('phone');
     expect(inputNode.getAttribute('id')).toBe('phone');
-    expect(inputNode.getAttribute('data-mask')).toBe('phone');
-    inputNode.setAttribute('data-testid', 'phone');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
     fireEvent.input(inputNode, { target: { value: '3535218521' } });
@@ -51,7 +47,7 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with postal-code mask', () => {
-    const div = newTextInput({
+    const div = normalInput({
       name: 'postal-code',
       label: 'CEP',
       type: 'text',
@@ -63,8 +59,6 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('postal-code');
     expect(inputNode.getAttribute('id')).toBe('postal-code');
-    expect(inputNode.getAttribute('data-mask')).toBe('postal-code');
-    inputNode.setAttribute('data-testid', 'postal-code');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
     fireEvent.input(inputNode, { target: { value: '14015110!@#qwe' } });
@@ -72,7 +66,7 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with personal-document mask', () => {
-    const div = newTextInput({
+    const div = normalInput({
       name: 'personal-document',
       label: 'CPF',
       type: 'text',
@@ -84,8 +78,6 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('personal-document');
     expect(inputNode.getAttribute('id')).toBe('personal-document');
-    expect(inputNode.getAttribute('data-mask')).toBe('personal-document');
-    inputNode.setAttribute('data-testid', 'personal-document');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
     fireEvent.input(inputNode, { target: { value: '49133123080' } });
@@ -98,7 +90,7 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with company-document mask', () => {
-    const div = newTextInput({
+    const div = normalInput({
       name: 'company-document',
       label: 'CPF',
       type: 'text',
@@ -110,8 +102,6 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('company-document');
     expect(inputNode.getAttribute('id')).toBe('company-document');
-    expect(inputNode.getAttribute('data-mask')).toBe('company-document');
-    inputNode.setAttribute('data-testid', 'company-document');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
     fireEvent.input(inputNode, { target: { value: '22775107000144' } });
@@ -124,7 +114,7 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with document mask', () => {
-    const div = newTextInput({
+    const div = normalInput({
       name: 'document',
       label: 'CPF',
       type: 'text',
@@ -136,8 +126,6 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('document');
     expect(inputNode.getAttribute('id')).toBe('document');
-    expect(inputNode.getAttribute('data-mask')).toBe('document');
-    inputNode.setAttribute('data-testid', 'document');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
     fireEvent.input(inputNode, { target: { value: '22775107000144' } });
@@ -149,8 +137,8 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.value).toBe('491.331.230-80');
   });
 
-  test('Date Input', () => {
-    const div = newDateInput({
+  test.only('Date Input', () => {
+    const div = normalInput({
       name: 'date_name',
       label: 'Date Label',
       type: 'date',
@@ -162,7 +150,6 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('date_name');
     expect(inputNode.getAttribute('id')).toBe('date_name');
-    expect(inputNode.getAttribute('data-mask')).toBe('date');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
     fireEvent.input(inputNode, { target: { value: '20012020' } });

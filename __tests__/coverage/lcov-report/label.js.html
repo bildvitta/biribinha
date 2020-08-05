@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">38.46% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/26</span>
+                <span class='fraction'>6/20</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">60% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">50% </span>
-                <span class="quiet">Branches</span>
+                <span class="quiet">Functions</span>
                 <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.67% </span>
-                <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">38.46% </span>
+                <span class="strong">30% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/26</span>
+                <span class='fraction'>6/20</span>
             </div>
         
             
@@ -104,25 +104,17 @@
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L48'></a><a href='#L48'>48</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -148,18 +140,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -168,18 +152,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createPopper } from '@popperjs/core';
-import './style.scss';
 &nbsp;
-function createInputLabel(label, name, hint) {
-  const labelDiv = document.createElement('label');
+function createInputLabel(label, name, hint, type = 'label') {
+  const labelDiv = document.createElement(
+    type === 'label' ? 'label' : <span class="branch-1 cbranch-no" title="branch not covered" >'legend'</span>
+  );
   labelDiv.classList.add('col-sm-3', 'col-form-label');
   labelDiv.setAttribute('for', name);
-  labelDiv.innerHTML = `${label}`;
+  labelDiv.innerHTML = label;
 &nbsp;
   <span class="missing-if-branch" title="if path not taken" >I</span>if (hint) {
     const hintDiv = <span class="cstat-no" title="statement not covered" >document.createElement('span');</span>
-<span class="cstat-no" title="statement not covered" >    hintDiv.classList.add('with-tooltip');</span>
-<span class="cstat-no" title="statement not covered" >    hintDiv.classList.add('material-icons');</span>
+<span class="cstat-no" title="statement not covered" >    hintDiv.classList.add('with-tooltip', 'material-icons');</span>
 <span class="cstat-no" title="statement not covered" >    hintDiv.innerHTML = 'help';</span>
     const tooltip = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
 <span class="cstat-no" title="statement not covered" >    tooltip.setAttribute('class', 'tooltip');</span>
@@ -206,22 +190,14 @@ function createInputLabel(label, name, hint) {
   return labelDiv;
 }
 &nbsp;
-function createCheckboxLabel(optionLabel, optionValue) {
-  const labelDiv = document.createElement('label');
-  labelDiv.setAttribute('for', optionValue); // Create Label for Name Field
-  labelDiv.innerHTML = `${optionLabel}`; // Set Field Labels
-  return labelDiv;
-}
-&nbsp;
-function <span class="fstat-no" title="function not covered" >createInputLegend(</span>labelText, name) {
-  const labelDiv = <span class="cstat-no" title="statement not covered" >document.createElement('legend');</span>
-<span class="cstat-no" title="statement not covered" >  labelDiv.classList.add('col-sm-3', 'col-form-label');</span>
-<span class="cstat-no" title="statement not covered" >  labelDiv.setAttribute('for', name); </span>// Create Label for Name Field
-<span class="cstat-no" title="statement not covered" >  labelDiv.innerHTML = `${labelText}`; </span>// Set Field Labels
+function <span class="fstat-no" title="function not covered" >createCheckboxLabel(</span>optionLabel, optionValue) {
+  const labelDiv = <span class="cstat-no" title="statement not covered" >document.createElement('label');</span>
+<span class="cstat-no" title="statement not covered" >  labelDiv.setAttribute('for', optionValue); </span>// Create Label for Name Field
+<span class="cstat-no" title="statement not covered" >  labelDiv.innerHTML = optionLabel; </span>// Set Field Labels
 <span class="cstat-no" title="statement not covered" >  return labelDiv;</span>
 }
 &nbsp;
-export { createInputLabel, createCheckboxLabel, createInputLegend };
+export { createInputLabel, createCheckboxLabel };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -229,7 +205,7 @@ export { createInputLabel, createCheckboxLabel, createInputLegend };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Aug 04 2020 13:39:49 GMT-0300 (GMT-03:00)
+                at Wed Aug 05 2020 16:48:10 GMT-0300 (GMT-03:00)
             </div>
         </div>
         <script src="prettify.js"></script>
