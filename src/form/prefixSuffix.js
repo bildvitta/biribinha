@@ -11,6 +11,10 @@ export default function (type, text) {
       prefixOrSuffix.innerHTML = '%';
       break;
 
+    case 'color':
+      prefixOrSuffix.innerHTML = '#';
+      break;
+
     default:
       prefixOrSuffix.innerHTML = text;
       break;

@@ -6,7 +6,6 @@ import fieldHandler from './utils/fieldHandler';
 
 import './global.scss';
 // https://github.com/bildvitta/api
-// mudar para export default class
 
 class Biribinha {
   async start({ mode, url, elementId = 'app' }) {
@@ -45,9 +44,3 @@ class Biribinha {
 
 window.Biribinha = Biribinha;
 export default Biribinha;
-
-// const app = new Biribinha();
-// app.start({
-//   url: 'http://localhost:3000/colaborador',
-//   mode: 'replace',
-// });

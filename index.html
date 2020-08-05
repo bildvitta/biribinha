@@ -18,6 +18,14 @@
   <body>
     <div id="app"></div>
     <script type="text/javascript" src="dist/bundle.js"></script>
+    <script>
+      // Loading the biribinha module
+      const app = new Biribinha();
+      app.start({
+        url: 'http://localhost:3000/colaborador',
+        mode: 'replace',
+      });
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
