@@ -40,7 +40,7 @@ function createInputLabel(label, name, hint, type = 'label') {
 function createCheckboxLabel(optionLabel, optionValue) {
   const labelDiv = document.createElement('label');
   labelDiv.setAttribute('for', optionValue); // Create Label for Name Field
-  labelDiv.innerHTML = optionLabel; // Set Field Labels
+  labelDiv.innerHTML = `${optionLabel}`; // Set Field Labels
   return labelDiv;
 }
 
