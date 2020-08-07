@@ -57,7 +57,6 @@
       "locked_access": true,
       "name": "Pedro Silva de Imbondo",
       "email": "ana.silvadeimbondo@bild.com.br",
-      "id": "ana-silvadeimbondo",
       "group": "geral",
       "money": "12,33",
       "receivers": ["banners", "notifications"],

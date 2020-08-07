@@ -1,8 +1,8 @@
 {
-  "name": "formcreator",
+  "name": "@bildvitta/biribinha",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -10,6 +10,10 @@
     "build": "webpack --mode=production",
     "start": "npm-run-all --parallel --race dev mock",
     "mock": "json-server mocks/db.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
