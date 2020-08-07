@@ -4,24 +4,12 @@
 name: Node.js Package
 
 on:
-  push:
-    branches:
-      - master
+  create:
+    tags:
+      - stage-*
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-      - run: npm ci
-      - run: npm install
-      - run: npm test
-
-tags:
-  stage-*:
     name: Deploy release to Development
     runs-on: ubuntu-latest
     steps:
@@ -31,9 +19,10 @@ tags:
           node-version: 12
       - run: npm ci
       - run: npm install
-      run: |
-        npm build
-        cp -r dist/ dist-stage/
+      - name: Creating a build folder
+        run: |
+          npm build
+          cp -r dist/ dist-stage/
 
 
 
