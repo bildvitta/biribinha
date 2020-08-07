@@ -32,7 +32,7 @@ tags:
       - run: npm ci
       - run: npm install
       # - run: npm test
-      - run: |
+      run: |
         npm build
         cp -r dist/ dist-stage/
 
