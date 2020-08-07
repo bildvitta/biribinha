@@ -31,7 +31,6 @@ tags:
           node-version: 12
       - run: npm ci
       - run: npm install
-      # - run: npm test
       run: |
         npm build
         cp -r dist/ dist-stage/
