@@ -13,7 +13,6 @@ describe('rendering the basic Inputs', () => {
     });
 
     const inputNode = getByLabelText(div, 'Texto', { selector: 'input' });
-    console.log(inputNode.outerHTML);
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('textinput');
     expect(inputNode.getAttribute('id')).toBe('textinput');
@@ -34,6 +33,26 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('TextInput');
     expect(inputNode.getAttribute('id')).toBe('TextInput');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+  });
+
+  test('Creating a Input with prefix and suffix', () => {
+    const div = normalInput({
+      name: 'TextInput',
+      label: 'Texto',
+      type: 'text',
+      prefix: '$',
+      suffix: ',00',
+    });
+
+    const inputNode = getByLabelText(div, 'Texto');
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('TextInput');
+    expect(inputNode.getAttribute('id')).toBe('TextInput');
+    // expect(inputNode.getAttribute('prefix')).toBe('$');
     expect(inputNode).toHaveValue('');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
@@ -126,13 +145,13 @@ describe('rendering the basic Inputs', () => {
     expect(input).not.toBeVisible();
   });
 
-  // test('Creating a Boolean Input', () => {
-  //   const field = {
-  //     label: 'boolean',
-  //     name: 'boolean',
-  //   };
-  //   const input = booleanInput(field);
-  // });
+  test('Creating a Boolean Input', () => {
+    const field = {
+      label: 'boolean',
+      name: 'boolean',
+    };
+    const input = booleanInput(field);
+  });
 
   test('Date Input', () => {
     const div = normalInput({
@@ -153,4 +172,44 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode).toBeRequired();
     expect(inputNode).not.toBeDisabled();
   });
+
+  test('Number Input', () => {
+    const div = normalInput({
+      name: 'phone',
+      required: true,
+      label: 'Telefone',
+      type: 'number'
+    });
+
+    const inputNode = getByLabelText(div, 'Telefone', {
+      selector: 'input',
+    });
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('phone');
+    expect(inputNode.getAttribute('id')).toBe('phone');
+    expect(inputNode).toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+  });
+
+  test('Creating a Radio Input', () => {
+    const field = {
+      name: 'Radio',
+      type: 'radio',
+      default: [1, 2],
+      options: [
+        { label: 'Option 1', value: 1 },
+        { label: 'Option 2', value: 2 },
+        { label: 'Option 3', value: 3 },
+      ],
+    };
+    const radio = checkboxInput(field);
+    const radios = radio.getElementsByTagName('input');
+
+    for (let i = 0; i < radios.length; i++) {
+      if (i === 0 || i === 1) expect(radios[i]).toBeChecked();
+      else expect(radios[i]).not.toBeChecked();
+    }
+  });
+
 });
