@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1596657207630" clover="3.2.0">
-  <project timestamp="1596657207630" name="All files">
+<coverage generated="1596819105637" clover="3.2.0">
+  <project timestamp="1596819105638" name="All files">
     <metrics statements="87" coveredstatements="20" conditionals="48" coveredconditionals="19" methods="7" coveredmethods="1" elements="142" coveredelements="40" complexity="0" loc="87" ncloc="87" packages="1" files="1" classes="1"/>
     <file name="input.js" path="C:\Users\Gabriela Lourençato\Documents\Projetos\biribinha\src\form\input.js">
       <metrics statements="87" coveredstatements="20" conditionals="48" coveredconditionals="19" methods="7" coveredmethods="1"/>

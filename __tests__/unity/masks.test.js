@@ -1,10 +1,10 @@
 import { fireEvent, getByLabelText } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
-import { normalInput, newDateInput } from '../../src/form/input';
+import { normalInput } from '../../src/form/input';
 
 describe('rendering the basic Inputs', () => {
-  test('Input with money mask', () => {
+  test.only('Input with money mask', () => {
     const div = normalInput({
       name: 'money',
       label: 'Dinheiro',
@@ -137,7 +137,7 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.value).toBe('491.331.230-80');
   });
 
-  test.only('Date Input', () => {
+  test('Date Input', () => {
     const div = normalInput({
       name: 'date_name',
       label: 'Date Label',

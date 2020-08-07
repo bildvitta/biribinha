@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/utils/errorHandler.js</title>
+    <title>Code coverage report for src/utils/formHandler.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> errorHandler.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/utils</a> formHandler.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/11</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -73,19 +73,9 @@
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
 <a name='L16'></a><a href='#L16'>16</a>
-<a name='L17'></a><a href='#L17'>17</a>
-<a name='L18'></a><a href='#L18'>18</a>
-<a name='L19'></a><a href='#L19'>19</a>
-<a name='L20'></a><a href='#L20'>20</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -93,26 +83,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default function <span class="fstat-no" title="function not covered" >errorHandler(</span>errors) {
-<span class="cstat-no" title="statement not covered" >  Object.keys(errors).forEach(<span class="fstat-no" title="function not covered" >(k</span>ey) =&gt; {</span>
-    const input = <span class="cstat-no" title="statement not covered" >document.getElementById(`${key}`);</span>
-    const parent = <span class="cstat-no" title="statement not covered" >input.parentNode;</span>
-    const feedback = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import setAttrs from '../form/setAttribute';
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    input.classList.add('is-invalid');</span>
-<span class="cstat-no" title="statement not covered" >    feedback.setAttribute('class', 'invalid-feedback');</span>
-<span class="cstat-no" title="statement not covered" >    errors[key].forEach(<span class="fstat-no" title="function not covered" >(e</span>rror, index) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if (index === errors[key].length) {</span>
-<span class="cstat-no" title="statement not covered" >        feedback.innerHTML = `${feedback.innerHTML + error}`;</span>
-      } else {
-<span class="cstat-no" title="statement not covered" >        feedback.innerHTML = `${feedback.innerHTML + error}&lt;/br&gt;`;</span>
-      }
-    });
+export default <span class="fstat-no" title="function not covered" >fu</span>nction (metadata) {
+  const form = <span class="cstat-no" title="statement not covered" >document.createElement('form');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    parent.appendChild(feedback);</span>
-  });
+  const attributes = <span class="cstat-no" title="statement not covered" >{</span>
+    id: 'formCreator',
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  metadata.action &amp;&amp; (attributes['action'] = metadata.action);</span>
+<span class="cstat-no" title="statement not covered" >  metadata.method &amp;&amp; (attributes['method'] = metadata.method);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  setAttrs(form, attributes);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return form;</span>
 }
 &nbsp;</pre></td></tr></table></pre>
 
