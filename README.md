@@ -2,7 +2,7 @@ Este repositório contém funcionalidades que auxiliarão na construção de for
 
 ## Conteúdo
 
-- ** Input **
+- **Input**
 
   - Text
   - Number
@@ -15,7 +15,7 @@ Este repositório contém funcionalidades que auxiliarão na construção de for
   - Upload (in progress)
   - Upload com AmazonS3 (in progress)
 
-- ** Mascaras **
+- **Mascaras**
 
   - Telefone (Fixo ou celular)
   - CPF (Sem verificação)
@@ -27,7 +27,7 @@ Este repositório contém funcionalidades que auxiliarão na construção de for
   - Horário
   - Cor (#HEX)
 
-- ** Outros **
+- **Outros**
   - Dicas
   - Prefixo no input
   - Sufixo no input
