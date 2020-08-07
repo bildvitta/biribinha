@@ -21,7 +21,7 @@ jobs:
       - run: npm install
       - name: Creating a build folder
         run: |
-          npm build
+          npm run build
           cp -r dist/ dist-stage/
 
 
