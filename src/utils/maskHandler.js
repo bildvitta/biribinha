@@ -217,6 +217,7 @@ const maskColor = () => ({
         },
       },
     },
+    //FIX
     {
       mask: /^#[0-9a-f]{0,6}$/i,
     },

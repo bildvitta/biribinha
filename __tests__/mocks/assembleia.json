@@ -1,0 +1,53 @@
+{
+  "result": {
+    "name": "Assembléia Condomínio",
+    "id": "assembleia-condominio",
+    "status": true,
+    "journey": null
+  },
+  "fields": {
+    "status": {
+      "name": "status",
+      "label": "Ativar categoria",
+      "default": "true",
+      "type": "boolean"
+    },
+    "name": {
+      "name": "name",
+      "label": "Categoria",
+      "default": "",
+      "type": "text"
+    },
+
+    "id": {
+      "name": "id",
+      "label": "Id",
+      "default": "",
+      "type": "hidden"
+    },
+    "journey": {
+      "name": "journey",
+      "label": "Jornada do Cliente",
+      "default": null,
+      "type": "select",
+      "options": [
+        {
+          "label": "Nenhuma",
+          "value": null
+        },
+        {
+          "label": "Personalização",
+          "value": "personalizacao"
+        },
+        {
+          "label": "Assistência Técnica",
+          "value": "assistencia-tecnica"
+        }
+      ]
+    }
+  },
+  "status": {
+    "code": 200
+  },
+  "metadata": {}
+}
