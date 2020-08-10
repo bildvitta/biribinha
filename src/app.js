@@ -17,8 +17,6 @@ class Biribinha {
 
     const { errors, fields, metadata, result } = await response.json();
 
-    console.log('AQUI', fields)
-
     this.initView({ mode, url, elementId });
     this.insertFields(fields);
     result && resultHandler(result);
