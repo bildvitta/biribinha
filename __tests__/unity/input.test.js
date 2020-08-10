@@ -48,14 +48,35 @@ describe('rendering the basic Inputs', () => {
     });
 
     const inputNode = getByLabelText(div, 'Texto');
+    const prefixText = div.innerHTML.match('$')
+    const suffixText = div.innerHTML.match(',00')
+
+    expect(prefixText).not.toBeNull()
+    expect(suffixText).not.toBeNull()
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('TextInput');
     expect(inputNode.getAttribute('id')).toBe('TextInput');
-    // expect(inputNode.getAttribute('prefix')).toBe('$');
     expect(inputNode).toHaveValue('');
     expect(inputNode).not.toBeRequired();
     expect(inputNode).not.toBeDisabled();
+  });
+
+  test('Creating a Input with hint', () => {
+    const div = normalInput({
+      name: 'TextInput',
+      label: 'Texto',
+      type: 'text',
+      hint: 'help'
+    });
+
+    const labelText = div.innerHTML.match('Texto')
+    const hint = div.getElementsByClassName('with-tooltip')
+    const hintText = div.innerHTML.match('help')
+
+    expect(labelText).not.toBeNull()
+    expect(hint).not.toBeNull()
+    expect(hintText).not.toBeNull()
   });
 
   test('Creating a TextArea Input', () => {
@@ -91,26 +112,28 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode).not.toBeDisabled();
   });
 
-  // test('Creating a Select Input', () => {
-  //   const field = {
-  //     name: 'select',
-  //     label: 'Select',
-  //     options: [
-  //       { label: 'Select a option...', value: '' },
-  //       { label: 'Option 1', value: 1 },
-  //       { label: 'Option 2', value: 2 },
-  //     ],
-  //   };
-  //   const div = normalInput(field);
-  //   const inputNode = getByLabelText(div, 'Select', { selector: 'input' });
+  test('Creating a Select Input', () => {
+    const field = {
+      name: 'select',
+      label: 'Select',
+      type: 'select',
+      options: [
+        { label: 'Select a option...', value: '' },
+        { label: 'Option 1', value: 1 },
+        { label: 'Option 2', value: 2 },
+      ],
+    };
 
-  //   expect(inputNode.getAttribute('name')).toBe('select');
-  //   expect(inputNode.getAttribute('id')).toBe('select');
-  //   expect(inputNode).toHaveValue('');
-  //   expect(inputNode).toHaveDisplayValue('Select a option...');
-  //   expect(inputNode).not.toBeRequired();
-  //   expect(inputNode).not.toBeDisabled();
-  // });
+    const div = normalInput(field);
+    const inputNode = getByLabelText(div, 'Select');
+
+    expect(inputNode.getAttribute('name')).toBe('select');
+    expect(inputNode.getAttribute('id')).toBe('select');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).toHaveDisplayValue('Select a option...');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+  });
 
   test('Creating a Checkboxes Input', () => {
     const field = {
