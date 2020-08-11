@@ -60,7 +60,8 @@
       "group": "geral",
       "money": "12,33",
       "receivers": ["banners", "notifications"],
-      "groupRadio": "somente-leitura"
+      "groupRadio": "somente-leitura",
+      "id": 32
     },
     "errors": {
       "time": ["Campo obrigatório"],
@@ -105,7 +106,6 @@
         "default": "",
         "type": "number",
         "required": true,
-        "suffix": "%",
         "places": "3"
       },
       "phone": {
@@ -160,6 +160,18 @@
         "label": "Perfil",
         "default": "",
         "type": "select",
+        "options": [
+          { "label": "Administrador", "value": "administrador" },
+          { "label": "Geral", "value": "geral" },
+          { "label": "Somente Leitura", "value": "somente-leitura" }
+        ]
+      },
+      "groupMultiple": {
+        "name": "groupMultiple",
+        "label": "Perfil Multiplo",
+        "default": "",
+        "type": "select",
+        "multiple": true,
         "options": [
           { "label": "Administrador", "value": "administrador" },
           { "label": "Geral", "value": "geral" },

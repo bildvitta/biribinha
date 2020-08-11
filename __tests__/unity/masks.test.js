@@ -1,31 +1,30 @@
 import { screen, fireEvent, getByLabelText } from '@testing-library/dom';
 import '@testing-library/jest-dom';
 
-import {normalInput} from '../../src/form/input.js'
+import { normalInput } from '../../src/form/input.js';
 import maskHandler from '../../src/utils/maskHandler';
 
-
 describe('rendering the basic Inputs', () => {
-
   beforeEach(() => {
     document.body.innerHTML = `<body>
       <div data-testid="body"></div>
-    </body>`
+    </body>`;
   });
 
   test('Input with money mask', () => {
-    
-    const fields = [{
-      name: 'money',
-      label: 'Dinheiro',
-      type: 'money',
-    }]
+    const fields = [
+      {
+        name: 'money',
+        label: 'Dinheiro',
+        type: 'money',
+      },
+    ];
 
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
 
-    maskHandler(fields)
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'Dinheiro', { selector: 'input' });
 
@@ -39,18 +38,19 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with number', () => {
-    
-    const fields = [{
-      name: 'number',
-      label: 'Número',
-      type: 'number',
-    }]
+    const fields = [
+      {
+        name: 'number',
+        label: 'Número',
+        type: 'number',
+      },
+    ];
 
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
 
-    maskHandler(fields)
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'Número', { selector: 'input' });
 
@@ -64,18 +64,20 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with phone mask', () => {
-    const fields  = [{
-      name: 'phone',
-      label: 'Telefone',
-      type: 'text',
-      mask: 'phone'
-    }]
-    
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const fields = [
+      {
+        name: 'phone',
+        label: 'Telefone',
+        type: 'text',
+        mask: 'phone',
+      },
+    ];
 
-    maskHandler(fields)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
+
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'Telefone', { selector: 'input' });
     expect(inputNode.getAttribute('type')).toBe('text');
@@ -85,25 +87,29 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode).not.toBeDisabled();
     fireEvent.input(inputNode, { target: { value: '3535218521' } });
     expect(inputNode.value).toBe('(35) 3521-8521');
+    fireEvent.input(inputNode, { target: { value: '' } });
     fireEvent.input(inputNode, { target: { value: '16988273352' } });
     expect(inputNode.value).toBe('(16) 98827-3352');
-    fireEvent.input(inputNode, { target: { value: '169882%%&73352' } });
+    fireEvent.input(inputNode, { target: { value: '' } });
+    fireEvent.input(inputNode, { target: { value: 'ABC16DEF988273352' } });
     expect(inputNode.value).toBe('(16) 98827-3352');
   });
 
   test('Input with postal-code mask', () => {
-    const fields = [{
-      name: 'postal-code',
-      label: 'CEP',
-      type: 'text',
-      mask: 'postal-code',
-    }]
+    const fields = [
+      {
+        name: 'postal-code',
+        label: 'CEP',
+        type: 'text',
+        mask: 'postal-code',
+      },
+    ];
 
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
 
-    maskHandler(fields)
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'CEP', { selector: 'input' });
 
@@ -117,18 +123,20 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with personal-document mask', () => {
-    const fields = [{
-      name: 'personal-document',
-      label: 'CPF',
-      type: 'text',
-      mask: 'personal-document',
-    }]
+    const fields = [
+      {
+        name: 'personal-document',
+        label: 'CPF',
+        type: 'text',
+        mask: 'personal-document',
+      },
+    ];
 
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
 
-    maskHandler(fields)
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'CPF', { selector: 'input' });
 
@@ -147,18 +155,20 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with company-document mask', () => {
-    const fields = [{
-      name: 'company-document',
-      label: 'CPF',
-      type: 'text',
-      mask: 'company-document',
-    }]
+    const fields = [
+      {
+        name: 'company-document',
+        label: 'CPF',
+        type: 'text',
+        mask: 'company-document',
+      },
+    ];
 
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
 
-    maskHandler(fields)
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'CPF', { selector: 'input' });
 
@@ -177,18 +187,20 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with document mask', () => {
-    const fields = [{
-      name: 'document',
-      label: 'CPF',
-      type: 'text',
-      mask: 'document',
-    }]
+    const fields = [
+      {
+        name: 'document',
+        label: 'CPF',
+        type: 'text',
+        mask: 'document',
+      },
+    ];
 
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
 
-    maskHandler(fields)
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'CPF', { selector: 'input' });
 
@@ -207,17 +219,19 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Date Input', () => {
-    const fields = [{
-      name: 'date_name',
-      label: 'Date Label',
-      type: 'date',
-    }]
+    const fields = [
+      {
+        name: 'date_name',
+        label: 'Date Label',
+        type: 'date',
+      },
+    ];
 
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
 
-    maskHandler(fields)
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'Date Label', { selector: 'input' });
 
@@ -231,17 +245,19 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Time Input', () => {
-    const fields = [{
-      name: 'time',
-      label: 'Horário',
-      type: 'time',
-    }]
+    const fields = [
+      {
+        name: 'time',
+        label: 'Horário',
+        type: 'time',
+      },
+    ];
 
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
 
-    maskHandler(fields)
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'Horário', { selector: 'input' });
 
@@ -255,17 +271,19 @@ describe('rendering the basic Inputs', () => {
   });
 
   test('Input with color mask', () => {
-    const fields  = [{
-      name: 'color',
-      label: 'Color',
-      type: 'color',
-    }]
-    
-    const body = screen.getByTestId('body')
-    const input = normalInput(fields[0])
-    body.appendChild(input)
+    const fields = [
+      {
+        name: 'color',
+        label: 'Color',
+        type: 'color',
+      },
+    ];
 
-    maskHandler(fields)
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
+
+    maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'Color', { selector: 'input' });
     expect(inputNode.getAttribute('type')).toBe('text');

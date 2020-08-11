@@ -20,10 +20,12 @@ export default function (fields) {
 
     switch (field.type) {
       case 'color':
+        element.setAttribute('placeholder', '#______');
         IMask(element, maskColor());
         break;
 
       case 'date':
+        element.setAttribute('placeholder', '__/__/____');
         const dateMask = IMask(element, maskDate());
         element.addEventListener('input', function () {
           dateMask.updateValue();
@@ -31,6 +33,7 @@ export default function (fields) {
         break;
 
       case 'time':
+        element.setAttribute('placeholder', '__:__');
         const timeMask = IMask(element, maskTime());
         element.addEventListener('input', function () {
           timeMask.updateValue();
@@ -60,22 +63,27 @@ export default function (fields) {
 function addMask(element, maskType) {
   switch (maskType) {
     case 'phone':
+      element.setAttribute('placeholder', '(__) _____-____');
       IMask(element, maskPhone());
       break;
 
     case 'postal-code':
+      element.setAttribute('placeholder', '_____-___');
       IMask(element, maskPostalCode());
       break;
 
     case 'personal-document':
+      element.setAttribute('placeholder', '___.___.___-__');
       IMask(element, maskPersonalDocument());
       break;
 
     case 'company-document':
+      element.setAttribute('placeholder', '__.___.___/____-__');
       IMask(element, maskCompanyDocument());
       break;
 
     case 'document':
+      element.setAttribute('placeholder', '___.___.___-__');
       IMask(element, maskDocument());
       break;
   }
@@ -97,46 +105,32 @@ const maskPhone = () => ({
   mask: [
     {
       mask: '(00) 0000-0000',
-      lazy: false, // make placeholder always visible
-      placeholderChar: ' ', // defaults to '_'}
     },
     {
       mask: '(00) 00000-0000',
-      lazy: false, // make placeholder always visible
-      placeholderChar: ' ', // defaults to '_'}
     },
   ],
 });
 
 const maskPostalCode = () => ({
   mask: '00000-000',
-  lazy: false, // make placeholder always visible
-  placeholderChar: ' ', // defaults to '_'
 });
 
 const maskPersonalDocument = () => ({
   mask: '000.000.000-00',
-  lazy: false,
-  placeholderChar: ' ',
 });
 
 const maskCompanyDocument = () => ({
   mask: '00.000.000/0000-00',
-  lazy: false,
-  placeholderChar: ' ',
 });
 
 const maskDocument = () => ({
   mask: [
     {
       mask: '000.000.000-00',
-      lazy: false, // make placeholder always visible
-      placeholderChar: ' ', // defaults to '_'}
     },
     {
       mask: '00.000.000/0000-00',
-      lazy: false, // make placeholder always visible
-      placeholderChar: ' ', // defaults to '_'}
     },
   ],
 });
@@ -146,15 +140,12 @@ const maskDate = () => {
   return {
     mask: Date,
     pattern: momentDateFormat,
-    lazy: false,
-
     format: function (date) {
       return moment(date).format(momentDateFormat);
     },
     parse: function (str) {
       return moment(str, momentDateFormat);
     },
-    placeholderChar: ' ',
     blocks: {
       DD: {
         mask: IMask.MaskedRange,
@@ -177,11 +168,9 @@ const maskDate = () => {
 
 const maskTime = () => {
   const momentTimeFormat = 'HH:mm';
-
   return {
     mask: Date,
     pattern: momentTimeFormat,
-    lazy: false,
 
     format: function (date) {
       return moment(date).format(momentTimeFormat);

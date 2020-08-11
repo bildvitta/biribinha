@@ -15,6 +15,7 @@ function normalInput({
   prefix,
   suffix,
   options,
+  multiple,
   default: _default,
 }) {
   const div = document.createElement('div');
@@ -41,6 +42,7 @@ function normalInput({
   max_length && (attributes['max_length'] = min_length);
   required && (attributes['required'] = true);
   read_only && (attributes['readonly'] = true);
+  multiple && (attributes['multiple'] = 'multiple');
 
   setAttrs(input, attributes);
 

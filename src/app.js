@@ -3,6 +3,7 @@ import resultHandler from './utils/resultHandler';
 import maskHandler from './utils/maskHandler';
 import errorHandler from './utils/errorHandler';
 import fieldHandler from './utils/fieldHandler';
+import submitHandler from './utils/submitHandler';
 
 import './global.scss';
 // https://github.com/bildvitta/api
@@ -17,12 +18,11 @@ class Biribinha {
 
     const { errors, fields, metadata, result } = await response.json();
 
-    console.log('AQUI', fields)
-
     this.initView({ mode, url, elementId });
     this.insertFields(fields);
     result && resultHandler(result);
     errors && errorHandler(errors);
+    submitHandler(fields);
   }
 
   initView(config) {

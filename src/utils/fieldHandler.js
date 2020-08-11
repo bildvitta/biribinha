@@ -1,3 +1,5 @@
+import submitHandler from './submitHandler';
+
 import { normalInput, checkboxInput, booleanInput } from '../form/input';
 
 export default function (fields) {
@@ -18,10 +20,4 @@ export default function (fields) {
       }
     }
   });
-
-  const button = document.createElement('input');
-  button.classList.add('btn', 'btn-success');
-  button.setAttribute('type', 'submit');
-  button.setAttribute('value', 'Salvar');
-  form.appendChild(button);
 }
