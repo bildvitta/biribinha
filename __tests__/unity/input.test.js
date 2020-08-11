@@ -21,6 +21,46 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode).not.toBeDisabled();
   });
 
+  test('Creating a Input with min-length and max-length', () => {
+    const div = normalInput({
+      name: 'TextInput',
+      label: 'Texto',
+      type: 'text',
+      min_length: 12,
+      max_length: 30,
+    });
+
+    const inputNode = getByLabelText(div, 'Texto');
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('TextInput');
+    expect(inputNode.getAttribute('id')).toBe('TextInput');
+    expect(inputNode.getAttribute('min_length')).toBe('12');
+    expect(inputNode.getAttribute('max_length')).toBe('30');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+  });
+
+  test('Creating a readonly Input', () => {
+    const div = normalInput({
+      name: 'TextInput',
+      label: 'Texto',
+      type: 'text',
+      read_only: true,
+    });
+
+    const inputNode = getByLabelText(div, 'Texto');
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('TextInput');
+    expect(inputNode.getAttribute('id')).toBe('TextInput');
+    expect(inputNode.getAttribute('readonly')).toBe('true');
+    expect(inputNode).toHaveValue('');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+  });
+
   test('Creating a Input', () => {
     const div = normalInput({
       name: 'TextInput',
