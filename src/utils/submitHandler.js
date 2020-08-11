@@ -1,4 +1,4 @@
-export default function (fields) {
+export default function (fields, results, url) {
   const form = document.getElementById('formCreator');
 
   function handleClick(e) {
@@ -18,7 +18,6 @@ export default function (fields) {
       //Normal Input
       switch (elements[0].type) {
         case 'checkbox':
-          let selecteds = [];
           elements.forEach((element) => {
             element.checked === true &&
               FD.append(elements[0].name, element.value);
@@ -44,7 +43,7 @@ export default function (fields) {
     });
 
     // Set up our request
-    XHR.open('POST', 'https://example.com/cors.php');
+    XHR.open(results.id ? 'PUT' : 'POST', url);
 
     // Send our FormData object; HTTP headers are set automatically
     XHR.send(FD);

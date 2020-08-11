@@ -22,7 +22,7 @@ class Biribinha {
     this.insertFields(fields);
     result && resultHandler(result);
     errors && errorHandler(errors);
-    submitHandler(fields);
+    submitHandler(fields, result, url);
   }
 
   initView(config) {
