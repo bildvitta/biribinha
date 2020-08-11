@@ -19,7 +19,6 @@
         "default": "",
         "type": "text"
       },
-
       "id": {
         "name": "id",
         "label": "Id",

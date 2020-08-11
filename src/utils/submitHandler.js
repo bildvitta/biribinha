@@ -38,12 +38,16 @@ export default function (fields, results, url) {
     });
 
     // Define what happens in case of error
-    XHR.addEventListener(' error', function (event) {
+    XHR.addEventListener('error', function (event) {
       alert('Oops! Something went wrong.');
     });
 
     // Set up our request
-    XHR.open(results.id ? 'PUT' : 'POST', url);
+    if (results.id) {
+      XHR.open('PUT', `${url}/${results.id}`);
+    } else {
+      XHR.open('POST', url);
+    }
 
     // Send our FormData object; HTTP headers are set automatically
     XHR.send(FD);
