@@ -139,6 +139,7 @@ describe('rendering the basic Inputs', () => {
     const field = {
       name: 'Checkbox',
       type: 'checkbox',
+      label: 'checkbox',
       default: [1, 2],
       options: [
         { label: 'Option 1', value: 1 },
@@ -146,8 +147,11 @@ describe('rendering the basic Inputs', () => {
         { label: 'Option 3', value: 3 },
       ],
     };
+
     const checkbox = checkboxInput(field);
     const checkboxes = checkbox.getElementsByTagName('input');
+    const legendText = checkbox.getElementsByTagName('legend');
+    expect(legendText).not.toBeNull()
 
     for (let i = 0; i < checkboxes.length; i++) {
       if (i === 0 || i === 1) expect(checkboxes[i]).toBeChecked();
@@ -219,6 +223,7 @@ describe('rendering the basic Inputs', () => {
     const field = {
       name: 'Radio',
       type: 'radio',
+      label: 'radio',
       default: [1, 2],
       options: [
         { label: 'Option 1', value: 1 },
@@ -228,6 +233,8 @@ describe('rendering the basic Inputs', () => {
     };
     const radio = checkboxInput(field);
     const radios = radio.getElementsByTagName('input');
+    const legendText = radio.getElementsByTagName('legend');
+    expect(legendText).not.toBeNull()
 
     for (let i = 0; i < radios.length; i++) {
       if (i === 0 || i === 1) expect(radios[i]).toBeChecked();
