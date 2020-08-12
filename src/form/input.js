@@ -39,7 +39,7 @@ function normalInput({
   const attributes = { name, id: name, class: 'form-control' };
   type && (attributes['type'] = type === 'hidden' ? 'hidden' : 'text');
   min_length && (attributes['min_length'] = min_length);
-  max_length && (attributes['max_length'] = min_length);
+  max_length && (attributes['max_length'] = max_length);
   required && (attributes['required'] = true);
   read_only && (attributes['readonly'] = true);
   multiple && (attributes['multiple'] = 'multiple');
