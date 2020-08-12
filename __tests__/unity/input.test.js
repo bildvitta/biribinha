@@ -78,28 +78,16 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode).not.toBeDisabled();
   });
 
-  test('Creating a Input with prefix and suffix', () => {
+  test('Creating a Input without label', () => {
     const div = normalInput({
       name: 'TextInput',
-      label: 'Texto',
       type: 'text',
-      prefix: '$',
-      suffix: ',00',
-    });
+    }); 
 
-    const inputNode = getByLabelText(div, 'Texto');
-    const prefixText = div.innerHTML.match('$')
-    const suffixText = div.innerHTML.match(',00')
-
-    expect(prefixText).not.toBeNull()
-    expect(suffixText).not.toBeNull()
-
-    expect(inputNode.getAttribute('type')).toBe('text');
-    expect(inputNode.getAttribute('name')).toBe('TextInput');
-    expect(inputNode.getAttribute('id')).toBe('TextInput');
-    expect(inputNode).toHaveValue('');
-    expect(inputNode).not.toBeRequired();
-    expect(inputNode).not.toBeDisabled();
+    const inputName = div.getElementsByClassName('name')
+    expect(inputName).not.toBeNull()
+    const inputSize = div.getElementsByClassName('col-sm-12')
+    expect(inputSize).not.toBeNull()
   });
 
   test('Creating a Input with hint', () => {
@@ -175,6 +163,30 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode).not.toBeDisabled();
   });
 
+  test('Creating a Multiple Select Input', () => {
+    const field = {
+      name: 'select',
+      label: 'Select',
+      type: 'select',
+      multiple: true,
+      options: [
+        { label: 'Select a option...', value: '' },
+        { label: 'Option 1', value: 1 },
+        { label: 'Option 2', value: 2 },
+      ],
+    };
+
+    const div = normalInput(field);
+    const inputNode = getByLabelText(div, 'Select');
+
+    expect(inputNode.getAttribute('name')).toBe('select');
+    expect(inputNode.getAttribute('id')).toBe('select');
+    expect(inputNode.getAttribute('multiple')).toBe('multiple');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+  });
+
+
   test('Creating a Checkboxes Input', () => {
     const field = {
       name: 'Checkbox',
@@ -214,11 +226,19 @@ describe('rendering the basic Inputs', () => {
 
   test('Creating a Boolean Input', () => {
     const field = {
-      label: 'boolean',
+      label: 'Boolean',
+      type: 'boolean',
       name: 'boolean',
+      default: true,
     };
-    const input = booleanInput(field);
-  });
+    
+    const boolean = booleanInput(field);
+    const labelText = boolean.getElementsByTagName('label');
+    const value = boolean.getElementsByTagName('value');
+    // expect(boolean).toBeChecked()
+    expect(labelText).not.toBeNull()
+    expect(value).not.toBeNull()
+  })
 
   test('Date Input', () => {
     const div = normalInput({

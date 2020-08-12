@@ -100,10 +100,14 @@ function checkboxInput({
   const inputCol = document.createElement('div');
 
   div.classList.add('form-group', 'row');
-
+  
   if (label && type !== 'hidden') {
     div.appendChild(createInputLabel(label, name, hint, 'legend'));
-    inputCol.setAttribute('class', `col-sm-${label ? '9' : '12'}`);
+    inputCol.setAttribute('class', `col-sm-9`);
+  }
+
+  if (!label && type !== 'hidden') {
+    inputCol.setAttribute('class', `col-sm-12`);
   }
 
   const inputDiv = document.createElement('div');
