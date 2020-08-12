@@ -26,7 +26,11 @@ function normalInput({
 
   if (label && type !== 'hidden') {
     div.appendChild(createInputLabel(label, name, hint));
-    inputCol.setAttribute('class', `col-sm-${label ? '9' : '12'}`);
+    inputCol.setAttribute('class', `col-sm-9`);
+  }
+
+  if (!label && type !== 'hidden') {
+    inputCol.setAttribute('class', `col-sm-12`);
   }
 
   // Create diferent input types
