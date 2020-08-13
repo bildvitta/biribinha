@@ -100,7 +100,7 @@ function checkboxInput({
   const inputCol = document.createElement('div');
 
   div.classList.add('form-group', 'row');
-  
+
   if (label && type !== 'hidden') {
     div.appendChild(createInputLabel(label, name, hint, 'legend'));
     inputCol.setAttribute('class', `col-sm-9`);
@@ -166,13 +166,12 @@ function booleanInput({ label, name, value, default: _default }) {
     class: 'custom-control-input',
   };
 
-  _default === 'true'
+  _default === true || value === true
     ? checkbox.setAttribute('checked', 'checked')
     : checkbox.removeAttribute('checked');
 
   attributes['id'] = name;
   attributes['name'] = name;
-  attributes['value'] = value;
 
   setAttrs(checkbox, attributes);
 
