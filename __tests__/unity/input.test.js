@@ -211,6 +211,27 @@ describe('rendering the basic Inputs', () => {
     }
   });
 
+  test('Creating a Checkboxes Input without legend', () => {
+    const field = {
+      name: 'Checkbox',
+      type: 'checkbox',
+      default: [1, 2],
+      options: [
+        { label: 'Option 1', value: 1 },
+        { label: 'Option 2', value: 2 },
+        { label: 'Option 3', value: 3 },
+      ],
+    };
+
+    const checkbox = checkboxInput(field);
+    const checkboxes = checkbox.getElementsByTagName('input');
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      if (i === 0 || i === 1) expect(checkboxes[i]).toBeChecked();
+      else expect(checkboxes[i]).not.toBeChecked();
+    }
+  });
+
   test('Creating a Hidden Input', () => {
     const div = normalInput({ name: 'id', type: 'hidden' });
     const input = div.querySelector('input');
