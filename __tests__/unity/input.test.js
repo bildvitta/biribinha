@@ -82,12 +82,12 @@ describe('rendering the basic Inputs', () => {
     const div = normalInput({
       name: 'TextInput',
       type: 'text',
-    }); 
+    });
 
-    const inputName = div.getElementsByClassName('name')
-    expect(inputName).not.toBeNull()
-    const inputSize = div.getElementsByClassName('col-sm-12')
-    expect(inputSize).not.toBeNull()
+    const inputName = div.getElementsByClassName('name');
+    expect(inputName).not.toBeNull();
+    const inputSize = div.getElementsByClassName('col-sm-12');
+    expect(inputSize).not.toBeNull();
   });
 
   test('Creating a Input with hint', () => {
@@ -95,16 +95,16 @@ describe('rendering the basic Inputs', () => {
       name: 'TextInput',
       label: 'Texto',
       type: 'text',
-      hint: 'help'
+      hint: 'help',
     });
 
-    const labelText = div.innerHTML.match('Texto')
-    const hint = div.getElementsByClassName('with-tooltip')
-    const hintText = div.innerHTML.match('help')
+    const labelText = div.innerHTML.match('Texto');
+    const hint = div.getElementsByClassName('with-tooltip');
+    const hintText = div.innerHTML.match('help');
 
-    expect(labelText).not.toBeNull()
-    expect(hint).not.toBeNull()
-    expect(hintText).not.toBeNull()
+    expect(labelText).not.toBeNull();
+    expect(hint).not.toBeNull();
+    expect(hintText).not.toBeNull();
   });
 
   test('Creating a TextArea Input', () => {
@@ -186,7 +186,6 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode).not.toBeDisabled();
   });
 
-
   test('Creating a Checkboxes Input', () => {
     const field = {
       name: 'Checkbox',
@@ -203,7 +202,7 @@ describe('rendering the basic Inputs', () => {
     const checkbox = checkboxInput(field);
     const checkboxes = checkbox.getElementsByTagName('input');
     const legendText = checkbox.getElementsByTagName('legend');
-    expect(legendText).not.toBeNull()
+    expect(legendText).not.toBeNull();
 
     for (let i = 0; i < checkboxes.length; i++) {
       if (i === 0 || i === 1) expect(checkboxes[i]).toBeChecked();
@@ -231,14 +230,13 @@ describe('rendering the basic Inputs', () => {
       name: 'boolean',
       default: true,
     };
-    
+
     const boolean = booleanInput(field);
     const labelText = boolean.getElementsByTagName('label');
-    const value = boolean.getElementsByTagName('value');
-    // expect(boolean).toBeChecked()
-    expect(labelText).not.toBeNull()
-    expect(value).not.toBeNull()
-  })
+    const input = boolean.getElementsByTagName('input');
+    expect(input[0]).toBeChecked();
+    expect(labelText).not.toBeNull();
+  });
 
   test('Date Input', () => {
     const div = normalInput({
@@ -265,7 +263,7 @@ describe('rendering the basic Inputs', () => {
       name: 'phone',
       required: true,
       label: 'Telefone',
-      type: 'number'
+      type: 'number',
     });
 
     const inputNode = getByLabelText(div, 'Telefone', {
@@ -294,12 +292,11 @@ describe('rendering the basic Inputs', () => {
     const radio = checkboxInput(field);
     const radios = radio.getElementsByTagName('input');
     const legendText = radio.getElementsByTagName('legend');
-    expect(legendText).not.toBeNull()
+    expect(legendText).not.toBeNull();
 
     for (let i = 0; i < radios.length; i++) {
       if (i === 0 || i === 1) expect(radios[i]).toBeChecked();
       else expect(radios[i]).not.toBeChecked();
     }
   });
-
 });
