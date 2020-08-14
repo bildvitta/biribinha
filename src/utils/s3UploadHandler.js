@@ -1,5 +1,3 @@
-import { getElementError } from '@testing-library/dom';
-
 export default async function (file, url) {
   console.log('file', file);
 

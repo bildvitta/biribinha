@@ -233,7 +233,7 @@ function uploaderInput({ label, hint, name, multiple }, options) {
     const files = Object.values(e.target.files);
     inputLabel.innerHTML = '';
 
-    files.forEach((file, index) => {
+    files.forEach((file) => {
       if (options.s3endpoint) {
         s3UploadHandler(file, options.s3endpoint);
       }
