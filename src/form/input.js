@@ -1,5 +1,6 @@
 import setAttrs from './setAttribute';
 import prefixSuffixTerm from './prefixSuffix';
+import s3UploadHandler from '../utils/s3UploadHandler';
 
 import { createInputLabel, createCheckboxLabel } from './label';
 
@@ -180,4 +181,66 @@ function booleanInput({ label, name, value, default: _default }) {
   return div;
 }
 
-export { normalInput, checkboxInput, booleanInput };
+function uploaderInput({ label, hint, name, multiple }, options) {
+  const div = document.createElement('div');
+  div.classList.add('form-group', 'row');
+
+  const inputCol = document.createElement('div');
+
+  if (label) {
+    div.appendChild(createInputLabel(label, name, hint));
+    inputCol.setAttribute('class', `col-sm-9`);
+  } else {
+    inputCol.setAttribute('class', `col-sm-12`);
+  }
+
+  const inputDiv = document.createElement('div');
+  inputDiv.classList.add('custom-file');
+
+  const input = document.createElement('input');
+  const attributes = { name, id: name, class: 'custom-file-input' };
+  attributes['type'] = 'file';
+  multiple && (attributes['multiple'] = 'multiple');
+  setAttrs(input, attributes);
+
+  const inputLabel = document.createElement('label');
+  inputLabel.setAttribute('class', 'custom-file-label');
+  inputLabel.setAttribute('for', name);
+  inputLabel.innerHTML = 'Escolha o arquivo...';
+  inputDiv.append(input, inputLabel);
+
+  if (options.s3endpoint) {
+    const progress = document.createElement('div');
+    progress.setAttribute('class', 'progress');
+    const progressbar = document.createElement('div');
+    const progressAttributes = {
+      id: 'progress-bar',
+      class: 'progress-bar',
+      role: 'progressbar',
+      'aria-valuenow': '0',
+      'aria-valuemin': '0',
+      'aria-valuemax': '100',
+    };
+    setAttrs(progressbar, progressAttributes);
+    progress.appendChild(progressbar);
+    inputDiv.appendChild(progress);
+  }
+
+  inputCol.appendChild(inputDiv);
+  div.appendChild(inputCol);
+
+  input.addEventListener('change', (e) => {
+    const files = Object.values(e.target.files);
+    inputLabel.innerHTML = '';
+
+    files.forEach((file, index) => {
+      if (options.s3endpoint) {
+        s3UploadHandler(file, options.s3endpoint);
+      }
+    });
+  });
+
+  return div;
+}
+
+export { normalInput, checkboxInput, booleanInput, uploaderInput };

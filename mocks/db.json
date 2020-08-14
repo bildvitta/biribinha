@@ -244,12 +244,19 @@
           }
         ]
       },
+      "upload": {
+        "name": "file_upload",
+        "label": "File Uploader",
+        "type": "file",
+        "multiple": true
+      },
       "id": { "name": "id", "label": "Id", "default": "", "type": "hidden" }
     },
     "status": { "code": 200 },
     "metadata": {
       "created_at": "2020-06-08T01:32:57.697-03:00",
-      "last_sign_in_at": null
+      "last_sign_in_at": null,
+      "s3endpoint": "http://127.0.0.1:8000/api/generate-presigned-url"
     }
   }
 }

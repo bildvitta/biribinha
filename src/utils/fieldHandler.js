@@ -1,8 +1,11 @@
-import submitHandler from './submitHandler';
+import {
+  normalInput,
+  checkboxInput,
+  booleanInput,
+  uploaderInput,
+} from '../form/input';
 
-import { normalInput, checkboxInput, booleanInput } from '../form/input';
-
-export default function (fields) {
+export default function (fields, options) {
   const form = document.getElementById('formCreator');
 
   fields.map((field) => {
@@ -14,6 +17,9 @@ export default function (fields) {
 
         case 'boolean':
           return form.appendChild(booleanInput(field));
+
+        case 'file':
+          return form.appendChild(uploaderInput(field, options));
 
         default:
           return form.appendChild(normalInput(field));

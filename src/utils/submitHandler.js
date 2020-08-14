@@ -56,6 +56,7 @@ export default function (fields, results, url) {
   const button = document.createElement('input');
   button.classList.add('btn', 'btn-success');
   button.setAttribute('type', 'submit');
+  button.setAttribute('id', 'submitButton');
 
   fields.id && fields.id.value
     ? button.setAttribute('value', 'Salvar')

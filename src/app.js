@@ -19,7 +19,7 @@ class Biribinha {
     const { errors, fields, metadata, result } = await response.json();
 
     this.initView({ mode, url, elementId });
-    this.insertFields(fields);
+    this.insertFields(fields, metadata);
     result && resultHandler(result);
     errors && errorHandler(errors);
     submitHandler(fields, result, url);
@@ -36,11 +36,11 @@ class Biribinha {
     app.appendChild(form);
   }
 
-  insertFields(fields) {
+  insertFields(fields, options) {
     const fieldElements = Object.values(fields);
 
     fieldElements &&
-      (fieldHandler(fieldElements) || maskHandler(fieldElements));
+      (fieldHandler(fieldElements, options) || maskHandler(fieldElements));
   }
 }
 
