@@ -7,7 +7,7 @@ export default function errorHandler(errors) {
     input.classList.add('is-invalid');
     feedback.setAttribute('class', 'invalid-feedback');
     errors[key].forEach((error, index) => {
-      if (index === errors.length) {
+      if (index + 1 === errors[key].length) {
         feedback.innerHTML = `${feedback.innerHTML + error}`;
       } else {
         feedback.innerHTML = `${feedback.innerHTML + error}</br>`;
