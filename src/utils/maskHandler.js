@@ -16,7 +16,7 @@ export default function (fields) {
 
     field.places && (numberAttributes['scale'] = field.places);
     field.max && (numberAttributes['max'] = field.max);
-    field.min && (numberAttributes['max'] = field.min);
+    field.min && (numberAttributes['min'] = field.min);
 
     switch (field.type) {
       case 'color':

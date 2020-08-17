@@ -37,6 +37,38 @@ describe('rendering the basic Inputs', () => {
     expect(inputNode.value).toBe('1.234,56');
   });
 
+  test('Input with max and min', () => {
+    const fields = [
+      {
+        name: 'number',
+        label: 'Número',
+        type: 'number',
+        min: 3,
+        max: 10,
+      },
+    ];
+
+    const body = screen.getByTestId('body');
+    const input = normalInput(fields[0]);
+    body.appendChild(input);
+
+    maskHandler(fields);
+
+    const inputNode = getByLabelText(body, 'Número', { selector: 'input' });
+    console.log(inputNode.outerHTML);
+
+    expect(inputNode.getAttribute('type')).toBe('text');
+    expect(inputNode.getAttribute('name')).toBe('number');
+    expect(inputNode.getAttribute('id')).toBe('number');
+    expect(inputNode).not.toBeRequired();
+    expect(inputNode).not.toBeDisabled();
+    fireEvent.input(inputNode, { target: { value: 'TESTE5' } });
+    expect(inputNode.value).toBe('5');
+    fireEvent.input(inputNode, { target: { value: '' } });
+    fireEvent.input(inputNode, { target: { value: 'TESTE2' } });
+    expect(inputNode.value).toBe('2');
+  });
+
   test('Input with number', () => {
     const fields = [
       {
