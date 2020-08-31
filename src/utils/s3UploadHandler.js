@@ -3,10 +3,13 @@ export default async function (file, url) {
 
   const resEndpoint = await fetch(url, {
     method: 'POST',
-    headers: new Headers({ 'Content-Type': 'application/json' }),
+    headers: new Headers({
+      'Content-Type': 'application/json',
+    }),
     body: JSON.stringify({
       filename: file.name,
       key: 'post/image',
+      client_id: '123',
     }),
   });
 
