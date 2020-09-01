@@ -1,5 +1,3 @@
-import submitHandler from './submitHandler';
-
 import { normalInput, checkboxInput, booleanInput } from '../form/input';
 
 export default function (fields) {

@@ -8,9 +8,9 @@ function normalInput({
   type,
   label,
   required,
-  read_only,
-  min_length,
-  max_length,
+  read_only: readOnly,
+  min_length: minLength,
+  max_length: maxLength,
   hint,
   prefix,
   suffix,
@@ -26,11 +26,11 @@ function normalInput({
 
   if (label && type !== 'hidden') {
     div.appendChild(createInputLabel(label, name, hint));
-    inputCol.setAttribute('class', `col-sm-9`);
+    inputCol.setAttribute('class', 'col-sm-9');
   }
 
   if (!label && type !== 'hidden') {
-    inputCol.setAttribute('class', `col-sm-12`);
+    inputCol.setAttribute('class', 'col-sm-12');
   }
 
   // Create diferent input types
@@ -41,12 +41,12 @@ function normalInput({
 
   // Start of the attributes on input (default name, id and class)
   const attributes = { name, id: name, class: 'form-control' };
-  type && (attributes['type'] = type === 'hidden' ? 'hidden' : 'text');
-  min_length && (attributes['min_length'] = min_length);
-  max_length && (attributes['max_length'] = max_length);
-  required && (attributes['required'] = true);
-  read_only && (attributes['readonly'] = true);
-  multiple && (attributes['multiple'] = 'multiple');
+  type && (attributes.type = type === 'hidden' ? 'hidden' : 'text');
+  minLength && (attributes.min_length = minLength);
+  maxLength && (attributes.max_length = maxLength);
+  required && (attributes.required = true);
+  readOnly && (attributes.readonly = true);
+  multiple && (attributes.multiple = 'multiple');
 
   setAttrs(input, attributes);
 
@@ -103,11 +103,11 @@ function checkboxInput({
 
   if (label && type !== 'hidden') {
     div.appendChild(createInputLabel(label, name, hint, 'legend'));
-    inputCol.setAttribute('class', `col-sm-9`);
+    inputCol.setAttribute('class', 'col-sm-9');
   }
 
   if (!label && type !== 'hidden') {
-    inputCol.setAttribute('class', `col-sm-12`);
+    inputCol.setAttribute('class', 'col-sm-12');
   }
 
   const inputDiv = document.createElement('div');
@@ -124,14 +124,14 @@ function checkboxInput({
 
     const checkbox = document.createElement('input');
     const attributes = {};
-    attributes['type'] = type;
-    attributes['value'] = option.value;
-    attributes['name'] = name;
-    attributes['id'] = `${name}-${option.value}`;
-    attributes['class'] = 'form-check-input';
+    attributes.type = type;
+    attributes.value = option.value;
+    attributes.name = name;
+    attributes.id = `${name}-${option.value}`;
+    attributes.class = 'form-check-input';
     setAttrs(checkbox, attributes);
 
-    if (_default !== '') {
+    if (_default && _default !== '') {
       _default.forEach((checked) => {
         option.value === checked && checkbox.setAttribute('checked', true);
       });
@@ -170,8 +170,8 @@ function booleanInput({ label, name, value, default: _default }) {
     ? checkbox.setAttribute('checked', 'checked')
     : checkbox.removeAttribute('checked');
 
-  attributes['id'] = name;
-  attributes['name'] = name;
+  attributes.id = name;
+  attributes.name = name;
 
   setAttrs(checkbox, attributes);
 

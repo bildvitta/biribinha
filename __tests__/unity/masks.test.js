@@ -55,7 +55,6 @@ describe('rendering the basic Inputs', () => {
     maskHandler(fields);
 
     const inputNode = getByLabelText(body, 'Número', { selector: 'input' });
-    console.log(inputNode.outerHTML);
 
     expect(inputNode.getAttribute('type')).toBe('text');
     expect(inputNode.getAttribute('name')).toBe('number');

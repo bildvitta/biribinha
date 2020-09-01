@@ -14,9 +14,9 @@ export default function (fields) {
       scale: 2,
     };
 
-    field.places && (numberAttributes['scale'] = field.places);
-    field.max && (numberAttributes['max'] = field.max);
-    field.min && (numberAttributes['min'] = field.min);
+    field.places && (numberAttributes.scale = field.places);
+    field.max && (numberAttributes.max = field.max);
+    field.min && (numberAttributes.min = field.min);
 
     switch (field.type) {
       case 'color':
@@ -26,7 +26,7 @@ export default function (fields) {
 
       case 'date':
         element.setAttribute('placeholder', '__/__/____');
-        const dateMask = IMask(element, maskDate());
+        var dateMask = IMask(element, maskDate());
         element.addEventListener('input', function () {
           dateMask.updateValue();
         });
@@ -34,7 +34,7 @@ export default function (fields) {
 
       case 'time':
         element.setAttribute('placeholder', '__:__');
-        const timeMask = IMask(element, maskTime());
+        var timeMask = IMask(element, maskTime());
         element.addEventListener('input', function () {
           timeMask.updateValue();
         });
@@ -45,12 +45,13 @@ export default function (fields) {
         break;
 
       case 'money':
-        numberAttributes['signed'] = false;
-        numberAttributes['thousandsSeparator'] = '.';
-        numberAttributes['padFractionalZeros'] = false;
-        numberAttributes['normalizeZeros'] = true;
-        numberAttributes['radix'] = ',';
-        numberAttributes['mapToRadix'] = ['.'];
+        numberAttributes.scale = 2;
+        numberAttributes.signed = false;
+        numberAttributes.thousandsSeparator = '.';
+        numberAttributes.padFractionalZeros = false;
+        numberAttributes.normalizeZeros = true;
+        numberAttributes.radix = ',';
+        numberAttributes.mapToRadix = ['.'];
         IMask(element, numberAttributes);
         break;
 
@@ -88,18 +89,6 @@ function addMask(element, maskType) {
       break;
   }
 }
-
-const maskMoney = () => ({
-  mask: Number, // enable number mask
-  // other options are optional with defaults below
-  scale: 2, // digits after point, 0 for integers
-  signed: false, // disallow negative
-  thousandsSeparator: '.', // any single char
-  padFractionalZeros: false, // if true, then pads zeros at end to the length of scale
-  normalizeZeros: true, // appends or removes zeros at ends
-  radix: ',', // fractional delimiter
-  mapToRadix: ['.'], // symbols to process as radix
-});
 
 const maskPhone = () => ({
   mask: [
@@ -206,13 +195,9 @@ const maskColor = () => ({
         },
       },
     },
-    //FIX
+    // FIX
     {
       mask: /^#[0-9a-f]{0,6}$/i,
     },
   ],
-});
-
-const maskNumber = () => ({
-  mask: Number,
 });

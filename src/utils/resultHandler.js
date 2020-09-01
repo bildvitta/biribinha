@@ -2,7 +2,7 @@ export default function (results) {
   Object.keys(results).forEach((key) => {
     const input = Array.from(document.getElementsByName(key));
 
-    if (!input) {
+    if (input.length === 0) {
       return;
     }
 

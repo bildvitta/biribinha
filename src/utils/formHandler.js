@@ -7,8 +7,8 @@ export default function (metadata) {
     id: 'formCreator',
   };
 
-  metadata.action && (attributes['action'] = metadata.action);
-  metadata.method && (attributes['method'] = metadata.method);
+  metadata.action && (attributes.action = metadata.action);
+  metadata.method && (attributes.method = metadata.method);
 
   setAttrs(form, attributes);
 

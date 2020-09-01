@@ -13,10 +13,14 @@ class Biribinha {
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error();
+      throw new Error('Can not connect to the server');
     }
 
-    const { errors, fields, metadata, result } = await response.json();
+    const { errors, fields, result } = await response.json();
+
+    if (!fields) {
+      throw new Error('There is no Fields here, check if is everything ok');
+    }
 
     this.initView({ mode, url, elementId });
     this.insertFields(fields);
