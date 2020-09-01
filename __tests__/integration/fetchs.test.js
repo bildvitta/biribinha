@@ -50,6 +50,4 @@ test('Call the api and get an error', async () => {
   }
 
   expect(message).toBe('There is no Fields here, check if is everything ok');
-
-  // expect(fetch).toThrow('There is no Fields here, check if is everything ok');
 });

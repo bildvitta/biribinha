@@ -13,7 +13,7 @@ test('results on normal input', () => {
       type: 'text',
       read_only: true,
     },
-    money: {
+    address: {
       name: 'address',
       label: 'Endereço',
       type: 'text',
@@ -138,14 +138,13 @@ test('results on boolean input', () => {
   const lockInput = document.getElementById('lock');
 
   expect(lockInput.checked).toBe(true);
-  expect(lockInput.checked).not.toBe(false);
 });
 
 test('results on radio input', () => {
   document.body.innerHTML = `<div id="app"><div id="formCreator"></div></div>`;
   const formElements = {
-    sex: {
-      name: 'sex',
+    gender: {
+      name: 'gender',
       label: 'Sexo',
       type: 'radio',
       options: [
@@ -164,15 +163,15 @@ test('results on radio input', () => {
       ],
     },
   };
-  const renderElement = { sex: 'female' };
+  const renderElement = { gender: 'female' };
   const fieldElements = Object.values(formElements);
 
   fieldHandler(fieldElements);
   resultHandler(renderElement);
 
-  const radioMale = document.getElementById('sex-male');
-  const radioFemale = document.getElementById('sex-female');
-  const radioNotDefined = document.getElementById('sex-not_defined');
+  const radioMale = document.getElementById('gender-male');
+  const radioFemale = document.getElementById('gender-female');
+  const radioNotDefined = document.getElementById('gender-not_defined');
 
   expect(radioMale.checked).toBe(false);
   expect(radioFemale.checked).toBe(true);

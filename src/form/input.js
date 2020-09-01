@@ -131,7 +131,7 @@ function checkboxInput({
     attributes.class = 'form-check-input';
     setAttrs(checkbox, attributes);
 
-    if (_default && _default !== '') {
+    if (_default) {
       _default.forEach((checked) => {
         option.value === checked && checkbox.setAttribute('checked', true);
       });

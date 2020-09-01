@@ -3,10 +3,7 @@ import '@testing-library/jest-dom';
 import submitHandler from '../../src/utils/submitHandler';
 
 test('render basic create button', () => {
-  document.body.innerHTML = `
-  <div id="app">
-    <form id="formCreator"></form>
-  </div>`;
+  document.body.innerHTML = `<div id="app"><form id="formCreator"></form></div>`;
 
   const fields = [
     {
@@ -31,10 +28,7 @@ test('render basic create button', () => {
 });
 
 test('render basic edit button', () => {
-  document.body.innerHTML = `
-  <div id="app">
-    <form id="formCreator"></form>
-  </div>`;
+  document.body.innerHTML = `<div id="app"><form id="formCreator"></form></div>`;
 
   const fields = [
     {
