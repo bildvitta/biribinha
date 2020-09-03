@@ -7,7 +7,8 @@
     "group": "geral",
     "money": "12,33",
     "receivers": ["banners", "notifications"],
-    "groupRadio": "somente-leitura"
+    "groupRadio": "somente-leitura",
+    "id": 32
   },
   "errors": {
     "time": ["Campo obrigatório"],
@@ -52,7 +53,6 @@
       "default": "",
       "type": "number",
       "required": true,
-      "suffix": "%",
       "places": "3"
     },
     "phone": {
@@ -108,18 +108,21 @@
       "default": "",
       "type": "select",
       "options": [
-        {
-          "label": "Administrador",
-          "value": "administrador"
-        },
-        {
-          "label": "Geral",
-          "value": "geral"
-        },
-        {
-          "label": "Somente Leitura",
-          "value": "somente-leitura"
-        }
+        { "label": "Administrador", "value": "administrador" },
+        { "label": "Geral", "value": "geral" },
+        { "label": "Somente Leitura", "value": "somente-leitura" }
+      ]
+    },
+    "groupMultiple": {
+      "name": "groupMultiple",
+      "label": "Perfil Multiplo",
+      "default": "",
+      "type": "select",
+      "multiple": true,
+      "options": [
+        { "label": "Administrador", "value": "administrador" },
+        { "label": "Geral", "value": "geral" },
+        { "label": "Somente Leitura", "value": "somente-leitura" }
       ]
     },
     "groupRadio": {
@@ -128,18 +131,9 @@
       "default": "",
       "type": "radio",
       "options": [
-        {
-          "label": "Administrador",
-          "value": "administrador"
-        },
-        {
-          "label": "Geral",
-          "value": "geral"
-        },
-        {
-          "label": "Somente Leitura",
-          "value": "somente-leitura"
-        }
+        { "label": "Administrador", "value": "administrador" },
+        { "label": "Geral", "value": "geral" },
+        { "label": "Somente Leitura", "value": "somente-leitura" }
       ]
     },
     "email": {
@@ -198,16 +192,9 @@
         }
       ]
     },
-    "id": {
-      "name": "id",
-      "label": "Id",
-      "default": "",
-      "type": "hidden"
-    }
+    "id": { "name": "id", "label": "Id", "default": "", "type": "hidden" }
   },
-  "status": {
-    "code": 200
-  },
+  "status": { "code": 200 },
   "metadata": {
     "created_at": "2020-06-08T01:32:57.697-03:00",
     "last_sign_in_at": null

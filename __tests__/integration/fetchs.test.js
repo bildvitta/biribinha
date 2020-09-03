@@ -1,13 +1,14 @@
 import fetchMock from 'jest-fetch-mock';
-fetchMock.enableMocks();
 
 import Biribinha from '../../src/app.js';
-import mockResponse from '../mocks/assembleia.json';
+import mockSuccess from '../mocks/response_success.json';
+import mockError from '../mocks/response_error.json';
+fetchMock.enableMocks();
 
 test('Call the api and mount the code', async () => {
   document.body.innerHTML = `<div id="app"></div>`;
   fetch.mockReturnValue(
-    Promise.resolve(new Response(JSON.stringify(mockResponse)))
+    Promise.resolve(new Response(JSON.stringify(mockSuccess)))
   );
 
   const app = new Biribinha();
@@ -28,4 +29,25 @@ test('Call the api and mount the code', async () => {
 
   expect(fetch).toHaveBeenCalledTimes(1);
   expect(fetch).toHaveBeenCalledWith('http://website.com/assembleia');
+});
+
+test('Call the api and get an error', async () => {
+  document.body.innerHTML = `<div id="app"></div>`;
+  fetch.mockReturnValue(
+    Promise.resolve(new Response(JSON.stringify(mockError)))
+  );
+
+  let message = 'false';
+
+  try {
+    const app = new Biribinha();
+    await app.start({
+      mode: 'normal',
+      url: 'http://website.com/assembleia',
+    });
+  } catch (e) {
+    message = e.message;
+  }
+
+  expect(message).toBe('There is no Fields here, check if is everything ok');
 });

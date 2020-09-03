@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { getByLabelText, QueryByAttribute } from '@testing-library/dom';
+import { getByLabelText } from '@testing-library/dom';
 
 import { normalInput, checkboxInput, booleanInput } from '../../src/form/input';
 

@@ -4,8 +4,8 @@ export default function (fields, results, url) {
   function handleClick(e) {
     e.preventDefault();
     const fieldNames = [];
-    const XHR = new XMLHttpRequest(),
-      FD = new FormData();
+    const XHR = new XMLHttpRequest();
+    const FD = new FormData();
 
     // Getting all fields names
     Object.values(fields).forEach((element) => {
@@ -13,9 +13,9 @@ export default function (fields, results, url) {
     });
 
     fieldNames.map((fieldName) => {
-      let elements = document.getElementsByName(fieldName);
+      const elements = document.getElementsByName(fieldName);
 
-      //Normal Input
+      // Normal Input
       switch (elements[0].type) {
         case 'checkbox':
           elements.forEach((element) => {
@@ -57,7 +57,7 @@ export default function (fields, results, url) {
   button.classList.add('btn', 'btn-success');
   button.setAttribute('type', 'submit');
 
-  fields.id && fields.id.value
+  results.id
     ? button.setAttribute('value', 'Salvar')
     : button.setAttribute('value', 'Criar');
 
