@@ -6,7 +6,7 @@ module.exports = {
   output: {
     publicPath: '/dist/',
     path: path.resolve('dist'),
-    filename: 'bundle.js',
+    filename: 'biribinha.js',
   },
   module: {
     rules: [
