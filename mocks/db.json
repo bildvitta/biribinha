@@ -105,7 +105,8 @@
         "default": "",
         "type": "number",
         "required": true,
-        "places": "3"
+        "places": "3",
+        "suffix": "%"
       },
       "phone": {
         "name": "phone",
