@@ -51,10 +51,16 @@ Copie o arquivo do `dist/bundle.js`
   const biribinha = new Biribinha();
   biribinha.start({
     url: 'http://localhost:3000/colaborador',
-    // options
+    elementId: 'biribinha', // whare the biribinha magic will work in your page ('app' is default)
+    elementStyle: 'bootstrap3', // witch styleguide you will work ('bootstrap4' is default)
   });
 </script>
 ```
+
+##### Options
+
+`elementId: string`
+`elementStyle: ['bootstrap3','bootstrap4']`
 
 ## Observações
 
