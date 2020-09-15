@@ -3,21 +3,24 @@ import prefixSuffixTerm from './prefixSuffix';
 
 import { createInputLabel, createCheckboxLabel } from './label';
 
-function normalInput({
-  name,
-  type,
-  label,
-  required,
-  read_only: readOnly,
-  min_length: minLength,
-  max_length: maxLength,
-  hint,
-  prefix,
-  suffix,
-  options,
-  multiple,
-  default: _default,
-}) {
+function normalInput(
+  {
+    name,
+    type,
+    label,
+    required,
+    read_only: readOnly,
+    min_length: minLength,
+    max_length: maxLength,
+    hint,
+    prefix,
+    suffix,
+    options,
+    multiple,
+    default: _default,
+  },
+  elementStyle
+) {
   const div = document.createElement('div');
   const inputCol = document.createElement('div');
 
@@ -78,7 +81,10 @@ function normalInput({
 
   function addPrefixSuffix(position, term) {
     const element = document.createElement('div');
-    element.setAttribute('class', 'input-group-prepend');
+    elementStyle === 'bootstrap4' &&
+      element.setAttribute('class', 'input-group-prepend');
+    elementStyle === 'bootstrap3' &&
+      element.setAttribute('class', 'input-group-addon');
     element.appendChild(prefixSuffixTerm(type, term));
     position === 'prefix' ? input.before(element) : input.after(element);
   }

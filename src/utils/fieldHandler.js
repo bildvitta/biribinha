@@ -1,6 +1,6 @@
 import { normalInput, checkboxInput, booleanInput } from '../form/input';
 
-export default function (fields) {
+export default function (fields, elementStyle) {
   const form = document.getElementById('formCreator');
 
   fields.map((field) => {
@@ -14,7 +14,7 @@ export default function (fields) {
           return form.appendChild(booleanInput(field));
 
         default:
-          return form.appendChild(normalInput(field));
+          return form.appendChild(normalInput(field, elementStyle));
       }
     }
   });
