@@ -1,7 +1,6 @@
 export default function (fields, results, url) {
   const form = document.getElementById('formCreator');
 
-  console.log('submit');
   function handleClick(e) {
     e.preventDefault();
     const fieldNames = [];
