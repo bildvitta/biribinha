@@ -43,16 +43,17 @@ Com package manager:
 
 Uso em row:
 
-Copie o arquivo do `dist/bundle.js`
+Copie o arquivo do `dist/biribinha.js`
 
 ```html
-<script type="text/javascript" src="dist/bundle.js"></script>
+<script type="text/javascript" src="dist/biribinha.js"></script>
 <script>
   const biribinha = new Biribinha();
   biribinha.start({
     url: 'http://localhost:3000/colaborador',
     elementId: 'biribinha', // whare the biribinha magic will work in your page ('app' is default)
     elementStyle: 'bootstrap3', // witch styleguide you will work ('bootstrap4' is default)
+    elementForm: true, // use biribinha as a form (true) or just create the form inputs inside a div (false)
   });
 </script>
 ```

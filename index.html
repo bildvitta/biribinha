@@ -23,14 +23,14 @@
   </head>
   <body>
     <div id="app"></div>
-    <script type="text/javascript" src="dist/bundle.js"></script>
+    <script type="text/javascript" src="dist/biribinha.js"></script>
     <script>
       // Loading the biribinha module
       const app = new Biribinha();
       app.start({
         url: 'http://localhost:3000/colaborador',
-        mode: 'replace',
         elementStyle: 'bootstrap4',
+        elementForm: true,
       });
     </script>
     <script

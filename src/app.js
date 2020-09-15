@@ -9,7 +9,13 @@ import './global.scss';
 // https://github.com/bildvitta/api
 
 class Biribinha {
-  async start({ mode, url, elementId = 'app', elementStyle = 'bootstrap4' }) {
+  async start({
+    mode,
+    url,
+    elementId = 'app',
+    elementStyle = 'bootstrap4',
+    elementForm = true,
+  }) {
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -22,11 +28,11 @@ class Biribinha {
       throw new Error('There is no Fields here, check if is everything ok');
     }
 
-    this.initView({ mode, url, elementId, elementStyle });
+    this.initView({ mode, url, elementId, elementStyle, elementForm });
     this.insertFields(fields, elementStyle);
     result && resultHandler(result);
     errors && errorHandler(errors);
-    submitHandler(fields, result, url);
+    elementForm && submitHandler(fields, result, url);
   }
 
   initView(config) {
@@ -36,8 +42,8 @@ class Biribinha {
       throw new Error('Please set a valid element id');
     }
 
-    const form = formHandler(config);
     app.classList.add(`biribinha-${config.elementStyle}`);
+    const form = formHandler(config);
     app.appendChild(form);
   }
 
