@@ -25,8 +25,11 @@ export default function (results) {
       }
 
       // Radio
-      if (inputElement.value === results[key]) {
-        return inputElement.setAttribute('checked', 'checked');
+      if (inputElement.type === 'radio') {
+        if (inputElement.value === results[key]) {
+          return inputElement.setAttribute('checked', 'checked');
+        }
+        return;
       }
 
       // Boolean
