@@ -121,6 +121,7 @@ function checkboxInput({
   inputCol.appendChild(inputDiv);
 
   options.map((option) => {
+    // console.log('option', option);
     const formCheck = document.createElement('div');
     formCheck.setAttribute('class', 'form-check');
     formCheck.setAttribute('id', 'form-check');
