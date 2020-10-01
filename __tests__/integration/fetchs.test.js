@@ -51,3 +51,24 @@ test('Call the api and get an error', async () => {
 
   expect(message).toBe('There is no Fields here, check if is everything ok');
 });
+
+test('Error on element id', async () => {
+  document.body.innerHTML = `<div id="app2"></div>`;
+  fetch.mockReturnValue(
+    Promise.resolve(new Response(JSON.stringify(mockSuccess)))
+  );
+
+  let message = 'false';
+
+  try {
+    const app = new Biribinha();
+    await app.start({
+      mode: 'normal',
+      url: 'http://website.com/assembleia',
+    });
+  } catch (e) {
+    message = e.message;
+  }
+
+  expect(message).toBe('Please set a valid element id');
+});

@@ -1,14 +1,16 @@
 import setAttrs from '../form/setAttribute';
 
-export default function (metadata) {
-  const form = document.createElement('form');
+export default function (config) {
+  const form = config.elementForm
+    ? document.createElement('form')
+    : document.createElement('div');
 
   const attributes = {
     id: 'formCreator',
   };
 
-  metadata.action && (attributes.action = metadata.action);
-  metadata.method && (attributes.method = metadata.method);
+  config.action && (attributes.action = config.action);
+  config.method && (attributes.method = config.method);
 
   setAttrs(form, attributes);
 
