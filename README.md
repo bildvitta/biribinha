@@ -63,6 +63,16 @@ Copie o arquivo do `dist/biribinha.js`
 `elementId: string`
 `elementStyle: ['bootstrap3','bootstrap4']`
 
+##### Events
+
+You can use the window event `biribinhaDone` to create a function after biribinha's window build
+
+```js
+window.addEventListener('biribinhaDone', function() {
+  console.log('biriba is done')
+})
+```
+
 ## Observações
 
 Atualmente os estilos do formulario estão atrelados ao Bootstrap 4.5, existe a possibilidade de criação desses estilos para outros frameworks visuais

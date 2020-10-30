@@ -175,7 +175,8 @@
         "options": [
           { "label": "Administrador", "value": "administrador" },
           { "label": "Geral", "value": "geral" },
-          { "label": "Somente Leitura", "value": "somente-leitura" }
+          { "label": "Somente Leitura", "value": "somente-leitura" },
+          { "label": "Programatico", "value": "programatic" }
         ]
       },
       "groupRadio": {

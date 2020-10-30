@@ -44,7 +44,7 @@ function normalInput(
 
   // Start of the attributes on input (default name, id and class)
   const attributes = { name, id: name, class: 'form-control' };
-  type && (attributes.type = type === 'hidden' ? 'hidden' : 'text');
+  type && (attributes.type = type === 'hidden' && 'hidden');
   minLength && (attributes.min_length = minLength);
   maxLength && (attributes.max_length = maxLength);
   required && (attributes.required = true);

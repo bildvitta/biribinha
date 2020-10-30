@@ -33,6 +33,11 @@ class Biribinha {
     result && resultHandler(result);
     errors && errorHandler(errors);
     elementForm && submitHandler(fields, result, url);
+
+    // Creating a event if is everything done
+    const event = document.createEvent('HTMLEvents');
+    event.initEvent('biribinhaDone', true, false);
+    window.dispatchEvent(event);
   }
 
   initView(config) {
